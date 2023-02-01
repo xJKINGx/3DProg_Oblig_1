@@ -16,6 +16,7 @@
 #include "xyz.h"
 #include "trianglesurface.h"
 #include "cube.h"
+#include "curve.h"
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -44,7 +45,8 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
     //mObjects.push_back(new XYZ());
     //mObjects.push_back(new TriangleSurface("vertices.txt", false));
-    mObjects.push_back(newCube);
+    //mObjects.push_back(newCube);
+    mObjects.push_back(new Curve("vertices.txt", true));
 }
 
 RenderWindow::~RenderWindow()

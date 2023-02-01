@@ -1,5 +1,6 @@
 debug/main.o
 debug/cube.o
+debug/curve.o
 debug/logger.o
 debug/mainwindow.o
 debug/renderwindow.o
