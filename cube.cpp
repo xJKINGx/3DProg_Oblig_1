@@ -153,25 +153,25 @@ void cube::draw()
 
 void cube::Move(float x, float y, float z, QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_D)
+    if (event->key() == Qt::Key_Right)
     {
         m_Position[0] += moveSpeed;
         mMatrix.translate(moveSpeed, 0.0f, 0.0f);
         std::cout <<"D";
     }
-    if (event->key() == Qt::Key_A)
+    if (event->key() == Qt::Key_Left)
     {
         m_Position[0] -= moveSpeed;
                 mMatrix.translate(-moveSpeed, 0.0f, 0.0f);
         std::cout <<"A";
     }
-    if (event->key() == Qt::Key_W)
+    if (event->key() == Qt::Key_Up)
     {
         m_Position[1] -= moveSpeed;
         mMatrix.translate(0.0f, moveSpeed, 0.0f);
         std::cout <<"W";
     }
-    if (event->key() == Qt::Key_S)
+    if (event->key() == Qt::Key_Down)
     {
         m_Position[1] += moveSpeed;
         mMatrix.translate(0.0f, -moveSpeed, 0.0f);

@@ -43,10 +43,10 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
 
 
-    //mObjects.push_back(new XYZ());
-    //mObjects.push_back(new TriangleSurface("vertices.txt", false));
-    //mObjects.push_back(newCube);
-    mObjects.push_back(new Curve("vertices.txt", true));
+    mObjects.push_back(new XYZ());
+    mObjects.push_back(new TriangleSurface("vertices.txt", true));
+    mObjects.push_back(newCube);
+//    mObjects.push_back(new Curve("vertices.txt", true));
 }
 
 RenderWindow::~RenderWindow()

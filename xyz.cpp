@@ -2,12 +2,12 @@
 #include "xyz.h"
 
 XYZ::XYZ() {
-   mVertices.push_back(Vertex{0,0,0,1,0,0});
-   mVertices.push_back(Vertex{1,0,0,1,0,0});
-   mVertices.push_back(Vertex{0,0,0,0,1,0});
-   mVertices.push_back(Vertex{0,1,0,0,1,0});
-   mVertices.push_back(Vertex{0,0,0,0,0,1});
-   mVertices.push_back(Vertex{0,0,1,0,0,1});
+   mVertices.push_back(Vertex{-5,0,0,1,0,0});
+   mVertices.push_back(Vertex{5,0,0,1,0,0});
+   mVertices.push_back(Vertex{0,-5,0,0,1,0});
+   mVertices.push_back(Vertex{0,5,0,0,1,0});
+   mVertices.push_back(Vertex{0,0,-5,0,0,1});
+   mVertices.push_back(Vertex{0,0,5,0,0,1});
    mMatrix.setToIdentity();
 }
 
