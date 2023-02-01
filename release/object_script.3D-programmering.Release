@@ -1,0 +1,12 @@
+release/main.o
+release/cube.o
+release/logger.o
+release/mainwindow.o
+release/renderwindow.o
+release/shader.o
+release/trianglesurface.o
+release/vertex.o
+release/visualobject.o
+release/xyz.o
+release/moc_mainwindow.o
+release/moc_renderwindow.o
