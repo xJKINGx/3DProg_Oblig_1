@@ -17,6 +17,7 @@
 #include "trianglesurface.h"
 #include "cube.h"
 #include "curve.h"
+#include "point.h"
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -44,9 +45,10 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
 
     mObjects.push_back(new XYZ());
-    mObjects.push_back(new TriangleSurface("vertices.txt", true));
-    mObjects.push_back(newCube);
-//    mObjects.push_back(new Curve("vertices.txt", true));
+    //mObjects.push_back(new TriangleSurface("vertices.txt", true));
+    //mObjects.push_back(newCube);
+    mObjects.push_back(new Curve("graph.txt", true));
+    mObjects.push_back(new point("points.txt", true));
 }
 
 RenderWindow::~RenderWindow()
@@ -62,6 +64,9 @@ void RenderWindow::init()
     //Get the instance of the utility Output logger
     //Have to do this, else program will crash (or you have to put in nullptr tests...)
     mLogger = Logger::getInstance();
+
+    GLfloat bababooey = 5.0f;
+
 
     //Connect the gameloop timer to the render function:
     //This makes our render loop
@@ -124,6 +129,7 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform);
     }
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
+    glPointSize(bababooey);
 }
 
 // Called each frame - doing the rendering!!!
@@ -143,8 +149,8 @@ void RenderWindow::render()
     // Leksjon 3
     mPmatrix->setToIdentity();
     mVmatrix->setToIdentity();
-    mPmatrix->perspective(60, 4.0/3.0, 0.1, 10.0);
-    mVmatrix->translate(0, 0, -5); // Flytter kamera
+    mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
+    mVmatrix->translate(0, 0, -10); // Flytter kamera
     // Må sende matrisedata til vertexshader
     glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
     glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());

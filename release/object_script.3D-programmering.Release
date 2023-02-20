@@ -3,6 +3,7 @@ release/cube.o
 release/curve.o
 release/logger.o
 release/mainwindow.o
+release/point.o
 release/renderwindow.o
 release/shader.o
 release/trianglesurface.o

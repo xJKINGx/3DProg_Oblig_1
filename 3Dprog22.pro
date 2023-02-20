@@ -10,6 +10,7 @@ SOURCES += main.cpp \
     curve.cpp \
     logger.cpp \
     mainwindow.cpp \
+    point.cpp \
     renderwindow.cpp \
     shader.cpp \
     trianglesurface.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     curve.h \
     logger.h \
     mainwindow.h \
+    point.h \
     renderwindow.h \
     shader.h \
     trianglesurface.h \
