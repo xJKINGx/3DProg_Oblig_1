@@ -8,6 +8,7 @@
 #include <vector>
 #include "visualobject.h"
 #include "cube.h"
+#include "camera.h"
 
 class QOpenGLContext;
 class Shader;
@@ -34,6 +35,7 @@ private slots:
     void render();          //the actual render - function
 
 private:
+    Camera mCamera; // Kamera-greie som ble kommentert ut i .h
     void init();            //initialize things we need before rendering
 
     QOpenGLContext *mContext{nullptr};  //Our OpenGL context

@@ -123,6 +123,7 @@ void RenderWindow::init()
     mMatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "matrix" );
     mPmatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "pMatrix" );
     mVmatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "vMatrix" );
+    mCamera.init(mPmatrixUniform, mVmatrixUniform);
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
@@ -147,13 +148,17 @@ void RenderWindow::render()
     glUseProgram(mShaderProgram->getProgram() );
 
     // Leksjon 3
-    mPmatrix->setToIdentity();
-    mVmatrix->setToIdentity();
-    mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
-    mVmatrix->translate(0, 0, -10); // Flytter kamera
+    // mPmatrix->setToIdentity();
+    // mVmatrix->setToIdentity();
+    // mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
+    mCamera.init(mPmatrixUniform, mVmatrixUniform);
+    mCamera.perspective(60, 4.0/3.0, 0.1, 100.0);
+    // mVmatrix->translate(0, 0, -10); // Flytter kamera
+    mCamera.lookAt(QVector3D{0,0,-5}, QVector3D{0,0,0}, QVector3D{0,1,0});
     // Må sende matrisedata til vertexshader
-    glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
-    glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());
+    // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
+    // glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());
+    mCamera.update();
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
