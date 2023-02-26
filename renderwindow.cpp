@@ -45,10 +45,18 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
 
     mObjects.push_back(new XYZ());
-    //mObjects.push_back(new TriangleSurface("vertices.txt", true));
+    //mObjects.push_back(new TriangleSurface("vertices.txt", false));
     //mObjects.push_back(newCube);
-    mObjects.push_back(new Curve("graph.txt", true));
-    mObjects.push_back(new point("points.txt", true));
+
+    // Oblig 2 - Oppgave 4.4.4
+    //mObjects.push_back(new Curve("graph.txt", true));
+    //mObjects.push_back(new point("points.txt", true));
+
+    // Oblig 2 - Oppgave 4.6.10
+    //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
+    //mObjects.push_back(new point("4610points.txt", true));
+
+    mObjects.push_back(new TriangleSurface("oblig2Ground.txt", true));
 }
 
 RenderWindow::~RenderWindow()
@@ -148,6 +156,7 @@ void RenderWindow::render()
     glUseProgram(mShaderProgram->getProgram() );
 
     // Leksjon 3
+<<<<<<< Updated upstream
     // mPmatrix->setToIdentity();
     // mVmatrix->setToIdentity();
     // mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
@@ -155,6 +164,12 @@ void RenderWindow::render()
     mCamera.perspective(60, 4.0/3.0, 0.1, 100.0);
     // mVmatrix->translate(0, 0, -10); // Flytter kamera
     mCamera.lookAt(QVector3D{0,0,-5}, QVector3D{0,0,0}, QVector3D{0,1,0});
+=======
+    mPmatrix->setToIdentity();
+    mVmatrix->setToIdentity();
+    mPmatrix->perspective(60, 4.0/3.0, 0.1, 1000.0);
+    mVmatrix->translate(0, 0, -15); // Flytter kamera
+>>>>>>> Stashed changes
     // Må sende matrisedata til vertexshader
     // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
     // glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());

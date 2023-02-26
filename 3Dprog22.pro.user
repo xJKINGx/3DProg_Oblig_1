@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< Updated upstream
 <!-- Written by QtCreator 9.0.1, 2023-02-26T16:32:08. -->
+=======
+<!-- Written by QtCreator 9.0.1, 2023-02-26T18:10:41. -->
+>>>>>>> Stashed changes
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -161,7 +165,11 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+<<<<<<< Updated upstream
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marku/source/repos/Fjerde semester/Matematikk 3/Oblig 1/GitHub-repo/3DProg_Oblig_1</value>
+=======
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/Github Clones/3DProg_Oblig_1</value>
+>>>>>>> Stashed changes
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

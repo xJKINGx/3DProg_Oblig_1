@@ -19,23 +19,35 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 {
     if (write)
     {
-        float xmin=-1.75f, xmax=1.75f, ymin=-1.75f, ymax=1.75f, h=0.1f;
+        float xmin=-5.0f, xmax=5.0f, ymin=-5.0f, ymax=5.0f, h=0.1f;
         for (auto x=xmin; x<xmax; x+=h)
         {
             for (auto y=ymin; y<ymax; y+=h)
             {
             // f(x,y) = x * sin(y)
-            float z = x*sin(y);
-            mVertices.push_back(Vertex{x,y,z,x,y,z});
-            z = (x+h)*sin(y);
-            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-            z = x*(sin(y+h));
-            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-            z = (x+h)*sin(y);
-            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-            z = (x+h) * (sin(y+h));
-            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
+//            float z = x*sin(y);
+//            mVertices.push_back(Vertex{x,y,z,x,y,z});
+//            z = (x+h)*sin(y);
+//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+//            z = x*(sin(y+h));
+//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+//            z = (x+h)*sin(y);
+//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+//            z = (x+h) * (sin(y+h));
+//            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
+
+            float z = 2*cos(x)*sin(y);
+            mVertices.push_back(Vertex{x,y,z,0,1.0f,0});
+            z = 2*cos(x+h)*sin(y);
+            mVertices.push_back(Vertex{x+h,y,z,0,1.0f,0});
+            z = 2*cos(x)*(sin(y+h));
+            mVertices.push_back(Vertex{x,y+h,z,0,1.0f,0});
+            mVertices.push_back(Vertex{x,y+h,z,0,1.0f,0});
+            z = 2*cos(x+h)*sin(y);
+            mVertices.push_back(Vertex{x+h,y,z,0,1.0f,0});
+            z = 2*cos(x+h)* (sin(y+h));
+            mVertices.push_back(Vertex{x+h,y+h,z,0,1.0f,0});
 
             }
         }
