@@ -156,20 +156,14 @@ void RenderWindow::render()
     glUseProgram(mShaderProgram->getProgram() );
 
     // Leksjon 3
-<<<<<<< Updated upstream
     // mPmatrix->setToIdentity();
     // mVmatrix->setToIdentity();
     // mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
-    mCamera.perspective(60, 4.0/3.0, 0.1, 100.0);
+    mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
     // mVmatrix->translate(0, 0, -10); // Flytter kamera
-    mCamera.lookAt(QVector3D{0,0,-5}, QVector3D{0,0,0}, QVector3D{0,1,0});
-=======
-    mPmatrix->setToIdentity();
-    mVmatrix->setToIdentity();
-    mPmatrix->perspective(60, 4.0/3.0, 0.1, 1000.0);
-    mVmatrix->translate(0, 0, -15); // Flytter kamera
->>>>>>> Stashed changes
+    mCamera.lookAt(QVector3D{0,0,-15}, QVector3D{0,0,0}, QVector3D{0,1,0});
+
     // Må sende matrisedata til vertexshader
     // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
     // glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());
