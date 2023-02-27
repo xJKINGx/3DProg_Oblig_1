@@ -14,11 +14,13 @@
 #include "mainwindow.h"
 #include "logger.h"
 #include "xyz.h"
+#include "trophy.h"
 #include "trianglesurface.h"
 #include "cube.h"
 #include "curve.h"
 #include "point.h"
 #include "npc.h"
+
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -61,6 +63,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     Curve* GroundGraph = new Curve("graph.txt", true);
     mObjects.push_back(Ground);
     mObjects.push_back(new NPC());
+    mObjects.push_back(new trophy);
 }
 
 RenderWindow::~RenderWindow()

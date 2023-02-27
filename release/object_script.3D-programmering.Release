@@ -9,6 +9,7 @@ release/point.o
 release/renderwindow.o
 release/shader.o
 release/trianglesurface.o
+release/trophy.o
 release/vertex.o
 release/visualobject.o
 release/xyz.o
