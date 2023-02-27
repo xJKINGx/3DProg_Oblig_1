@@ -8,6 +8,8 @@ class point : public VisualObject
 public:
     ~point();
 
+    float mPos[3] = {0.0f, 0.0f, 0.0f};
+
     point();
     point(std::string fileName, bool readFileCheck);
     void init(GLint matrixUniform) override;

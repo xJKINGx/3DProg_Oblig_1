@@ -8,6 +8,7 @@
 class Curve : public VisualObject
 {
 public:
+    std::string ActiveFile;
     Curve();
     Curve(std::string fileName, bool readFileCheck);
     void init(GLint matrixUniform) override;

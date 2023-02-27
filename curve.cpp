@@ -67,6 +67,7 @@ void Curve::readFile(std::string fileName)
 
     if (input.is_open())
     {
+        ActiveFile = fileName;
         int n;
         Vertex vertex;
         input >> n;

@@ -11,6 +11,7 @@ SOURCES += main.cpp \
     curve.cpp \
     logger.cpp \
     mainwindow.cpp \
+    npc.cpp \
     point.cpp \
     renderwindow.cpp \
     shader.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     curve.h \
     logger.h \
     mainwindow.h \
+    npc.h \
     point.h \
     renderwindow.h \
     shader.h \

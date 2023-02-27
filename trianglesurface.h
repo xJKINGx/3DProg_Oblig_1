@@ -2,6 +2,7 @@
 #define TRIANGLESURFACE_H
 
 #include "visualobject.h"
+#include "vertex.h"
 
 class TriangleSurface : public VisualObject
 {
@@ -13,6 +14,8 @@ public:
    void writeFile(std::string filnavn);
    void init(GLint matrixUniform) override;
    void draw() override;
+
+   float GetZValue(float X, float Y);
 };
 
 #endif // TRIANGLESURFACE_H

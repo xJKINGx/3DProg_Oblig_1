@@ -19,10 +19,10 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 {
     if (write)
     {
-        float xmin=-5.0f, xmax=5.0f, ymin=-5.0f, ymax=5.0f, h=0.1f;
+        float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
         for (auto x=xmin; x<xmax; x+=h)
         {
-            for (auto y=ymin; y<ymax; y+=h)
+            for (auto z=zmin; z<zmax; z+=h)
             {
             // f(x,y) = x * sin(y)
 //            float z = x*sin(y);
@@ -37,17 +37,17 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 //            z = (x+h) * (sin(y+h));
 //            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
 
-            float z = 2*cos(x)*sin(y);
-            mVertices.push_back(Vertex{x,y,z,0,1.0f,0});
-            z = 2*cos(x+h)*sin(y);
-            mVertices.push_back(Vertex{x+h,y,z,0,1.0f,0});
-            z = 2*cos(x)*(sin(y+h));
-            mVertices.push_back(Vertex{x,y+h,z,0,1.0f,0});
-            mVertices.push_back(Vertex{x,y+h,z,0,1.0f,0});
-            z = 2*cos(x+h)*sin(y);
-            mVertices.push_back(Vertex{x+h,y,z,0,1.0f,0});
-            z = 2*cos(x+h)* (sin(y+h));
-            mVertices.push_back(Vertex{x+h,y+h,z,0,1.0f,0});
+            float y = 2*cos(x)*sin(z);
+            mVertices.push_back(Vertex{x,y,z,x,y,z});
+            y = 2*cos(x+h)*sin(z);
+            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+            y = 2*cos(x)*(sin(z+h));
+            mVertices.push_back(Vertex{x,y,z+h,x,y,z});
+            mVertices.push_back(Vertex{x,y,z+h,x,y,z});
+            y = 2*cos(x+h)*sin(z);
+            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+            y = 2*cos(x+h)* (sin(z+h));
+            mVertices.push_back(Vertex{x+h,y,z+h,x,y,z});
 
             }
         }
@@ -101,6 +101,13 @@ void TriangleSurface::writeFile(std::string filnavn)
 
         ut.close();
     }
+}
+
+float TriangleSurface::GetZValue(float X, float Y)
+{
+    // Z er høyde, så vi kalkulerer høyden basert på X og Y verdien gitt, også returnerer vi Z
+    // Da får vi tilgang til høyden på hvilket som helst punkt.
+    return (2*cos(X)*sin(Y));
 }
 
 
