@@ -59,11 +59,11 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
 
-    TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
-    Curve* GroundGraph = new Curve("graph.txt", true);
-    mObjects.push_back(Ground);
-    mObjects.push_back(new NPC());
-    mObjects.push_back(new trophy);
+//    TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+//    Curve* GroundGraph = new Curve("graph.txt", true);
+//    mObjects.push_back(Ground);
+//    mObjects.push_back(new NPC());
+    mObjects.push_back(new trophy(1));
 }
 
 RenderWindow::~RenderWindow()
@@ -169,7 +169,7 @@ void RenderWindow::render()
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
     // mVmatrix->translate(0, 0, -10); // Flytter kamera
-    mCamera.lookAt(QVector3D{0,10,-10}, QVector3D{0,0,0}, QVector3D{0,1,0});
+    mCamera.lookAt(QVector3D{0,10,-5}, QVector3D{0,0,0}, QVector3D{0,1,0});
 
     // Må sende matrisedata til vertexshader
     // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());

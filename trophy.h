@@ -20,6 +20,8 @@ public:
 
    std::vector<Vertex> TrophyPoints;
    float m_Position[3] = {0.0f, 0.0f, 0.0f};
+   float StartPos[3] = {0.0f, 0.0f, 0.0f};
+   float TrophyColour[3] = {1.0f, 1.0f, 0.0f};
 };
 
 #endif // TROPHY_H
