@@ -7,40 +7,40 @@ trophy::trophy() {
 trophy::trophy(float scale) {
     // TROPHY BOWL
     // FRONT
-    Vertex v7{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v8{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v9{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v7{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v8{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v9{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
-    Vertex v10{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v11{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v12{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v10{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v11{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v12{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
     // EAST
-    Vertex v13{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v14{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v15{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v13{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v14{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v15{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
-    Vertex v16{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v17{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v18{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v16{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v17{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v18{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
     // BACK
-    Vertex v19{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v20{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v21{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v19{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v20{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v21{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
-    Vertex v22{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v23{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v24{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v22{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v23{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v24{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
     // WEST
-    Vertex v25{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v26{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v27{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v25{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v26{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v27{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
-    Vertex v28{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v29{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v30{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v28{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v29{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v30{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
     // TOP
 
@@ -92,32 +92,23 @@ trophy::trophy(float scale) {
 
     // CORNERS
     // FRONT LEFT
-    Vertex v67{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v68{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] - scale/5, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v69{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+    Vertex v67{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
     // FRONT RIGHT
-    Vertex v70{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v71{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v72{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1] - scale/5, m_Position[2] + StartPos[2] + scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+
 
     // BACK LEFT
-    Vertex v73{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v74{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v75{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] - scale/5, m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
+
 
     // BACK RIGHT
-    Vertex v76{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v77{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2] + scale, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
-    Vertex v78{m_Position[0] + StartPos[0] - scale + scale/5, m_Position[1] + StartPos[1] - scale/5, m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
 
-    TrophyPoints.push_back(v7);
-    TrophyPoints.push_back(v8);
-    TrophyPoints.push_back(v9);
-    TrophyPoints.push_back(v10);
-    TrophyPoints.push_back(v11);
-    TrophyPoints.push_back(v12);
+//    TrophyPoints.push_back(v7);
+//    TrophyPoints.push_back(v8);
+//    TrophyPoints.push_back(v9);
+//    TrophyPoints.push_back(v10);
+//    TrophyPoints.push_back(v11);
+//    TrophyPoints.push_back(v12);
 
     TrophyPoints.push_back(v13);
     TrophyPoints.push_back(v14);
@@ -140,40 +131,40 @@ trophy::trophy(float scale) {
     TrophyPoints.push_back(v29);
     TrophyPoints.push_back(v30);
 
-//    TrophyPoints.push_back(v37);
-//    TrophyPoints.push_back(v38);
-//    TrophyPoints.push_back(v39);
-//    TrophyPoints.push_back(v40);
-//    TrophyPoints.push_back(v41);
-//    TrophyPoints.push_back(v42);
+    TrophyPoints.push_back(v37);
+    TrophyPoints.push_back(v38);
+    TrophyPoints.push_back(v39);
+    TrophyPoints.push_back(v40);
+    TrophyPoints.push_back(v41);
+    TrophyPoints.push_back(v42);
 
-//    TrophyPoints.push_back(v43);
-//    TrophyPoints.push_back(v44);
-//    TrophyPoints.push_back(v45);
-//    TrophyPoints.push_back(v46);
-//    TrophyPoints.push_back(v47);
-//    TrophyPoints.push_back(v48);
+    TrophyPoints.push_back(v43);
+    TrophyPoints.push_back(v44);
+    TrophyPoints.push_back(v45);
+    TrophyPoints.push_back(v46);
+    TrophyPoints.push_back(v47);
+    TrophyPoints.push_back(v48);
 
-//    TrophyPoints.push_back(v49);
-//    TrophyPoints.push_back(v50);
-//    TrophyPoints.push_back(v51);
-//    TrophyPoints.push_back(v52);
-//    TrophyPoints.push_back(v53);
-//    TrophyPoints.push_back(v54);
+    TrophyPoints.push_back(v49);
+    TrophyPoints.push_back(v50);
+    TrophyPoints.push_back(v51);
+    TrophyPoints.push_back(v52);
+    TrophyPoints.push_back(v53);
+    TrophyPoints.push_back(v54);
 
-//    TrophyPoints.push_back(v55);
-//    TrophyPoints.push_back(v56);
-//    TrophyPoints.push_back(v57);
-//    TrophyPoints.push_back(v58);
-//    TrophyPoints.push_back(v59);
-//    TrophyPoints.push_back(v60);
+    TrophyPoints.push_back(v55);
+    TrophyPoints.push_back(v56);
+    TrophyPoints.push_back(v57);
+    TrophyPoints.push_back(v58);
+    TrophyPoints.push_back(v59);
+    TrophyPoints.push_back(v60);
 
-//    TrophyPoints.push_back(v61);
-//    TrophyPoints.push_back(v62);
-//    TrophyPoints.push_back(v63);
-//    TrophyPoints.push_back(v64);
-//    TrophyPoints.push_back(v65);
-//    TrophyPoints.push_back(v66);
+    TrophyPoints.push_back(v61);
+    TrophyPoints.push_back(v62);
+    TrophyPoints.push_back(v63);
+    TrophyPoints.push_back(v64);
+    TrophyPoints.push_back(v65);
+    TrophyPoints.push_back(v66);
 
 //    TrophyPoints.push_back(v67);
 //    TrophyPoints.push_back(v68);
