@@ -69,7 +69,15 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     mObjects.push_back(Ground);
    // mObjects.push_back(new NPC());
 
-    mObjects.push_back(new trophy(1, QVector3D(3.0f, 3.0f, -2.0f)));
+    // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
+    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(1.0f, 0.0f, -3.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(5.0f, 0.0f, 3.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(-6.0f, 0.0f, 1.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 3.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
+    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
 
     mObjects.push_back(House);
     mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
