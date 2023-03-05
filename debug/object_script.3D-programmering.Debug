@@ -2,6 +2,8 @@ debug/main.o
 debug/camera.o
 debug/cube.o
 debug/curve.o
+debug/door.o
+debug/doorcollider.o
 debug/house.o
 debug/logger.o
 debug/mainwindow.o

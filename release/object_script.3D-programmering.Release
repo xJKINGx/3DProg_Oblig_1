@@ -2,6 +2,8 @@ release/main.o
 release/camera.o
 release/cube.o
 release/curve.o
+release/door.o
+release/doorcollider.o
 release/house.o
 release/logger.o
 release/mainwindow.o

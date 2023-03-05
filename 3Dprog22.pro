@@ -9,6 +9,8 @@ SOURCES += main.cpp \
     camera.cpp \
     cube.cpp \
     curve.cpp \
+    door.cpp \
+    doorcollider.cpp \
     house.cpp \
     logger.cpp \
     mainwindow.cpp \
@@ -26,6 +28,8 @@ HEADERS += \
     camera.h \
     cube.h \
     curve.h \
+    door.h \
+    doorcollider.h \
     house.h \
     logger.h \
     mainwindow.h \
