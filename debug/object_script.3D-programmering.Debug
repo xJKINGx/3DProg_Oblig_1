@@ -1,4 +1,5 @@
 debug/main.o
+debug/bed.o
 debug/camera.o
 debug/cube.o
 debug/curve.o

@@ -18,6 +18,7 @@
 #include "house.h"
 #include "door.h"
 #include "doorcollider.h"
+#include "bed.h"
 #include "trianglesurface.h"
 #include "cube.h"
 #include "curve.h"
@@ -69,7 +70,8 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 //    mObjects.push_back(new trophy(1));
 //    mObjects.push_back(new house(1));
 //    mObjects.push_back(new door(1));
-    mObjects.push_back(new doorcollider(1));
+//    mObjects.push_back(new doorcollider(1));
+    mObjects.push_back(new bed(1));
 }
 
 RenderWindow::~RenderWindow()
@@ -175,7 +177,7 @@ void RenderWindow::render()
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
     // mVmatrix->translate(0, 0, -10); // Flytter kamera
-    mCamera.lookAt(QVector3D{-10,4,-6}, QVector3D{0,0,0}, QVector3D{0,1,0});
+    mCamera.lookAt(QVector3D{-4,5,-10}, QVector3D{0,0,0}, QVector3D{0,1,0});
 
     // Må sende matrisedata til vertexshader
     // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
