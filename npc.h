@@ -17,6 +17,7 @@ public:
     NPC();
     void init(GLint matrixUniform) override;
     void draw() override;
+
     ~NPC();
 
     void FollowPath(Curve path, TriangleSurface ground);

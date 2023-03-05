@@ -27,8 +27,14 @@
 #include "npc.h"
 #include "player.h"
 
-house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
 Player* player = new Player(0.2f);
+
+house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
+door* Door = new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
+doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
+TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", false);
+secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
+bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -68,30 +74,29 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     //mObjects.push_back(new point("4610points.txt", true));
 
     mObjects.push_back(player);
-    if (bSecondScene == false) {
-        TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+
     //    Curve* GroundGraph = new Curve("graph.txt", true);
         mObjects.push_back(Ground);
-    // mObjects.push_back(new NPC());
+        // mObjects.push_back(new NPC());
 
-    // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
-    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(1.0f, 0.0f, -3.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(5.0f, 0.0f, 3.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(-6.0f, 0.0f, 1.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 3.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
-    mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
-    mObjects.push_back(House);
-    mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
-    mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+        // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
+        mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(1.0f, 0.0f, -3.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(5.0f, 0.0f, 3.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(-6.0f, 0.0f, 1.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 3.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
+
+        mObjects.push_back(House);
+        mObjects.push_back(Door);
+        mObjects.push_back(DoorCol);
+
     //    mObjects.push_back(new doorcollider(1));
-    }
-    else {
-        mObjects.push_back(new secondscenehouse(1));
-        mObjects.push_back(new bed(1));
-    }
+
+        mObjects.push_back(SecondHouse);
+        mObjects.push_back(Bed);
 }
 
 RenderWindow::~RenderWindow()
@@ -174,6 +179,10 @@ void RenderWindow::init()
     }
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
+
+    mCamera.init(mPmatrixUniform, mVmatrixUniform);
+    mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
+    mCamera.lookAt(QVector3D{-7,5,-6}, QVector3D{0,0,0}, QVector3D{0,1,0});
 }
 
 // Called each frame - doing the rendering!!!
@@ -194,10 +203,7 @@ void RenderWindow::render()
     // mPmatrix->setToIdentity();
     // mVmatrix->setToIdentity();
     // mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
-    mCamera.init(mPmatrixUniform, mVmatrixUniform);
-    mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
-    // mVmatrix->translate(0, 0, -10); // Flytter kamera
-    mCamera.lookAt(QVector3D{-7,5,-6}, QVector3D{0,0,0}, QVector3D{0,1,0});
+
 
     // Må sende matrisedata til vertexshader
     // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
@@ -207,6 +213,7 @@ void RenderWindow::render()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
+        (*it)->checkCollision(DoorCol);
         (*it)->checkCollision(player); // For trohpies, will be changed to player later
         (*it)->draw();
     }
@@ -223,7 +230,12 @@ void RenderWindow::render()
         newCube->Rotate(false);
     }
 
-
+    if (player->bSecondScene)
+    {
+        mCamera.init(mPmatrixUniform, mVmatrixUniform);
+        mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
+        mCamera.lookAt(QVector3D{993,1005,994}, SecondHouse->m_Position, QVector3D{0,1,0});
+    }
 
 }
 

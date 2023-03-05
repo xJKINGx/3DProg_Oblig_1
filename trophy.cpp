@@ -6,7 +6,9 @@ trophy::trophy() {
 
 trophy::trophy(float scale, QVector3D start) {
     m_Position = start;
-    m_Position[1] = 2 * cos(m_Position[0]) * sin(m_Position[2]) + 3 * scale;
+    auto YCol = mMatrix.column(3);
+    YCol.setY(2 * cos(m_Position[0]) * sin(m_Position[2]));
+    mMatrix.setColumn(3, YCol);
     // TROPHY CYLINDER
     // TOP
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};

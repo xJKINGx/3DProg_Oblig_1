@@ -14,6 +14,7 @@ public:
     point(std::string fileName, bool readFileCheck);
     void init(GLint matrixUniform) override;
     void draw() override;
+
     void readFile(std::string fileName);
 };
 #endif // POINT_H

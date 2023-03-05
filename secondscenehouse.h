@@ -12,10 +12,11 @@ class secondscenehouse : public VisualObject
 {
 public:
     secondscenehouse();
-    secondscenehouse(float scale);
+    secondscenehouse(float scale, QVector3D start);
     ~secondscenehouse() override;
     void init(GLint matrixUniform) override;
     void draw() override;
+
 
     std::vector<Vertex> HousePoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};

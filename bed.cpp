@@ -5,8 +5,9 @@ bed::bed()
 
 }
 
-bed::bed(float scale)
+bed::bed(float scale, QVector3D start)
 {
+    m_Position = start;
     // MAIN
     // FRONT
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], BedColour[0], BedColour[1], BedColour[2]};
@@ -317,8 +318,8 @@ void bed::init(GLint matrixUniform) {
 
 void bed::draw()
 {
-   glBindVertexArray( mVAO );
-   glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
-   glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
-   // (0,0) (1,0) (2,0) (3,0)
+    glBindVertexArray( mVAO );
+    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
+    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+    // (0,0) (1,0) (2,0) (3,0)
 }

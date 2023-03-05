@@ -7,6 +7,7 @@ Player::Player()
 
 Player::Player(float scale)
 {
+    PlayerScale = scale;
     // NORTH SIDE
     Vertex v1{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
     Vertex v2{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
@@ -132,15 +133,13 @@ void Player::Move(QKeyEvent* event)
         mMatrix.translate(0.0f, 0.0f, -moveSpeed);
     }
 
-    if (m_Position[1] < 2 * cos(m_Position[0]) * sin(m_Position[2]))
-    {
-        mMatrix.translate(0.0f, 2 * cos(m_Position[0]) * sin(m_Position[2]) - m_Position[1], 0.0f);
-    }
-    else
-    {
-        mMatrix.translate(0.0f, m_Position[1] - 2 * cos(m_Position[0]) * sin(m_Position[2]) , 0.0f);
-    }
+
+
+    auto YCol = mMatrix.column(3);
+    YCol.setY(2 * cos(m_Position[0]) * sin(m_Position[2]) + PlayerScale);
+    mMatrix.setColumn(3, YCol);
 }
+
 
 void Player::draw()
 {

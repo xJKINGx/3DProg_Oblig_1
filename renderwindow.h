@@ -31,8 +31,6 @@ public:
 
     bool mRotate{true};     //Check if triangle should rotate
 
-    bool bSecondScene = false;
-
 private slots:
     void render();          //the actual render - function
 
@@ -75,6 +73,7 @@ private:
     void startOpenGLDebugger();
 
     std::vector<VisualObject*> mObjects;
+
 
 protected:
     //The QWindow that we inherit from have these functions to capture

@@ -4,7 +4,8 @@ secondscenehouse::secondscenehouse() {
 
 }
 
-secondscenehouse::secondscenehouse(float scale) {
+secondscenehouse::secondscenehouse(float scale, QVector3D start) {
+    m_Position = start;
     // MAIN BODY
     // FRONT LEFT
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], HouseColour[0], HouseColour[1], HouseColour[2]};

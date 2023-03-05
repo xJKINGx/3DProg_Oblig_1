@@ -21,6 +21,7 @@ public:
 
 
 
+
     std::vector<Vertex> TrophyPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};
     QVector3D StartPos = {0.0f, 0.0f, 0.0f}; // May not be needed anymore

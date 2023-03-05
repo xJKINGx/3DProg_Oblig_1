@@ -17,5 +17,6 @@ public:
    ~XYZ() override;
    void init(GLint matrixUniform) override;
    void draw() override;
+
 };
 #endif // XYZ_H

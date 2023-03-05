@@ -16,6 +16,7 @@ public:
     void init(GLint matrixUniform) override;
     void draw() override;
 
+
     std::vector<Vertex> DoorPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};
     float StartPos[3] = {0.0f, 0.0f, 0.0f};
