@@ -162,7 +162,7 @@ void cube::Move(float x, float y, float z, QKeyEvent *event)
     if (event->key() == Qt::Key_Left)
     {
         m_Position[0] -= moveSpeed;
-                mMatrix.translate(-moveSpeed, 0.0f, 0.0f);
+        mMatrix.translate(-moveSpeed, 0.0f, 0.0f);
         std::cout <<"A";
     }
     if (event->key() == Qt::Key_Up)

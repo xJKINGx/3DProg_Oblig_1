@@ -51,7 +51,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
 
 
-    mObjects.push_back(new XYZ());
+    //mObjects.push_back(new XYZ());
     //mObjects.push_back(new TriangleSurface("vertices.txt", false));
     //mObjects.push_back(newCube);
 
@@ -63,15 +63,16 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
 
-//    TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+   // TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 //    Curve* GroundGraph = new Curve("graph.txt", true);
-//    mObjects.push_back(Ground);
-//    mObjects.push_back(new NPC());
-//    mObjects.push_back(new trophy(1));
-//    mObjects.push_back(new house(1));
+   // mObjects.push_back(Ground);
+   // mObjects.push_back(new NPC());
+
+    mObjects.push_back(new trophy(1));
+    mObjects.push_back(new house(1));
 //    mObjects.push_back(new door(1));
 //    mObjects.push_back(new doorcollider(1));
-    mObjects.push_back(new bed(1));
+    //mObjects.push_back(new bed(1));
 }
 
 RenderWindow::~RenderWindow()
@@ -88,7 +89,7 @@ void RenderWindow::init()
     //Have to do this, else program will crash (or you have to put in nullptr tests...)
     mLogger = Logger::getInstance();
 
-    GLfloat bababooey = 5.0f;
+    GLfloat bababooey = 1.0f;
 
 
     //Connect the gameloop timer to the render function:
@@ -184,8 +185,10 @@ void RenderWindow::render()
     // glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());
     mCamera.update();
 
+
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
+        (*it)->checkCollision(mObjects[1]);
         (*it)->draw();
     }
     calculateFramerate();
@@ -200,6 +203,8 @@ void RenderWindow::render()
     {
         newCube->Rotate(false);
     }
+
+
 
 }
 

@@ -10,6 +10,7 @@ release/logger.o
 release/mainwindow.o
 release/npc.o
 release/point.o
+release/positioncomponent.o
 release/renderwindow.o
 release/shader.o
 release/trianglesurface.o

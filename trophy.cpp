@@ -445,6 +445,23 @@ void trophy::draw()
 {
    glBindVertexArray( mVAO );
    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
-   glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+   //glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
    // (0,0) (1,0) (2,0) (3,0)
+   std::cout << m_Position[0] << m_Position[1] << m_Position[2] << std::endl;
+   switch (renderValue) {
+       case 0:
+           glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+           break;
+       case 1:
+           glDrawArrays(GL_LINES, 0, mVertices.size());
+           break;
+       case 2:
+           //std::cout << "Set hidden" << std::endl;
+           glDrawArrays(GL_POINTS, 0, mVertices.size());
+           setPosition(QVector3D{-100000.0f, -100000.0f, -100000.0f});
+           break;
+       default:
+           //std::cout << "ERROR::INVALID_RENDER_METHOD" << std::endl;
+           break;
+       }
 }

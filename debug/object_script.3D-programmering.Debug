@@ -10,6 +10,7 @@ debug/logger.o
 debug/mainwindow.o
 debug/npc.o
 debug/point.o
+debug/positioncomponent.o
 debug/renderwindow.o
 debug/shader.o
 debug/trianglesurface.o

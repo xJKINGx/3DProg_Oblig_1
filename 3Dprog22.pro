@@ -17,6 +17,7 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     npc.cpp \
     point.cpp \
+    positioncomponent.cpp \
     renderwindow.cpp \
     shader.cpp \
     trianglesurface.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     mainwindow.h \
     npc.h \
     point.h \
+    positioncomponent.h \
     renderwindow.h \
     shader.h \
     trianglesurface.h \
