@@ -31,7 +31,8 @@ public:
 
     bool mRotate{true};     //Check if triangle should rotate
 
-    bool bSecondScene = false;
+    //bool bSecondScene = false;
+    bool bSecondScene = true;
 
 private slots:
     void render();          //the actual render - function

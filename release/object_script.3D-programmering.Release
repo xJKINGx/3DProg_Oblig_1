@@ -12,6 +12,7 @@ release/npc.o
 release/point.o
 release/positioncomponent.o
 release/renderwindow.o
+release/secondscenehouse.o
 release/shader.o
 release/trianglesurface.o
 release/trophy.o

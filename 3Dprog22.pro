@@ -19,6 +19,7 @@ SOURCES += main.cpp \
     point.cpp \
     positioncomponent.cpp \
     renderwindow.cpp \
+    secondscenehouse.cpp \
     shader.cpp \
     trianglesurface.cpp \
     trophy.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     point.h \
     positioncomponent.h \
     renderwindow.h \
+    secondscenehouse.h \
     shader.h \
     trianglesurface.h \
     trophy.h \

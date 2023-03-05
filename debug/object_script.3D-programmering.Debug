@@ -12,6 +12,7 @@ debug/npc.o
 debug/point.o
 debug/positioncomponent.o
 debug/renderwindow.o
+debug/secondscenehouse.o
 debug/shader.o
 debug/trianglesurface.o
 debug/trophy.o
