@@ -4,7 +4,8 @@ house::house() {
 
 }
 
-house::house(float scale) {
+house::house(float scale, QVector3D start) {
+    m_Position = start;
     // MAIN BODY
     // FRONT LEFT
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], HouseColour[0], HouseColour[1], HouseColour[2]};
@@ -228,33 +229,33 @@ house::house(float scale) {
     HousePoints.push_back(v66);
 
 //    // FOUNDATIONS IN CASE NEEDED
-//    HousePoints.push_back(v67);
-//    HousePoints.push_back(v68);
-//    HousePoints.push_back(v69);
-//    HousePoints.push_back(v70);
-//    HousePoints.push_back(v71);
-//    HousePoints.push_back(v72);
+    HousePoints.push_back(v67);
+    HousePoints.push_back(v68);
+    HousePoints.push_back(v69);
+    HousePoints.push_back(v70);
+    HousePoints.push_back(v71);
+    HousePoints.push_back(v72);
 
-//    HousePoints.push_back(v73);
-//    HousePoints.push_back(v74);
-//    HousePoints.push_back(v75);
-//    HousePoints.push_back(v76);
-//    HousePoints.push_back(v77);
-//    HousePoints.push_back(v78);
+    HousePoints.push_back(v73);
+    HousePoints.push_back(v74);
+    HousePoints.push_back(v75);
+    HousePoints.push_back(v76);
+    HousePoints.push_back(v77);
+    HousePoints.push_back(v78);
 
-//    HousePoints.push_back(v79);
-//    HousePoints.push_back(v80);
-//    HousePoints.push_back(v81);
-//    HousePoints.push_back(v82);
-//    HousePoints.push_back(v83);
-//    HousePoints.push_back(v84);
+    HousePoints.push_back(v79);
+    HousePoints.push_back(v80);
+    HousePoints.push_back(v81);
+    HousePoints.push_back(v82);
+    HousePoints.push_back(v83);
+    HousePoints.push_back(v84);
 
-//    HousePoints.push_back(v85);
-//    HousePoints.push_back(v86);
-//    HousePoints.push_back(v87);
-//    HousePoints.push_back(v88);
-//    HousePoints.push_back(v89);
-//    HousePoints.push_back(v90);
+    HousePoints.push_back(v85);
+    HousePoints.push_back(v86);
+    HousePoints.push_back(v87);
+    HousePoints.push_back(v88);
+    HousePoints.push_back(v89);
+    HousePoints.push_back(v90);
 
 
 

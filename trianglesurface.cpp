@@ -37,17 +37,24 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 //            z = (x+h) * (sin(y+h));
 //            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
 
+
             float y = 2*cos(x)*sin(z);
-            mVertices.push_back(Vertex{x,y,z,x,y,z});
+//            float yColor = y;
+//            if (y < 0.1f)
+//            {
+//                yColor = 0.5f;
+//            }
+
+            mVertices.push_back(Vertex{x,y,z,0.0f,y,0.0f});
             y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+            mVertices.push_back(Vertex{x+h,y,z,0.0f,y,0.0f});
             y = 2*cos(x)*(sin(z+h));
-            mVertices.push_back(Vertex{x,y,z+h,x,y,z});
-            mVertices.push_back(Vertex{x,y,z+h,x,y,z});
+            mVertices.push_back(Vertex{x,y,z+h,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x,y,z+h,0.0f,y,0.0f});
             y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+            mVertices.push_back(Vertex{x+h,y,z,0.0f,y,0.0f});
             y = 2*cos(x+h)* (sin(z+h));
-            mVertices.push_back(Vertex{x+h,y,z+h,x,y,z});
+            mVertices.push_back(Vertex{x+h,y,z+h,0.0f,y,0.0f});
 
             }
         }

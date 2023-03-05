@@ -11,13 +11,13 @@ class doorcollider : public VisualObject
 {
 public:
     doorcollider();
-    doorcollider(float scale);
+    doorcollider(float scale, QVector3D start);
     ~doorcollider() override;
     void init(GLint matrixUniform) override;
     void draw() override;
 
     std::vector<Vertex> DoorPoints;
-    float m_Position[3] = {0.0f, 0.0f, 0.0f};
+    //float m_Position[3] = {0.0f, 0.0f, 0.0f};
     float StartPos[3] = {0.0f, 0.0f, 0.0f};
     float DoorColour[3] = {0.0f, 0.0f, 0.0f};
 };

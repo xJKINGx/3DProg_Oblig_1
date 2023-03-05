@@ -14,7 +14,7 @@ private:
 
 public:
     trophy();
-    trophy(float scale);
+    trophy(float scale, QVector3D start);
     ~trophy() override;
     void init(GLint matrixUniform) override;
     void draw() override;
@@ -23,7 +23,7 @@ public:
 
     std::vector<Vertex> TrophyPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};
-    QVector3D StartPos = {3.0f, 3.0f, 30.0f};
+    QVector3D StartPos = {0.0f, 0.0f, 0.0f}; // May not be needed anymore
     float TrophyColour[3] = {1.0f, 1.0f, 0.0f};
 
     void checkCollision(VisualObject* other) override {

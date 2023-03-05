@@ -25,6 +25,7 @@
 #include "point.h"
 #include "npc.h"
 
+house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -63,14 +64,16 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
 
-   // TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+    TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 //    Curve* GroundGraph = new Curve("graph.txt", true);
-   // mObjects.push_back(Ground);
+    mObjects.push_back(Ground);
    // mObjects.push_back(new NPC());
 
-    mObjects.push_back(new trophy(1));
-    mObjects.push_back(new house(1));
-//    mObjects.push_back(new door(1));
+    mObjects.push_back(new trophy(1, QVector3D(3.0f, 3.0f, -2.0f)));
+
+    mObjects.push_back(House);
+    mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+    mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
 //    mObjects.push_back(new doorcollider(1));
     //mObjects.push_back(new bed(1));
 }
@@ -188,7 +191,7 @@ void RenderWindow::render()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->checkCollision(mObjects[1]);
+        (*it)->checkCollision(House); // For trohpies, will be changed to player later
         (*it)->draw();
     }
     calculateFramerate();

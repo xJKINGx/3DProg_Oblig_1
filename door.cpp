@@ -5,8 +5,9 @@ door::door()
 
 }
 
-door::door(float scale)
+door::door(float scale, QVector3D start)
 {
+    m_Position = start;
     // FRONT
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], DoorColour[0], DoorColour[1], DoorColour[2]};
     Vertex v2{m_Position[0] + StartPos[0] - scale, m_Position[1] + StartPos[1], m_Position[2] + StartPos[2], DoorColour[0], DoorColour[1], DoorColour[2]};

@@ -4,8 +4,8 @@ trophy::trophy() {
 
 }
 
-trophy::trophy(float scale) {
-    m_Position = StartPos;
+trophy::trophy(float scale, QVector3D start) {
+    m_Position = start;
     // TROPHY CYLINDER
     // TOP
     Vertex v1{m_Position[0] + StartPos[0], m_Position[1] + StartPos[1] + scale*2, m_Position[2] + StartPos[2], TrophyColour[0], TrophyColour[1], TrophyColour[2]};
