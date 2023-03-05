@@ -9,7 +9,7 @@ positionComponent::positionComponent()
 void positionComponent::setPosition(QVector3D offset)
 {
     m_Position = offset;
-    mMatrix.translate(offset);
-    //getTranslateMatrix(&mMatrix);
+    mMatrix.translate(m_Position);
+    getTranslateMatrix(&mMatrix);
     mMatrix.lookAt(m_Position, m_Position + worldFront, worldUp);
 }

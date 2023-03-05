@@ -19,9 +19,11 @@ public:
     void init(GLint matrixUniform) override;
     void draw() override;
 
+    bool HasCollided = false;
+
     std::vector<Vertex> TrophyPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};
-    float StartPos[3] = {0.0f, 0.0f, 0.0f};
+    QVector3D StartPos = {3.0f, 3.0f, 30.0f};
     float TrophyColour[3] = {1.0f, 1.0f, 0.0f};
 
     void checkCollision(VisualObject* other) override {
@@ -34,7 +36,7 @@ public:
         else
         {
             std::cout << "No collision" << std::endl;
-            renderValue = 1; // Wireframe
+            renderValue = 0; // Wireframe
         }
     }
 };
