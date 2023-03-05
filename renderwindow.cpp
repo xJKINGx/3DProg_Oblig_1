@@ -25,8 +25,10 @@
 #include "curve.h"
 #include "point.h"
 #include "npc.h"
+#include "player.h"
 
 house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
+Player* player = new Player(0.2f);
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -65,14 +67,12 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
 
-
+    mObjects.push_back(player);
     if (bSecondScene == false) {
         TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
     //    Curve* GroundGraph = new Curve("graph.txt", true);
         mObjects.push_back(Ground);
     // mObjects.push_back(new NPC());
-
-        mObjects.push_back(new trophy(1, QVector3D(3.0f, 3.0f, -2.0f)));
 
     // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
     mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
@@ -83,9 +83,9 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
     mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
     mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
-        mObjects.push_back(House);
-        mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
-        mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+    mObjects.push_back(House);
+    mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+    mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
     //    mObjects.push_back(new doorcollider(1));
     }
     else {
@@ -207,7 +207,7 @@ void RenderWindow::render()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->checkCollision(House); // For trohpies, will be changed to player later
+        (*it)->checkCollision(player); // For trohpies, will be changed to player later
         (*it)->draw();
     }
     calculateFramerate();
@@ -349,6 +349,7 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
         mMainWindow->close();       //Shuts down the whole program
     } else
     {
+        player->Move(event);
         newCube->Move(0.0f,0.0f,0.0f, event);
     }
 

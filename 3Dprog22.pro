@@ -16,6 +16,7 @@ SOURCES += main.cpp \
     logger.cpp \
     mainwindow.cpp \
     npc.cpp \
+    player.cpp \
     point.cpp \
     positioncomponent.cpp \
     renderwindow.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     logger.h \
     mainwindow.h \
     npc.h \
+    player.h \
     point.h \
     positioncomponent.h \
     renderwindow.h \

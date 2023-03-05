@@ -11,7 +11,7 @@
 class trophy : public VisualObject
 {
 private:
-
+    bool HasCollided = false;
 public:
     trophy();
     trophy(float scale, QVector3D start);
@@ -19,7 +19,7 @@ public:
     void init(GLint matrixUniform) override;
     void draw() override;
 
-    bool HasCollided = false;
+
 
     std::vector<Vertex> TrophyPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};

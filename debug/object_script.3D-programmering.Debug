@@ -9,6 +9,7 @@ debug/house.o
 debug/logger.o
 debug/mainwindow.o
 debug/npc.o
+debug/player.o
 debug/point.o
 debug/positioncomponent.o
 debug/renderwindow.o
