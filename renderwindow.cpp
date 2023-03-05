@@ -64,6 +64,8 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     // Oblig 2 - Oppgave 4.6.10
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
+
+
     if (bSecondScene == false) {
         TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
     //    Curve* GroundGraph = new Curve("graph.txt", true);
