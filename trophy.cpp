@@ -230,6 +230,7 @@ trophy::trophy(float scale) {
     Vertex v150{m_Position[0] + StartPos[0] - scale/5, m_Position[1] + StartPos[1] - scale/5 - scale - scale/2 - scale/10, m_Position[2] + StartPos[2] + scale - scale/5, TrophyColour[0], TrophyColour[1], TrophyColour[2]};
 
 
+
     TrophyPoints.push_back(v1);
     TrophyPoints.push_back(v2);
     TrophyPoints.push_back(v3);
@@ -397,8 +398,6 @@ trophy::trophy(float scale) {
     TrophyPoints.push_back(v148);
     TrophyPoints.push_back(v149);
     TrophyPoints.push_back(v150);
-
-
 
 
 

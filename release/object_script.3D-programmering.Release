@@ -2,6 +2,7 @@ release/main.o
 release/camera.o
 release/cube.o
 release/curve.o
+release/house.o
 release/logger.o
 release/mainwindow.o
 release/npc.o
