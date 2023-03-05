@@ -63,11 +63,13 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     // Oblig 2 - Oppgave 4.6.10
     //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
     //mObjects.push_back(new point("4610points.txt", true));
+    if (bSecondScene == false) {
+        TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+    //    Curve* GroundGraph = new Curve("graph.txt", true);
+        mObjects.push_back(Ground);
+    // mObjects.push_back(new NPC());
 
-    TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
-//    Curve* GroundGraph = new Curve("graph.txt", true);
-    mObjects.push_back(Ground);
-   // mObjects.push_back(new NPC());
+        mObjects.push_back(new trophy(1, QVector3D(3.0f, 3.0f, -2.0f)));
 
     // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
     mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
@@ -78,12 +80,15 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
     mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
     mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
+        mObjects.push_back(House);
+        mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+        mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
+    //    mObjects.push_back(new doorcollider(1));
+        //mObjects.push_back(new bed(1));
+    }
+    else {
 
-    mObjects.push_back(House);
-    mObjects.push_back(new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
-    mObjects.push_back(new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f)));
-//    mObjects.push_back(new doorcollider(1));
-    //mObjects.push_back(new bed(1));
+    }
 }
 
 RenderWindow::~RenderWindow()
