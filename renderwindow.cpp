@@ -65,7 +65,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 //    mObjects.push_back(Ground);
 //    mObjects.push_back(new NPC());
 //    mObjects.push_back(new trophy(1));
-    mObjects.push_back(new house(1));
+//    mObjects.push_back(new house(1));
 }
 
 RenderWindow::~RenderWindow()
