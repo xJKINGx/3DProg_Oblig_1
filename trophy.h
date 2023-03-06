@@ -19,6 +19,7 @@ public:
     ~trophy() override;
     void init(GLint matrixUniform) override;
     void draw() override;
+    float pointToGive = 1;
 
 
 
@@ -34,7 +35,10 @@ public:
         if (dist < Radius + other->Radius) {
             std::cout << "collision" << std::endl;
             renderValue = 2; // Invisible
-            other->trophiesCollected++;
+            if (pointToGive = 1) {
+                other->trophiesCollected += 1;
+                pointToGive = 0;
+            }
         }
         else
         {
