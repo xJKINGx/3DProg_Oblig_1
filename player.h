@@ -28,7 +28,7 @@ public:
         if (dist < Radius + other->Radius && trophiesCollected == 8) {
             std::cout << "PLAYER COLLIDED WITH DOOR" << std::endl;
             //renderValue = 2; // Invisible
-            bSecondScene = true;
+            //bSecondScene = true;
             std::cout << bSecondScene << std::endl;
         }
         else
