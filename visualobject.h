@@ -16,6 +16,7 @@ public:
     virtual void draw()=0;
 
     int renderValue = 0;
+    int trophiesCollected = 0;
 
     float Radius = 0.5f;
 

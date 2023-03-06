@@ -7,6 +7,7 @@
 #include "vertex.h"
 #include "visualobject.h"
 #include <iostream>
+#include "player.h"
 
 class trophy : public VisualObject
 {
@@ -33,6 +34,7 @@ public:
         if (dist < Radius + other->Radius) {
             std::cout << "collision" << std::endl;
             renderValue = 2; // Invisible
+            other->trophiesCollected++;
         }
         else
         {
