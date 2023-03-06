@@ -26,11 +26,15 @@ public:
     void checkCollision(VisualObject* other) override {
 
         float dist = m_Position.distanceToPoint(other->m_Position);
-        if (dist < Radius + other->Radius) {
+        if (dist < Radius + other->Radius && trophiesCollected >= 6) {
+            std::cout << trophiesCollected << std::endl;
             std::cout << "PLAYER COLLIDED WITH DOOR" << std::endl;
             //renderValue = 2; // Invisible
+                        MoveToSecondHouse();
             bSecondScene = true;
-            MoveToSecondHouse();
+
+
+
             std::cout << bSecondScene << std::endl;
         }
         else

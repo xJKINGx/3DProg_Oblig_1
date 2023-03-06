@@ -147,14 +147,18 @@ void Player::Move(QKeyEvent* event)
 
 void Player::MoveToSecondHouse()
 {
-    mMatrix.translate(m_Position[0] - m_Position[0], m_Position[1] - m_Position[1], m_Position[2] - m_Position[2]);
-    m_Position[0] = 1000.0f;
-    m_Position[1] = 1000.0f;
-    m_Position[2] = 1000.0f;
-    mMatrix.translate(m_Position[0], m_Position[1], m_Position[2]);
-    std::cout << "Player X: " << m_Position[0] << std::endl;
-    std::cout << "Player Y: " << m_Position[1] << std::endl;
-    std::cout << "Player Z: " << m_Position[2] << std::endl;
+    if (!bSecondScene)
+    {
+        m_Position[0] = 998.0f;
+        m_Position[1] = 1001.0f;
+        m_Position[2] = 1000.0f;
+
+        auto V4D = mMatrix.column(3);
+        V4D.setX(m_Position.x());
+        V4D.setY(m_Position.y());
+        V4D.setZ(m_Position.z());
+        mMatrix.setColumn(3, V4D);
+    }
 }
 
 void Player::draw()

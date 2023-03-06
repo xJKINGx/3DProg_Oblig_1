@@ -33,7 +33,7 @@ public:
 
         float dist = m_Position.distanceToPoint(other->m_Position);
         if (dist < Radius + other->Radius) {
-            std::cout << "collision" << std::endl;
+            //std::cout << "collision" << std::endl;
             renderValue = 2; // Invisible
             if (pointToGive == 1) {
                 other->trophiesCollected += 1;
@@ -42,7 +42,7 @@ public:
         }
         else
         {
-            std::cout << "No collision" << std::endl;
+            //std::cout << "No collision" << std::endl;
             renderValue = 0; // Wireframe
         }
     }
