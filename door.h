@@ -16,11 +16,16 @@ public:
     void init(GLint matrixUniform) override;
     void draw() override;
 
+    bool FullyRotated = false;
+    float maxValue = 120.0f;
+    float rotationAngle = -1.0f;
 
     std::vector<Vertex> DoorPoints;
     //float m_Position[3] = {0.0f, 0.0f, 0.0f};
     float StartPos[3] = {0.0f, 0.0f, 0.0f};
     float DoorColour[3] = {0.64f, 0.16f, 0.16f};
+
+    void Rotate(bool rotating);
 };
 
 #endif // DOOR_H

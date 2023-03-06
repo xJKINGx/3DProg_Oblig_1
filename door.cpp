@@ -155,3 +155,18 @@ void door::draw()
    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
    // (0,0) (1,0) (2,0) (3,0)
 }
+
+void door::Rotate(bool rotating)
+{
+    if (rotating)
+    {
+
+        if (maxValue >= 0)
+        {
+            mMatrix.translate(0.5f, -2.0f, 1.5f);
+            mMatrix.rotate(rotationAngle, 0.0f, 1.0f, 0.0f);
+            mMatrix.translate(-0.5f, 2.0f, -1.5f);
+            maxValue += rotationAngle;
+        }
+    }
+}
