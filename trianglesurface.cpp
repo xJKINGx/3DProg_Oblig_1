@@ -45,16 +45,16 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 //                yColor = 0.5f;
 //            }
 
-            mVertices.push_back(Vertex{x,y,z,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
             y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
             y = 2*cos(x)*(sin(z+h));
-            mVertices.push_back(Vertex{x,y,z+h,0.0f,y,0.0f});
-            mVertices.push_back(Vertex{x,y,z+h,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
+            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
             y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
             y = 2*cos(x+h)* (sin(z+h));
-            mVertices.push_back(Vertex{x+h,y,z+h,0.0f,y,0.0f});
+            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
 
             }
         }

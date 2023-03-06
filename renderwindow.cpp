@@ -33,7 +33,7 @@ house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
 door* Door = new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
 //door* Door = new door(1, QVector3D{0.0f, 0.0f, 0.0f});
 doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
-TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", false);
+TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
 bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 
@@ -83,9 +83,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
         mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, -5.0f)));
         mObjects.push_back(new trophy(0.3, QVector3D(1.0f, 0.0f, -3.0f)));
-        mObjects.push_back(new trophy(0.3, QVector3D(5.0f, 0.0f, 3.0f)));
-        mObjects.push_back(new trophy(0.3, QVector3D(-6.0f, 0.0f, 1.0f)));
-        mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 3.0f)));
+        mObjects.push_back(new trophy(0.3, QVector3D(-6.0f, 0.0f, -1.0f)));
         mObjects.push_back(new trophy(0.3, QVector3D(-2.0f, 0.0f, -5.0f)));
         mObjects.push_back(new trophy(0.3, QVector3D(-5.0f, 0.0f, -4.0f)));
         mObjects.push_back(new trophy(0.3, QVector3D(3.0f, 0.0f, 0.0f)));
@@ -183,7 +181,7 @@ void RenderWindow::init()
 
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
-    mCamera.lookAt(QVector3D{-7,5,-6}, QVector3D{0,0,0}, QVector3D{0,1,0});
+    mCamera.lookAt(QVector3D{-9,9,-8}, QVector3D{0,0,0}, QVector3D{0,1,0});
 }
 
 // Called each frame - doing the rendering!!!

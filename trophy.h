@@ -35,7 +35,7 @@ public:
         if (dist < Radius + other->Radius) {
             std::cout << "collision" << std::endl;
             renderValue = 2; // Invisible
-            if (pointToGive = 1) {
+            if (pointToGive == 1) {
                 other->trophiesCollected += 1;
                 pointToGive = 0;
             }
