@@ -36,6 +36,10 @@ doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f,
 TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
 bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
+NPC* npc = new NPC(0.5);
+
+Curve* graph1 = new Curve("graph.txt", true);
+Curve* graph2 = new Curve("4610CurvePoints.txt", true);
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -96,6 +100,10 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
 
         mObjects.push_back(SecondHouse);
         mObjects.push_back(Bed);
+        mObjects.push_back(graph1);
+        mObjects.push_back(graph2);
+        mObjects.push_back(npc);
+
 }
 
 RenderWindow::~RenderWindow()
@@ -236,6 +244,45 @@ void RenderWindow::render()
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(QVector3D{993,1005,994}, SecondHouse->m_Position, QVector3D{0,1,0});
     }
+
+
+    if(npc->nodeIndex < npc->VartAmount && npc->NPCLeft)
+    {
+        if (npc->graph1) {
+            npc->temp = graph1->getVertexPosition(npc->nodeIndex);
+        }
+        else if (!npc->graph1) {
+            npc->temp = graph2->getVertexPosition(npc->nodeIndex);
+
+        }
+
+        npc->setPosition(QVector3D{-npc->temp[0] * 0.005f, -npc->temp[1]* 0.005f, npc->temp[2]* 0.005f});
+        std::cout << npc->nodeIndex << std::endl;
+
+        npc->nodeIndex += 1;
+        if (npc->nodeIndex >= npc->VartAmount - 1) {
+            //std::cout << "kjør da" << std::endl;
+            //ballIndex = vartAmount;
+            npc->NPCLeft = false;
+        }
+    }
+    else if (npc->nodeIndex >= 0 && !npc->NPCLeft)
+    {
+        if (npc->graph1) {
+            npc->temp = graph1->getVertexPosition(npc->nodeIndex);
+        }
+        else if (!npc->graph1) {
+            npc->temp = graph2->getVertexPosition(npc->nodeIndex);
+        }
+
+        npc->setPosition(QVector3D{-npc->temp[0]* 0.005f, -npc->temp[1]* 0.005f, npc->temp[2]* 0.005f});
+        npc->nodeIndex--;
+        if (npc->nodeIndex <= 0) {
+            npc->nodeIndex = 0;
+            npc->NPCLeft = true;
+        }
+    }
+
 
 }
 

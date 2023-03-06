@@ -2,6 +2,7 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 #include <fstream>
+#include <qvector3d.h>
 
 class Vertex {
    //! Overloaded ostream operator which writes all vertex data on an open textfile stream
@@ -11,7 +12,7 @@ class Vertex {
    friend std::istream& operator>> (std::istream&, Vertex&);
 
 public:
-   float m_xyz[3];       	// position i 3D
+   QVector3D m_xyz;       	// position i 3D
    float m_normal[3];    // normal in 3D or rgb colors
    float m_st[2];        	// texture coordinates if used
 

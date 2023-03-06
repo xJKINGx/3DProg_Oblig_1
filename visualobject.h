@@ -29,8 +29,11 @@ public:
 
     }
 
-protected:
+    QVector3D getVertexPosition(int index);
     std::vector<Vertex> mVertices;
+
+protected:
+
     GLuint mVAO{0};
     GLuint mVBO{0};
     GLint mMatrixUniform{0};

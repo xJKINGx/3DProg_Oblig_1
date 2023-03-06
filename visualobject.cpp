@@ -6,3 +6,8 @@ VisualObject::~VisualObject() {
    glDeleteVertexArrays( 1, &mVAO );
    glDeleteBuffers( 1, &mVBO );
 }
+
+QVector3D VisualObject::getVertexPosition(int index)
+{
+    return mVertices[index].m_xyz;
+}

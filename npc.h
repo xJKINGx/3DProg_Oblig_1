@@ -14,9 +14,17 @@ public:
 
     std::vector<std::string> PathingFileNames;
 
+    int nodeIndex{};
+    int VartAmount{};
+    bool NPCLeft = false;
+    bool graph1 = true;
+
     NPC();
+    NPC(float scale);
     void init(GLint matrixUniform) override;
     void draw() override;
+    QVector3D temp = {0.0f, 0.0f, 0.0f};
+
 
     ~NPC();
 

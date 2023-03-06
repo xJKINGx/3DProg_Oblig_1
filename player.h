@@ -30,18 +30,10 @@ public:
             std::cout << trophiesCollected << std::endl;
             std::cout << "PLAYER COLLIDED WITH DOOR" << std::endl;
             //renderValue = 2; // Invisible
-                        MoveToSecondHouse();
+            MoveToSecondHouse();
             bSecondScene = true;
-
-
-
-            std::cout << bSecondScene << std::endl;
         }
-        else
-        {
-            //std::cout << "No collision" << std::endl;
-            //renderValue = 0; // Wireframe
-        }
+
     }
 };
 
