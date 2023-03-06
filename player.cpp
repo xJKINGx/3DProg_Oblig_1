@@ -139,8 +139,23 @@ void Player::Move(QKeyEvent* event)
         YCol.setY(2 * cos(m_Position[0]) * sin(m_Position[2]) + PlayerScale);
         mMatrix.setColumn(3, YCol);
     }
+    else
+    {
+        m_Position[1] = 1000.0f;
+    }
 }
 
+void Player::MoveToSecondHouse()
+{
+    mMatrix.translate(m_Position[0] - m_Position[0], m_Position[1] - m_Position[1], m_Position[2] - m_Position[2]);
+    m_Position[0] = 1000.0f;
+    m_Position[1] = 1000.0f;
+    m_Position[2] = 1000.0f;
+    mMatrix.translate(m_Position[0], m_Position[1], m_Position[2]);
+    std::cout << "Player X: " << m_Position[0] << std::endl;
+    std::cout << "Player Y: " << m_Position[1] << std::endl;
+    std::cout << "Player Z: " << m_Position[2] << std::endl;
+}
 
 void Player::draw()
 {

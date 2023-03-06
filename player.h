@@ -21,14 +21,16 @@ public:
 
 
     void Move(QKeyEvent* event);
+    void MoveToSecondHouse();
 
     void checkCollision(VisualObject* other) override {
 
         float dist = m_Position.distanceToPoint(other->m_Position);
-        if (dist < Radius + other->Radius && trophiesCollected == 8) {
+        if (dist < Radius + other->Radius) {
             std::cout << "PLAYER COLLIDED WITH DOOR" << std::endl;
             //renderValue = 2; // Invisible
             bSecondScene = true;
+            MoveToSecondHouse();
             std::cout << bSecondScene << std::endl;
         }
         else
