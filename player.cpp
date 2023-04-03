@@ -137,7 +137,6 @@ void Player::Move(QKeyEvent* event)
     if (bSecondScene != true) {
         auto YCol = mMatrix.column(3);
         YCol.setY(2 * cos(m_Position[0]) * sin(m_Position[2]) + PlayerScale);
-        m_Position[1] = (2 * cos(m_Position[0]) * sin(m_Position[2]) + PlayerScale);
         mMatrix.setColumn(3, YCol);
     }
     else

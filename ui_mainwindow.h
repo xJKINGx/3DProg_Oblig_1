@@ -175,7 +175,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "This is hell", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Leksjon 3 fasit og Oblig1 plattform - ", nullptr));
         fileExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
 #if QT_CONFIG(shortcut)
         fileExit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Q", nullptr));
