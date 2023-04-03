@@ -15,6 +15,7 @@ release/positioncomponent.o
 release/renderwindow.o
 release/secondscenehouse.o
 release/shader.o
+release/texture.o
 release/trianglesurface.o
 release/trophy.o
 release/vertex.o

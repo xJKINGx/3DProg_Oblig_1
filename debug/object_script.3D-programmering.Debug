@@ -15,6 +15,7 @@ debug/positioncomponent.o
 debug/renderwindow.o
 debug/secondscenehouse.o
 debug/shader.o
+debug/texture.o
 debug/trianglesurface.o
 debug/trophy.o
 debug/vertex.o
