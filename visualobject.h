@@ -37,7 +37,7 @@ protected:
     GLuint mVAO{0};
     GLuint mVBO{0};
     GLint mMatrixUniform{0};
-    QMatrix4x4 mMatrix;
+    //QMatrix4x4 mMatrix;
 };
 
 #endif // VISUALOBJECT_H
