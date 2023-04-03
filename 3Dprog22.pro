@@ -22,7 +22,6 @@ SOURCES += main.cpp \
     renderwindow.cpp \
     secondscenehouse.cpp \
     shader.cpp \
-    texture.cpp \
     trianglesurface.cpp \
     trophy.cpp \
     vertex.cpp \
@@ -46,7 +45,6 @@ HEADERS += \
     renderwindow.h \
     secondscenehouse.h \
     shader.h \
-    texture.h \
     trianglesurface.h \
     trophy.h \
     vertex.h \
