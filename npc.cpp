@@ -8,7 +8,7 @@ NPC::NPC()
 
 NPC::NPC(float scale)
 {
-    //FetchCoordinates("graph.txt");
+    FetchCoordinates("graph.txt");
     // NORTH SIDE
     Vertex v1{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
     Vertex v2{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
@@ -105,45 +105,9 @@ NPC::NPC(float scale)
     mMatrix.setToIdentity();
 }
 
-void NPC::FollowPath(Curve* curve1, Curve* curve2)
+void NPC::FollowPath(Curve path, TriangleSurface ground)
 {
-    if(nodeIndex < VartAmount && NPCLeft)
-    {
-        if (graph1) {
-            temp = curve1->getVertexPosition(nodeIndex);
-        }
-        else if (!graph1) {
-            temp = curve2->getVertexPosition(nodeIndex);
-        }
 
-        setPosition(QVector3D{temp[0], temp[1], temp[2]});
-        std::cout << nodeIndex << std::endl;
-
-
-
-        nodeIndex += 1;
-        if (nodeIndex >= VartAmount - 1) {
-            //std::cout << "kjør da" << std::endl;
-            //ballIndex = vartAmount;
-            NPCLeft = false;
-        }
-    }
-    else if (nodeIndex >= 0 && !NPCLeft)
-    {
-        if (graph1) {
-            temp = curve1->getVertexPosition(nodeIndex);
-        }
-        else if (!graph1) {
-            temp = curve2->getVertexPosition(nodeIndex);
-        }
-
-        setPosition(QVector3D{temp[0], temp[1], temp[2]});
-        nodeIndex--;
-        if (nodeIndex <= 0) {
-            nodeIndex = 0;
-            NPCLeft = true;
-        }
-    }
 }
 
 void NPC::FetchCoordinates(std::string fileName)
@@ -250,6 +214,6 @@ NPC::~NPC()
 void NPC::draw()
 {
     glBindVertexArray( mVAO );
-    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
+    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, getTranslateMatrix(&mMatrix).constData());
     glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
 }

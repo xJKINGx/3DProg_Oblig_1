@@ -453,7 +453,7 @@ void trophy::draw()
         glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
         //glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
         // (0,0) (1,0) (2,0) (3,0)
-        //std::cout << "X: " <<  m_Position[0] << ", Y: " << m_Position[1] << ", Z: " << m_Position[2] << std::endl;
+        std::cout << "X: " <<  m_Position[0] << ", Y: " << m_Position[1] << ", Z: " << m_Position[2] << std::endl;
         switch (renderValue) {
             case 0:
                 glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
