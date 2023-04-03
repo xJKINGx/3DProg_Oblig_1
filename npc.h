@@ -15,7 +15,7 @@ public:
     std::vector<std::string> PathingFileNames;
 
     int nodeIndex{};
-    int VartAmount{};
+    int VartAmount{41};
     bool NPCLeft = false;
     bool graph1 = true;
 
@@ -28,7 +28,7 @@ public:
 
     ~NPC();
 
-    void FollowPath(Curve path, TriangleSurface ground);
+    void FollowPath(Curve* curve1, Curve* curve2);
     void FetchCoordinates(std::string fileName);
 
 

@@ -21,6 +21,7 @@ void Camera::perspective(int degrees, double aspect, double nearplane, double fa
 
 void Camera::lookAt(const QVector3D &eye, const QVector3D &at, const QVector3D &up)
 {
+    // eye = camera position, at = what to look at, aka. the target, up idk
     mVmatrix.lookAt(eye, at, up);
 }
 

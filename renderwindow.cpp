@@ -189,7 +189,8 @@ void RenderWindow::init()
 
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
-    mCamera.lookAt(QVector3D{-9,9,-8}, QVector3D{0,0,0}, QVector3D{0,1,0});
+    //mCamera.lookAt(QVector3D{-9,9,-8}, QVector3D{0,0,0}, QVector3D{0,1,0});
+    mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
 }
 
 // Called each frame - doing the rendering!!!
@@ -244,45 +245,18 @@ void RenderWindow::render()
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(QVector3D{993,1005,994}, SecondHouse->m_Position, QVector3D{0,1,0});
     }
-
-
-    if(npc->nodeIndex < npc->VartAmount && npc->NPCLeft)
+    else
     {
-        if (npc->graph1) {
-            npc->temp = graph1->getVertexPosition(npc->nodeIndex);
-        }
-        else if (!npc->graph1) {
-            npc->temp = graph2->getVertexPosition(npc->nodeIndex);
-
-        }
-
-        npc->setPosition(QVector3D{-npc->temp[0] * 0.005f, -npc->temp[1]* 0.005f, npc->temp[2]* 0.005f});
-        std::cout << npc->nodeIndex << std::endl;
-
-        npc->nodeIndex += 1;
-        if (npc->nodeIndex >= npc->VartAmount - 1) {
-            //std::cout << "kjør da" << std::endl;
-            //ballIndex = vartAmount;
-            npc->NPCLeft = false;
-        }
-    }
-    else if (npc->nodeIndex >= 0 && !npc->NPCLeft)
-    {
-        if (npc->graph1) {
-            npc->temp = graph1->getVertexPosition(npc->nodeIndex);
-        }
-        else if (!npc->graph1) {
-            npc->temp = graph2->getVertexPosition(npc->nodeIndex);
-        }
-
-        npc->setPosition(QVector3D{-npc->temp[0]* 0.005f, -npc->temp[1]* 0.005f, npc->temp[2]* 0.005f});
-        npc->nodeIndex--;
-        if (npc->nodeIndex <= 0) {
-            npc->nodeIndex = 0;
-            npc->NPCLeft = true;
-        }
+        mCamera.init(mPmatrixUniform, mVmatrixUniform);
+        mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
+        mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
     }
 
+    mLogger->logText("PC X: " + std::to_string(npc->m_Position[0]));
+    mLogger->logText("PC Y: " + std::to_string(npc->m_Position[1]));
+    mLogger->logText("PC Z: " + std::to_string(npc->m_Position[2]));
+
+    npc->FollowPath(graph1, graph2);
 
 }
 
