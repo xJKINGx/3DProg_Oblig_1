@@ -219,7 +219,7 @@ void RenderWindow::render()
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
         (*it)->checkCollision(DoorCol);
-        (*it)->checkCollision(player); // For trohpies, will be changed to player later
+        (*it)->checkCollision(player); // For trophies, will be changed to player later
         (*it)->draw();
     }
     calculateFramerate();
@@ -249,9 +249,9 @@ void RenderWindow::render()
         mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
     }
 
-    mLogger->logText("PC X: " + std::to_string(npc->m_Position[0]));
-    mLogger->logText("PC Y: " + std::to_string(npc->m_Position[1]));
-    mLogger->logText("PC Z: " + std::to_string(npc->m_Position[2]));
+    //mLogger->logText("PC X: " + std::to_string(npc->m_Position[0]));
+    //mLogger->logText("PC Y: " + std::to_string(npc->m_Position[1]));
+    //mLogger->logText("PC Z: " + std::to_string(npc->m_Position[2]));
 
     npc->FollowPath(graph1, graph2);
 

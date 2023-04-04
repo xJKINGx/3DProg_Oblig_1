@@ -117,7 +117,7 @@ void NPC::FollowPath(Curve* curve1, Curve* curve2)
         }
 
         setPosition(QVector3D{temp[0], temp[1], temp[2]});
-        std::cout << nodeIndex << std::endl;
+        //std::cout << nodeIndex << std::endl;
 
 
 
