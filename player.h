@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include "visualobject.h"
 #include <iostream>
+
 class Player : public VisualObject
 {
 public:

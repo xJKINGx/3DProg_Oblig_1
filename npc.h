@@ -5,6 +5,7 @@
 #include "visualobject.h"
 #include "trianglesurface.h"
 #include <fstream>
+#include <iostream>
 
 class NPC : public VisualObject
 {
@@ -31,7 +32,14 @@ public:
     void FollowPath(Curve* curve1, Curve* curve2);
     void FetchCoordinates(std::string fileName);
 
+    void checkCollision(VisualObject* other) override {
 
+        float dist = m_Position.distanceToPoint(other->m_Position);
+        if (dist < Radius + other->Radius) {
+            std::cout << "NPC and Player collided" << std::endl;
+        }
+
+    }
 };
 
 #endif // NPC_H
