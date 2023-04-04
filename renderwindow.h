@@ -41,6 +41,7 @@ private:
     QOpenGLContext *mContext{nullptr};  //Our OpenGL context
     bool mInitialized{false};
 
+    //Shader *mLightShader{nullptr};
     Shader *mShaderProgram{nullptr};    //holds pointer the GLSL shader program
     GLint  mMatrixUniform;              //OpenGL reference to the Uniform in the shader program
     GLint  mPmatrixUniform;             // Leksjon 3

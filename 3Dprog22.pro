@@ -13,6 +13,7 @@ SOURCES += main.cpp \
     door.cpp \
     doorcollider.cpp \
     house.cpp \
+    light.cpp \
     logger.cpp \
     mainwindow.cpp \
     npc.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     door.h \
     doorcollider.h \
     house.h \
+    light.h \
     logger.h \
     mainwindow.h \
     npc.h \
@@ -59,5 +61,7 @@ FORMS += \
     mainwindow.ui
 
 DISTFILES += \
+    lightshader.frag \
+    lightshader.vert \
     plainshader.frag \
     plainshader.vert

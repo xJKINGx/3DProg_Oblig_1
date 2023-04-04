@@ -167,6 +167,7 @@ void RenderWindow::init()
     //Qt makes a build-folder besides the project folder. That is why we go down one directory
     // (out of the build-folder) and then up into the project folder.
     mShaderProgram = new Shader("../3DProg_Oblig_1/plainshader.vert", "../3DProg_Oblig_1/plainshader.frag");
+    //mShaderProgram = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
 
 
     // Get the matrixUniform location from the shader

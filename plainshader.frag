@@ -10,6 +10,10 @@ out vec4 fragmentColor;     //color sent to fragment on screen
 uniform float ambientStrength = 1.0f;
 uniform vec4 ambientColor = vec4(1, 1, 1, 0);
 
+uniform vec3 lightPos;
+uniform vec3 objectColor;
+uniform vec3 lightColor;
+
 void main() {
    //              Farge   Lysfarge       Lysstyrke
    fragmentColor = color * ambientColor * ambientStrength;   //color given to current fragment (pixel)
