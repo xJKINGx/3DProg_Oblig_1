@@ -21,7 +21,6 @@ public:
     float Radius = 0.5f;
 
     virtual void checkCollision(VisualObject* other) {
-        //const glm::vec3 you = this->position;
         float dist = this->m_Position.distanceToPoint(/*this->m_Position,*/ other->m_Position);
         if (dist < this->Radius + other->Radius) {
             //std::cout << "collision" << std::endl;
@@ -37,7 +36,6 @@ protected:
     GLuint mVAO{0};
     GLuint mVBO{0};
     GLint mMatrixUniform{0};
-    //QMatrix4x4 mMatrix;
 };
 
 #endif // VISUALOBJECT_H

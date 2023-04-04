@@ -439,9 +439,6 @@ void trophy::init(GLint matrixUniform) {
    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof( Vertex ),  (GLvoid*)(3 * sizeof(GLfloat)) );
    glEnableVertexAttribArray(1);
 
-   //enable the matrixUniform
-   // mMatrixUniform = glGetUniformLocation( matrixUniform, "matrix" );
-
    glBindVertexArray(0);
 }
 
@@ -451,7 +448,6 @@ void trophy::draw()
     {
         glBindVertexArray( mVAO );
         glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
-        //glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
         // (0,0) (1,0) (2,0) (3,0)
         //std::cout << "X: " <<  m_Position[0] << ", Y: " << m_Position[1] << ", Z: " << m_Position[2] << std::endl;
         switch (renderValue) {

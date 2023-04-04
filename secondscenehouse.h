@@ -19,7 +19,6 @@ public:
 
 
     std::vector<Vertex> HousePoints;
-    //float m_Position[3] = {0.0f, 0.0f, 0.0f};
     float StartPos[3] = {0.0f, 0.0f, 0.0f};
     float HouseColour[3] = {1.0f, 0.0f, 0.0f};
     float RoofColour[3] = {0.0f, 0.0f, 0.0f};

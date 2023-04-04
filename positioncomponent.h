@@ -38,8 +38,6 @@ public:
 
     // Should these be protected?
     QMatrix4x4 mMatrix; // position i guess
-    //matrix.setToIdentity();
-    //glm::mat4 rotation = glm::mat4(1.0f);
 
     positionComponent();
 
@@ -59,14 +57,6 @@ public:
 
     // Gets
     QMatrix4x4 getTranslateMatrix(QMatrix4x4 *matrise) {
-    /*    matrix = glm::mat4(1.0f);
-        matrix = glm::translate(matrix, position);
-w
-        matrix = glm::scale(matrix, scale);
-        return matrix;*/
-
-
-
         matrise->lookAt(m_Position, m_Position + worldFront, worldUp);
         return *matrise;
     }

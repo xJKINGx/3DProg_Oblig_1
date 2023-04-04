@@ -293,9 +293,6 @@ void secondscenehouse::init(GLint matrixUniform) {
    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof( Vertex ),  (GLvoid*)(3 * sizeof(GLfloat)) );
    glEnableVertexAttribArray(1);
 
-   //enable the matrixUniform
-   // mMatrixUniform = glGetUniformLocation( matrixUniform, "matrix" );
-
    glBindVertexArray(0);
 }
 
