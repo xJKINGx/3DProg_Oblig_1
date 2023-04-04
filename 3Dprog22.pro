@@ -16,9 +16,11 @@ SOURCES += main.cpp \
     logger.cpp \
     mainwindow.cpp \
     npc.cpp \
+    perlinnoise.cpp \
     player.cpp \
     point.cpp \
     positioncomponent.cpp \
+    ppm.cpp \
     renderwindow.cpp \
     secondscenehouse.cpp \
     shader.cpp \
@@ -39,9 +41,11 @@ HEADERS += \
     logger.h \
     mainwindow.h \
     npc.h \
+    perlinnoise.h \
     player.h \
     point.h \
     positioncomponent.h \
+    ppm.h \
     renderwindow.h \
     secondscenehouse.h \
     shader.h \
