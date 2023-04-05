@@ -26,6 +26,7 @@
 #include "point.h"
 #include "npc.h"
 #include "player.h"
+#include "light.h"
 
 Player* player = new Player(0.2f);
 house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
@@ -37,6 +38,7 @@ bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 NPC* npc = new NPC(0.5);
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
+Light* light = new Light();
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     : mContext(nullptr), mInitialized(false), mMainWindow(mainWindow)
@@ -100,7 +102,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         mObjects.push_back(graph1);
         mObjects.push_back(graph2);
         mObjects.push_back(npc);
-
+        mObjects.push_back(light);
 }
 
 RenderWindow::~RenderWindow()
@@ -167,7 +169,7 @@ void RenderWindow::init()
     //Qt makes a build-folder besides the project folder. That is why we go down one directory
     // (out of the build-folder) and then up into the project folder.
     mShaderProgram = new Shader("../3DProg_Oblig_1/plainshader.vert", "../3DProg_Oblig_1/plainshader.frag");
-    //mShaderProgram = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
+    mLightShader = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
 
 
     // Get the matrixUniform location from the shader
@@ -204,7 +206,6 @@ void RenderWindow::render()
 
     //what shader to use
     glUseProgram(mShaderProgram->getProgram() );
-
     // Leksjon 3
     // mPmatrix->setToIdentity();
     // mVmatrix->setToIdentity();
