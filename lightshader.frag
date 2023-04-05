@@ -7,8 +7,8 @@ in vec3 FragPos;
 
 uniform float ambientStrength = 0.1f;
 uniform float lightStrength = 0.7;
-uniform vec4 lightColor = vec4(0.8, 0.8, 0.3);
-uniform vec4 objectColor = vec4(0.7, 0.7, 0.7);
+uniform vec3 lightColor = vec3(0.8, 0.8, 0.3);
+uniform vec3 objectColor = vec3(0.7, 0.7, 0.7);
 
 uniform vec3 lightPos;
 uniform vec3 cameraPos;
