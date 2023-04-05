@@ -18,6 +18,7 @@ release/ppm.o
 release/renderwindow.o
 release/secondscenehouse.o
 release/shader.o
+release/stb_image.o
 release/trianglesurface.o
 release/trophy.o
 release/vertex.o
