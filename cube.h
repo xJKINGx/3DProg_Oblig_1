@@ -19,7 +19,6 @@ public:
 
     std::vector<Vertex> CubePoints;
 
-    float m_Position[3] = {0.0f, 0.0f, 0.0f};
     void Move(float x, float y, float z, QKeyEvent *event);
 
     void Rotate(bool rotating);

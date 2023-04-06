@@ -30,11 +30,14 @@ public:
 
     QVector3D getVertexPosition(int index);
     std::vector<Vertex> mVertices;
+    std::vector<Vertex> mIndices;
 
 protected:
 
     GLuint mVAO{0};
     GLuint mVBO{0};
+    GLuint mEBO{0};
+    GLsizei indexCount;
     GLint mMatrixUniform{0};
 };
 

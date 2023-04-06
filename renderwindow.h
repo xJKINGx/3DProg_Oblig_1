@@ -9,6 +9,7 @@
 #include "visualobject.h"
 #include "cube.h"
 #include "camera.h"
+#include "texture.h"
 
 class QOpenGLContext;
 class Shader;
@@ -42,10 +43,20 @@ private:
     bool mInitialized{false};
 
     //Shader *mLightShader{nullptr};
-    Shader *mShaderProgram{nullptr};    //holds pointer the GLSL shader program
-    GLint  mMatrixUniform;              //OpenGL reference to the Uniform in the shader program
-    GLint  mPmatrixUniform;             // Leksjon 3
-    GLint  mVmatrixUniform;             // Leksjon 3
+
+    Shader *mShaderProgram[4]; //holds pointer the GLSL shader program
+    Texture *mTextures[4];
+
+    void SetupPlainShader(int shaderIndex);
+    GLint mMatrixUniform0;              //OpenGL reference to the Uniform in the shader program
+    GLint mPmatrixUniform0;             // Leksjon 3
+    GLint mVmatrixUniform0;             // Leksjon 3
+
+    void SetupTextureShader(int shaderIndex);
+    GLint mMatrixUniform1;              //OpenGL reference to the Uniform in the shader program
+    GLint mPmatrixUniform1;             // Leksjon 3
+    GLint mVmatrixUniform1;             // Leksjon 3
+    GLint mTextureUniform;
 
     GLuint mVAO;                        //OpenGL reference to our VAO
     GLuint mVBO;                        //OpenGL reference to our VBO

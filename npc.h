@@ -21,11 +21,12 @@ public:
     bool graph1 = true;
 
     NPC();
+    NPC(GLint matrixUniform);
     NPC(float scale);
     void init(GLint matrixUniform) override;
+    void init(unsigned int* indices, unsigned int numOfVertices, unsigned int numOfIndices);
     void draw() override;
     QVector3D temp = {0.0f, 0.0f, 0.0f};
-
 
     ~NPC();
 

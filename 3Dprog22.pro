@@ -26,6 +26,7 @@ SOURCES += main.cpp \
     secondscenehouse.cpp \
     shader.cpp \
     stb_image.cpp \
+    texture.cpp \
     trianglesurface.cpp \
     trophy.cpp \
     vertex.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     secondscenehouse.h \
     shader.h \
     stb_image.h \
+    texture.h \
     trianglesurface.h \
     trophy.h \
     vertex.h \
@@ -66,4 +68,6 @@ DISTFILES += \
     lightshader.frag \
     lightshader.vert \
     plainshader.frag \
-    plainshader.vert
+    plainshader.vert \
+    texshader.frag \
+    texshader.vert
