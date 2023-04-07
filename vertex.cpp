@@ -1,12 +1,11 @@
 // 3D-programmering 2022
 #include "vertex.h"
 #include <iostream>
-
 Vertex::Vertex()
 {
 
-}
 
+}
 Vertex::Vertex(float x, float y, float z, float r, float g, float b)
 {
     m_xyz[0] = x; m_xyz[1] = y; m_xyz[2] = z;
@@ -28,7 +27,6 @@ std::ostream& operator<< (std::ostream& os, const Vertex& v) {
   os << "(" << v.m_st[0] << ", " << v.m_st[1] << ") ";
   return os;
 }
-
 std::istream& operator>> (std::istream& is, Vertex& v) {
 // Trenger fire temporære variabler som kun skal lese inn parenteser og komma
   char dum, dum2, dum3, dum4;
@@ -37,5 +35,3 @@ std::istream& operator>> (std::istream& is, Vertex& v) {
   is >> dum >> v.m_st[0] >> dum2 >> v.m_st[1] >> dum3;
   return is;
 }
-
-

@@ -7,7 +7,6 @@
 #include <vector>
 #include "vertex.h"
 #include "positioncomponent.h"
-//#include "qcolor.h"
 
 class VisualObject : public QOpenGLFunctions_4_1_Core, public positionComponent {
 public:
@@ -30,15 +29,12 @@ public:
     }
 
     QVector3D getVertexPosition(int index);
-    //QVector3D getIndicesPosition(int index);
     std::vector<Vertex> mVertices;
-    std::vector<GLuint> mIndices;
 
 protected:
 
     GLuint mVAO{0};
     GLuint mVBO{0};
-    GLuint mIBO{0};
     GLint mMatrixUniform{0};
 };
 
