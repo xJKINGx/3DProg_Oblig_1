@@ -113,7 +113,9 @@ OBJECTS       = debug/main.o \
 DIST          = lightshader.frag \
 		lightshader.vert \
 		plainshader.frag \
-		plainshader.vert bed.h \
+		plainshader.vert \
+		texshader.frag \
+		texshader.vert bed.h \
 		camera.h \
 		cube.h \
 		curve.h \

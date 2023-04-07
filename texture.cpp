@@ -3,15 +3,17 @@
 
 Texture::Texture()
 {
+    initializeOpenGLFunctions();
     textureID = 0;
     width = 0;
     height = 0;
     bitDepth = 0;
-    fileLocation = " ";
+    fileLocation = nullptr;
 }
 
 Texture::Texture(char* filePath)
 {
+    initializeOpenGLFunctions();
     textureID = 0;
     width = 0;
     height = 0;
@@ -31,7 +33,7 @@ void Texture::ClearTexture()
     width = 0;
     height = 0;
     bitDepth = 0;
-    fileLocation = " ";
+    fileLocation = nullptr;
 }
 
 void Texture::LoadTexture()
@@ -57,7 +59,7 @@ void Texture::LoadTexture()
     else
     {
         // ... otherwise something went wrong and we need to report it.
-
+        std::cout << "AHHH THE TEXTURE FILE IS FUCKED" << std::endl;
     }
 }
 

@@ -189,7 +189,7 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform0);
     }
 
-    obamnaTex = new Texture("../3DProg_Oblig_1/obamna_for_jking.bmp");
+    obamnaTex = new Texture((char*)("../3DProg_Oblig_1/textures/obamna.bmp"));
     obamnaTex->LoadTexture();
 
 
