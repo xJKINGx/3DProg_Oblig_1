@@ -35,6 +35,7 @@ protected:
 
     GLuint mVAO{0};
     GLuint mVBO{0};
+    GLuint mEBO{0};
     GLint mMatrixUniform{0};
 };
 

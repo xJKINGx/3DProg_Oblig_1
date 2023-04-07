@@ -20,6 +20,8 @@ public:
     bool NPCLeft = false;
     bool graph1 = true;
 
+    GLsizei indexCount;
+
     NPC();
     NPC(GLint matrixUniform);
     NPC(float scale, int filler);

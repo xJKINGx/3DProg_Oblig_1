@@ -27,6 +27,7 @@
 #include "npc.h"
 #include "player.h"
 #include "light.h"
+#include "texture.h"
 
 Player* player = new Player(0.2f);
 house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));

@@ -6,7 +6,7 @@ NPC::NPC()
 
 }
 
-NPC::NPC(GLint matrixUniform)
+NPC::NPC(GLint matrixUniform) : VisualObject()
 {
     mMatrixUniform = matrixUniform;
     GLuint indices[] = {
