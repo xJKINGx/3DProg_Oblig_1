@@ -61,7 +61,7 @@ Landscape::Landscape(std::string fileLocation)
     }
     else
     {
-        std::cout << "Failed to load texture" << std::endl;
+        std::cout << "Failed to load landscape texture" << std::endl;
     }
 
     int a = 0;
