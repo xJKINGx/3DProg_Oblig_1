@@ -121,7 +121,7 @@ NPC::NPC(GLint matrixUniform)
     init(indices, sizeof(mVertices)/sizeof(mVertices[0]), sizeof(indices)/sizeof(indices[0]));
 }
 
-NPC::NPC(float scale)
+NPC::NPC(float scale, int filler)
 {
     //FetchCoordinates("graph.txt");
     // NORTH SIDE
@@ -358,12 +358,12 @@ void NPC::init(unsigned int* indices, unsigned int numOfVertices, unsigned int n
     glEnableVertexAttribArray(0);
 
     // 2nd attribute buffer : colors
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
-    glEnableVertexAttribArray(1);
+//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
+//    glEnableVertexAttribArray(1);
 
     // 3rd attribute buffer : uvs
-    glVertexAttribPointer(2, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
-    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
+    glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -391,15 +391,15 @@ void NPC:: init(GLint matrixUniform)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0  );          // array buffer offset
     glEnableVertexAttribArray(0);
 
-    // 2nd attribute buffer : colors
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
-    glEnableVertexAttribArray(1);
+//    // 2nd attribute buffer : colors
+//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
+//    glEnableVertexAttribArray(1);
 
     // 3rd attribute buffer : uvs
-    glVertexAttribPointer(2, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
+    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(2);
 
-    glBindVertexArray(0);
+    glBindVertexArray(1);
 }
 
 NPC::~NPC()

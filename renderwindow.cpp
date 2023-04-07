@@ -196,6 +196,7 @@ void RenderWindow::init()
     obamnaTex->LoadTexture();
 
 
+
     npc = new NPC(mMatrixUniform1);
     mObjects.push_back(npc);
 
@@ -204,7 +205,7 @@ void RenderWindow::init()
 
     mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
-    //mCamera.lookAt(QVector3D{-9,9,-8}, QVector3D{0,0,0}, QVector3D{0,1,0});
+
     mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
 }
 
@@ -240,9 +241,16 @@ void RenderWindow::render()
     }
 
     glUseProgram(mShaderProgram[1]->getProgram());
+
+    glUniformMatrix4fv(mVmatrixUniform1, 1, GL_TRUE, mCamera.mVmatrix.constData());
+    glUniformMatrix4fv(mPmatrixUniform1, 1, GL_TRUE, mCamera.mPmatrix.constData());
+    glUniform1i(mTextureUniform, 0);
+    obamnaTex->UseTexture();
+    mCamera.update();
+
     npc->draw();
 
-    mCamera.update();
+
     calculateFramerate();
     checkForGLerrors(); //using our expanded OpenGL debugger to check if everything is OK.
     mContext->swapBuffers(this);
@@ -431,5 +439,5 @@ void RenderWindow::SetupTextureShader(int shaderIndex)
     mMatrixUniform1  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
     mPmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
     mVmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
-    mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "texCoord");
+    mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "theTexture");
 }

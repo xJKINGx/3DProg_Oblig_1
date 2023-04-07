@@ -22,7 +22,7 @@ public:
 
     NPC();
     NPC(GLint matrixUniform);
-    NPC(float scale);
+    NPC(float scale, int filler);
     void init(GLint matrixUniform) override;
     void init(unsigned int* indices, unsigned int numOfVertices, unsigned int numOfIndices);
     void draw() override;

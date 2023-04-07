@@ -11,8 +11,7 @@ private:
    GLint  mPmatrixUniform;        //OpenGL reference to the Uniform in the shader program
    GLint  mVmatrixUniform;        //OpenGL reference to the Uniform in the shader program
    QVector3D mEye;
-   QMatrix4x4 mPmatrix{};         // denne,
-   QMatrix4x4 mVmatrix{};         // og denne, skal legges inn i kameraklasse
+
 public:
    Camera();
    ~Camera() { }
@@ -22,6 +21,8 @@ public:
    void update();
    void translate(float dx, float dy, float dz);
 
+   QMatrix4x4 mPmatrix{};         // denne,
+   QMatrix4x4 mVmatrix{};         // og denne, skal legges inn i kameraklasse
 
 };
 
