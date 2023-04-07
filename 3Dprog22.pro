@@ -26,6 +26,7 @@ SOURCES += main.cpp \
     renderwindow.cpp \
     secondscenehouse.cpp \
     shader.cpp \
+    stb_image.cpp \
     texture.cpp \
     trianglesurface.cpp \
     trophy.cpp \
