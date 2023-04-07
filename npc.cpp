@@ -25,10 +25,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     -0.5f,  0.5f, 0.5f,  0.0f, 1.0f, // Top-left
     */
 
-    Vertex v1{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 0.0f};
-    Vertex v2{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v3{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v4{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 0.0f};
+    Vertex v1{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
+    Vertex v2{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1.0f, 0.0f};
+    Vertex v3{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1.0f, 1.0f};
+    Vertex v4{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
 
     /* BACK FACE
     -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // Bottom-left
@@ -37,10 +37,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     -0.5f,  0.5f, -0.5f, 0.0f, 1.0f, // Top-left
     */
 
-    Vertex v5{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 0.0f, 0.0f};
-    Vertex v6{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v7{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v8{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 0.0f, 1.0f};
+    Vertex v5{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 0.0f, 0.0f};
+    Vertex v6{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1.0f, 0.0f};
+    Vertex v7{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1.0f, 1.0f};
+    Vertex v8{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 0.0f, 1.0f};
 
     /* LEFT FACE
     -0.5f,  0.5f,  0.5f, 1.0f, 0.0f, // Top-right
@@ -49,10 +49,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     -0.5f, -0.5f,  0.5f, 0.0f, 0.0f, // Bottom-right
     */
 
-    Vertex v9 {m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v10{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v11{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 0.0f, 1.0f};
-    Vertex v12{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 0.0f};
+    Vertex v9 {m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1.0f, 0.0f};
+    Vertex v10{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1.0f, 1.0f};
+    Vertex v11{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 0.0f, 1.0f};
+    Vertex v12{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
 
     /* RIGHT FACE
     0.5f,  0.5f,  0.5f, 0.0f, 0.0f, // Top-left
@@ -61,10 +61,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     0.5f, -0.5f,  0.5f, 0.0f, 1.0f, // Bottom-left
     */
 
-    Vertex v13{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 0.0f};
-    Vertex v14{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v15{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v16{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 1.0f};
+    Vertex v13{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
+    Vertex v14{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1.0f, 0.0f};
+    Vertex v15{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1.0f, 1.0f};
+    Vertex v16{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 0.0f, 1.0f};
 
     /* TOP FACE
     -0.5f,  0.5f,  0.5f, 0.0f, 1.0f, // Bottom-left
@@ -73,10 +73,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, // Top-left
     */
 
-    Vertex v17{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 1.0f};
-    Vertex v18{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v19{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v20{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 0.0f, 0.0f};
+    Vertex v17{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 0.0f, 1.0f};
+    Vertex v18{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1.0f, 1.0f};
+    Vertex v19{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 1.0f, 0.0f};
+    Vertex v20{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] - 0.5f, 0.0f, 0.0f};
 
     /* BOTTOM FACE
     -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // Top-left
@@ -85,10 +85,10 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     -0.5f, -0.5f, -0.5f, 0.0f, 1.0f // Bottom-left
     */
 
-    Vertex v21{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 0.0f, 0.0f};
-    Vertex v22{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1, 1, 1, 1.0f, 0.0f};
-    Vertex v23{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 1.0f, 1.0f};
-    Vertex v24{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1, 1, 1, 0.0f, 1.0f};
+    Vertex v21{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
+    Vertex v22{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1.0f, 0.0f};
+    Vertex v23{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 1.0f, 1.0f};
+    Vertex v24{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] - 0.5f, 0.0f, 1.0f};
 
     mVertices.push_back(v1);
     mVertices.push_back(v2);
@@ -344,25 +344,13 @@ void NPC::init(unsigned int* indices, unsigned int numOfVertices, unsigned int n
     //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * numOfVertices, vertices, GL_STATIC_DRAW);
     glBufferData( GL_ARRAY_BUFFER, mVertices.size()*sizeof( Vertex ), mVertices.data(), GL_DYNAMIC_DRAW );
 
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8, 0);
-//    glEnableVertexAttribArray(0);
-
-//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(vertices[0]) * 8,  (GLvoid*)(3 * sizeof(GLfloat)) );
-//    glEnableVertexAttribArray(1);
-
-//    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,  sizeof(vertices[0]) * 8,  (GLvoid*)(6 * sizeof(GLfloat)) );
-//    glEnableVertexAttribArray(2);
 
     // 1rst attribute buffer : vertices
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0  );          // array buffer offset
     glEnableVertexAttribArray(0);
 
-    // 2nd attribute buffer : colors
-//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
-//    glEnableVertexAttribArray(1);
-
-    // 3rd attribute buffer : uvs
-    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
+    // 2rd attribute buffer : uvs
+    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -396,7 +384,7 @@ void NPC:: init(GLint matrixUniform)
 //    glEnableVertexAttribArray(1);
 
     // 3rd attribute buffer : uvs
-    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
+    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(2);
 
     glBindVertexArray(1);

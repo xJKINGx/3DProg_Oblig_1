@@ -20,6 +20,13 @@ Vertex::Vertex(float x, float y, float z, float r, float g, float b, float u, fl
     m_st[0] = u; m_st[1] = v;
 }
 
+Vertex::Vertex(float x, float y, float z, float u, float v)
+{
+    m_xyz[0] = x; m_xyz[1] = y; m_xyz[2] = z;
+    m_normal[0] = 0.0; m_normal[1] = 0.0; m_normal[2] = 0.0;
+    m_st[0] = u; m_st[1] = v;
+}
+
 std::ostream& operator<< (std::ostream& os, const Vertex& v) {
   os << std::fixed;
   os << "(" << v.m_xyz[0] << ", " << v.m_xyz[1] << ", " << v.m_xyz[2] << ") ";

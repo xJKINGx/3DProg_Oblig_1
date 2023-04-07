@@ -220,6 +220,9 @@ void RenderWindow::render()
     //what shader to use
     glUseProgram(mShaderProgram[0]->getProgram() );
 
+    glUniformMatrix4fv(mVmatrixUniform0, 1, GL_TRUE, mCamera.mVmatrix.constData());
+    glUniformMatrix4fv(mPmatrixUniform0, 1, GL_TRUE, mCamera.mPmatrix.constData());
+
     mCamera.update();
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
@@ -275,9 +278,9 @@ void RenderWindow::render()
         mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
     }
 
-    mLogger->logText("NPC X: " + std::to_string(npc->m_Position[0]));
-    mLogger->logText("NPC Y: " + std::to_string(npc->m_Position[1]));
-    mLogger->logText("NPC Z: " + std::to_string(npc->m_Position[2]));
+//    mLogger->logText("NPC X: " + std::to_string(npc->m_Position[0]));
+//    mLogger->logText("NPC Y: " + std::to_string(npc->m_Position[1]));
+//    mLogger->logText("NPC Z: " + std::to_string(npc->m_Position[2]));
 
     npc->FollowPath(graph1, graph2);
 
@@ -408,20 +411,6 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
         player->Move(event);
         newCube->Move(0.0f,0.0f,0.0f, event);
     }
-
-    //You get the keyboard input like this
-//    if(event->key() == Qt::Key_A)
-//    {
-//        //mMainWindow->statusBar()->showMessage(" AAAA");
-//    }
-//    if(event->key() == Qt::Key_S)
-//    {
-//       // mMainWindow->statusBar()->showMessage(" SSSS");
-//    }
-//    if (event->key() == Qt::Key_D)
-//    {
-//        newCube->Move(10.0f, 0.0f, 0.0f);
-//    }
 }
 
 void RenderWindow::SetupPlainShader(int shaderIndex)
