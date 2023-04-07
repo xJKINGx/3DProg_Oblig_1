@@ -13,6 +13,7 @@ SOURCES += main.cpp \
     door.cpp \
     doorcollider.cpp \
     house.cpp \
+    landscape.cpp \
     light.cpp \
     logger.cpp \
     mainwindow.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     door.h \
     doorcollider.h \
     house.h \
+    landscape.h \
     light.h \
     logger.h \
     mainwindow.h \
@@ -51,6 +53,7 @@ HEADERS += \
     renderwindow.h \
     secondscenehouse.h \
     shader.h \
+    stb_image.h \
     trianglesurface.h \
     trophy.h \
     vertex.h \
