@@ -36,10 +36,11 @@ doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f,
 //TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
 bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
-NPC* npc = new NPC(0.5);
+NPC* npc;
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
 Light* light = new Light();
+Texture* obamnaTex;
 
 Landscape* landscape = new Landscape("textures/Heightmap.bmp");
 
@@ -105,7 +106,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         mObjects.push_back(Bed);
         mObjects.push_back(graph1);
         mObjects.push_back(graph2);
-        mObjects.push_back(npc);
+        //mObjects.push_back(npc);
         mObjects.push_back(light);
 }
 
@@ -172,26 +173,36 @@ void RenderWindow::init()
     //NB: hardcoded path to files! You have to change this if you change directories for the project.
     //Qt makes a build-folder besides the project folder. That is why we go down one directory
     // (out of the build-folder) and then up into the project folder.
-    mShaderProgram = new Shader("../3DProg_Oblig_1/plainshader.vert", "../3DProg_Oblig_1/plainshader.frag");
-    mLightShader = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
+    mShaderProgram[0] = new Shader("../3DProg_Oblig_1/plainshader.vert", "../3DProg_Oblig_1/plainshader.frag");
+    mShaderProgram[1] = new Shader("../3DProg_Oblig_1/texshader.vert", "../3DProg_Oblig_1/texshader.frag");
+    //mLightShader = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
 
 
     // Get the matrixUniform location from the shader
     // This has to match the "matrix" variable name in the vertex shader
     // The uniform is used in the render() function to send the model matrix to the shader
-    mMatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "matrix" );
-    mPmatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "pMatrix" );
-    mVmatrixUniform = glGetUniformLocation( mShaderProgram->getProgram(), "vMatrix" );
-    mCamera.init(mPmatrixUniform, mVmatrixUniform);
+    SetupPlainShader(0);
+    SetupTextureShader(1);
+    mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
+
+
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->init(mMatrixUniform);
+        (*it)->init(mMatrixUniform0);
     }
+
+    obamnaTex = new Texture("../3DProg_Oblig_1/obamna_for_jking.bmp");
+    obamnaTex->LoadTexture();
+
+
+    npc = new NPC(mMatrixUniform1);
+    mObjects.push_back(npc);
+
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
 
-    mCamera.init(mPmatrixUniform, mVmatrixUniform);
+    mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
     //mCamera.lookAt(QVector3D{-9,9,-8}, QVector3D{0,0,0}, QVector3D{0,1,0});
     mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
@@ -209,25 +220,29 @@ void RenderWindow::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //what shader to use
-    glUseProgram(mShaderProgram->getProgram() );
-    // Leksjon 3
-    // mPmatrix->setToIdentity();
-    // mVmatrix->setToIdentity();
-    // mPmatrix->perspective(60, 4.0/3.0, 0.1, 100.0);
+    glUseProgram(mShaderProgram[0]->getProgram() );
 
-
-    // Må sende matrisedata til vertexshader
-    // glUniformMatrix4fv( mPmatrixUniform, 1, GL_FALSE, mPmatrix->constData());
-    // glUniformMatrix4fv( mVmatrixUniform, 1, GL_FALSE, mVmatrix->constData());
     mCamera.update();
-
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
         (*it)->checkCollision(DoorCol);
         (*it)->checkCollision(player); // For trophies, will be changed to player later
+    }
+
+    for (auto it=mObjects.begin(); it != mObjects.end(); it++)
+    {
+        if ((*it) == npc)
+        {
+            break;
+        }
         (*it)->draw();
     }
+
+    glUseProgram(mShaderProgram[1]->getProgram());
+    npc->draw();
+
+    mCamera.update();
     calculateFramerate();
     checkForGLerrors(); //using our expanded OpenGL debugger to check if everything is OK.
     mContext->swapBuffers(this);
@@ -244,20 +259,20 @@ void RenderWindow::render()
 
     if (player->bSecondScene)
     {
-        mCamera.init(mPmatrixUniform, mVmatrixUniform);
+        mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(QVector3D{993,1005,994}, SecondHouse->m_Position, QVector3D{0,1,0});
     }
     else
     {
-        mCamera.init(mPmatrixUniform, mVmatrixUniform);
+        mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
     }
 
-    //mLogger->logText("PC X: " + std::to_string(npc->m_Position[0]));
-    //mLogger->logText("PC Y: " + std::to_string(npc->m_Position[1]));
-    //mLogger->logText("PC Z: " + std::to_string(npc->m_Position[2]));
+    mLogger->logText("NPC X: " + std::to_string(npc->m_Position[0]));
+    mLogger->logText("NPC Y: " + std::to_string(npc->m_Position[1]));
+    mLogger->logText("NPC Z: " + std::to_string(npc->m_Position[2]));
 
     npc->FollowPath(graph1, graph2);
 
@@ -402,4 +417,19 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
 //    {
 //        newCube->Move(10.0f, 0.0f, 0.0f);
 //    }
+}
+
+void RenderWindow::SetupPlainShader(int shaderIndex)
+{
+    mMatrixUniform0  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
+    mPmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
+    mVmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+}
+
+void RenderWindow::SetupTextureShader(int shaderIndex)
+{
+    mMatrixUniform1  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
+    mPmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
+    mVmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+    mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "texCoord");
 }

@@ -18,6 +18,6 @@ uniform sampler2D theTexture;
 
 void main() {
    //              Farge   Lysfarge       Lysstyrke
-   fragmentColor = color;   //color given to current fragment (pixel)
-   //fragmentColor = texture(theTexture, texCoord);
+   //fragmentColor = color;   //color given to current fragment (pixel)
+   fragmentColor = texture(theTexture, texCoord);
 }
