@@ -64,12 +64,14 @@ Landscape::Landscape(std::string fileLocation)
         std::cout << "Failed to load texture" << std::endl;
     }
 
-    int a = 0, b = 0;
-    for (auto y = -Height / 2; y < Height/ 2; y ++)
+    int a = 0;
+    int b = 0;
+
+    for (auto y = -Height / 2; y < Height / 2; y ++)
     {
         b++;
         a = 0;
-        for (auto x = -Width / 2; x < Width/ 2; x++)
+        for (auto x = -Width / 2; x < Width / 2; x++)
         {
             a++;
             float z = 0;
@@ -160,24 +162,18 @@ void Landscape::init(GLint matrixUniform)
 // Draw 1
 void Landscape::draw()
 {
-//    if (bIsActive)
-//    {
-        glBindVertexArray( mVAO );
-        glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
-        glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
-    //}
+    glBindVertexArray( mVAO );
+    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
+    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
 }
 
 // Draw 2
 void Landscape::draw(QMatrix4x4 transformMatrix)
 {
-//    if (bIsActive)
-//    {
-        transformMatrix *= mMatrix;
-        glBindVertexArray( mVAO );
-        glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, transformMatrix.constData());
-        glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, mIndices.data());
-    //}
+    transformMatrix *= mMatrix;
+    glBindVertexArray( mVAO );
+    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, transformMatrix.constData());
+    glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, mIndices.data());
 }
 
 // For preparing variables and PerlinNoise
