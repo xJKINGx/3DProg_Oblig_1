@@ -70,4 +70,6 @@ DISTFILES += \
     lightshader.frag \
     lightshader.vert \
     plainshader.frag \
-    plainshader.vert
+    plainshader.vert \
+    texshader.frag \
+    texshader.vert

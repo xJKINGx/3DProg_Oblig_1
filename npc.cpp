@@ -350,7 +350,7 @@ void NPC::init(unsigned int* indices, unsigned int numOfVertices, unsigned int n
     glEnableVertexAttribArray(0);
 
     // 2rd attribute buffer : uvs
-    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
+    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
