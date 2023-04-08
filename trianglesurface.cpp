@@ -74,13 +74,13 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 
         for (float i = 0.0f; i < yMax; i++) {
             for (float j = 0.0f; j < xMax; j++) {
-                    mVertices.push_back(Vertex{j-offset,0,i-offset,             0,0,1});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         0,0,1});
-                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         0,0,1});
+                    mVertices.push_back(Vertex{j-offset,0,i-offset,             1,0,0});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
+                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
 
-                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         0,0,1});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     0,0,1});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         0,0,1});
+                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     1,0,0});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
             }
         }
 
