@@ -3,6 +3,7 @@
 
 #include "visualobject.h"
 #include "vertex.h"
+#include "perlinnoise.h"
 
 class TriangleSurface : public VisualObject
 {

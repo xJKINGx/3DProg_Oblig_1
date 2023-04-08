@@ -64,23 +64,23 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
         float pointDistance = 1.0f;
         float offset = 10.0f;
 
-        float x;
-        float y;
-        float z;
-
-        float r;
-        float g;
-        float b;
+        PerlinNoise mPerlin = PerlinNoise();
+        float mScale = 1.0f;
 
         for (float i = 0.0f; i < yMax; i++) {
             for (float j = 0.0f; j < xMax; j++) {
-                    mVertices.push_back(Vertex{j-offset,0,i-offset,             1,0,0});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
-                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
+                double jP = (double)j / mScale;
+                double iP = (double)i / mScale;
 
-                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     1,0,0});
-                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
+                float perlinValue = mPerlin.noise(iP,1,jP) * 2 - 1;
+
+                mVertices.push_back(Vertex{j-offset,0,i-offset,             1,0,0});
+                mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
+                mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
+
+                mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
+                mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     1,0,0});
+                mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
             }
         }
 
