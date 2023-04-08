@@ -28,7 +28,7 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     Vertex v1{m_Position[0] - 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
     Vertex v2{m_Position[0] + 0.5f, m_Position[1] - 0.5f, m_Position[2] + 0.5f, 1.0f, 0.0f};
     Vertex v3{m_Position[0] + 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 1.0f, 1.0f};
-    Vertex v4{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 0.0f, 0.0f};
+    Vertex v4{m_Position[0] - 0.5f, m_Position[1] + 0.5f, m_Position[2] + 0.5f, 0.0f, 1.0f};
 
     /* BACK FACE
     -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // Bottom-left
@@ -349,9 +349,12 @@ void NPC::init(unsigned int* indices, unsigned int numOfVertices, unsigned int n
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0  );          // array buffer offset
     glEnableVertexAttribArray(0);
 
-    // 2rd attribute buffer : uvs
-    glVertexAttribPointer(1, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 3 * sizeof(GLfloat)) );
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(3 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(1);
+
+    // 2rd attribute buffer : uvs
+    glVertexAttribPointer(2, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
+    glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

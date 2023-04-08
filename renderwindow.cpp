@@ -191,13 +191,13 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform0);
     }
 
-    obamnaTex = new Texture((char*)("../3DProg_Oblig_1/textures/obamna.bmp"));
+    obamnaTex = new Texture((char*)("../3DProg_Oblig_1/textures/31727014.jpg"));
     obamnaTex->LoadTexture();
 
 
 
     npc = new NPC(mMatrixUniform1);
-    mObjects.push_back(npc);
+    //mObjects.push_back(npc);
 
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
@@ -220,12 +220,11 @@ void RenderWindow::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //what shader to use
+
+
     glUseProgram(mShaderProgram[0]->getProgram() );
 
-    glUniformMatrix4fv(mVmatrixUniform0, 1, GL_TRUE, mCamera.mVmatrix.constData());
-    glUniformMatrix4fv(mPmatrixUniform0, 1, GL_TRUE, mCamera.mPmatrix.constData());
-
-    mCamera.update();
+    mCamera.update(mVmatrixUniform0, mPmatrixUniform0);
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
@@ -235,37 +234,31 @@ void RenderWindow::render()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        if ((*it) == npc)
-        {
-            break;
-        }
         (*it)->draw();
     }
 
-    glUseProgram(mShaderProgram[1]->getProgram());
+    glUseProgram(mShaderProgram[1]->getProgram() );
 
-    glUniformMatrix4fv(mVmatrixUniform1, 1, GL_TRUE, mCamera.mVmatrix.constData());
-    glUniformMatrix4fv(mPmatrixUniform1, 1, GL_TRUE, mCamera.mPmatrix.constData());
     glUniform1i(mTextureUniform, 0);
     obamnaTex->UseTexture();
-    mCamera.update();
+
+    mCamera.update(mVmatrixUniform1, mPmatrixUniform1);
 
     npc->draw();
-
 
     calculateFramerate();
     checkForGLerrors(); //using our expanded OpenGL debugger to check if everything is OK.
     mContext->swapBuffers(this);
 
-    if (mRotate)
-    {
-        Door->Rotate(true);
-        newCube->Rotate(true);
-    }
-    else
-    {
-        newCube->Rotate(false);
-    }
+//    if (mRotate)
+//    {
+//        Door->Rotate(true);
+//        newCube->Rotate(true);
+//    }
+//    else
+//    {
+//        newCube->Rotate(false);
+//    }
 
     if (player->bSecondScene)
     {
@@ -285,7 +278,6 @@ void RenderWindow::render()
 //    mLogger->logText("NPC Z: " + std::to_string(npc->m_Position[2]));
 
     npc->FollowPath(graph1, graph2);
-
 }
 
 //This function is called from Qt when window is exposed (shown)
@@ -420,6 +412,10 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     mMatrixUniform0  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
     mPmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
     mVmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+
+    std::cout << "M0: " << mMatrixUniform0 << std::endl;
+    std::cout << "P0: " << mPmatrixUniform0 << std::endl;
+    std::cout << "V0: " << mVmatrixUniform0 << std::endl;
 }
 
 void RenderWindow::SetupTextureShader(int shaderIndex)
@@ -428,4 +424,9 @@ void RenderWindow::SetupTextureShader(int shaderIndex)
     mPmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
     mVmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
     mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "theTexture");
+
+    std::cout << "M1: " << mMatrixUniform1 << std::endl;
+    std::cout << "P1: " << mPmatrixUniform1 << std::endl;
+    std::cout << "V1: " << mVmatrixUniform1 << std::endl;
+    std::cout << "T: " << mTextureUniform<< std::endl;
 }

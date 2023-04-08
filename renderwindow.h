@@ -48,15 +48,15 @@ private:
     Texture *mTextures[4];
 
     void SetupPlainShader(int shaderIndex);
-    GLint mMatrixUniform0;              //OpenGL reference to the Uniform in the shader program
-    GLint mPmatrixUniform0;             // Leksjon 3
-    GLint mVmatrixUniform0;             // Leksjon 3
+    GLint mMatrixUniform0{-1};              //OpenGL reference to the Uniform in the shader program
+    GLint mPmatrixUniform0{-1};             // Leksjon 3
+    GLint mVmatrixUniform0{-1};             // Leksjon 3
 
     void SetupTextureShader(int shaderIndex);
-    GLint mMatrixUniform1;              //OpenGL reference to the Uniform in the shader program
-    GLint mPmatrixUniform1;             // Leksjon 3
-    GLint mVmatrixUniform1;             // Leksjon 3
-    GLint mTextureUniform;
+    GLint mMatrixUniform1{-1};              //OpenGL reference to the Uniform in the shader program
+    GLint mPmatrixUniform1{-1};             // Leksjon 3
+    GLint mVmatrixUniform1{-1};             // Leksjon 3
+    GLint mTextureUniform{-1};
 
     GLuint mVAO;                        //OpenGL reference to our VAO
     GLuint mVBO;                        //OpenGL reference to our VBO

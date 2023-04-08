@@ -23,7 +23,7 @@ Texture::Texture(char* filePath)
 
 Texture::~Texture()
 {
-
+    ClearTexture();
 }
 
 void Texture::ClearTexture()
@@ -47,8 +47,8 @@ void Texture::LoadTexture()
     // S and T are also known as U and V, another name being X and Y
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 
     if (texData) // If the texture data we provided is valid...
     {
@@ -61,6 +61,7 @@ void Texture::LoadTexture()
         // ... otherwise something went wrong and we need to report it.
         std::cout << "AHHH THE TEXTURE FILE IS FUCKED" << std::endl;
     }
+    stbi_image_free(texData);
 }
 
 void Texture::UseTexture()

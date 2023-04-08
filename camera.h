@@ -18,7 +18,7 @@ public:
    void init(GLint pMatrixUniform, GLint vMatrixUniform);
    void perspective(int degrees, double aspect, double nearplane, double farplane);
    void lookAt(const QVector3D& eye, const QVector3D& at, const QVector3D& up);
-   void update();
+   void update(GLint vUniform, GLint pUniform);
    void translate(float dx, float dy, float dz);
 
    QMatrix4x4 mPmatrix{};         // denne,

@@ -25,9 +25,11 @@ void Camera::lookAt(const QVector3D &eye, const QVector3D &at, const QVector3D &
     mVmatrix.lookAt(eye, at, up);
 }
 
-void Camera::update()
+void Camera::update(GLint vUniform, GLint pUniform)
 {
     initializeOpenGLFunctions();
-    glUniformMatrix4fv(mPmatrixUniform, 1, GL_FALSE, mPmatrix.constData());
-    glUniformMatrix4fv(mVmatrixUniform, 1, GL_FALSE, mVmatrix.constData());
+    mPmatrixUniform = pUniform;
+    mVmatrixUniform = vUniform;
+    glUniformMatrix4fv(pUniform, 1, GL_FALSE, mPmatrix.constData());
+    glUniformMatrix4fv(vUniform, 1, GL_FALSE, mVmatrix.constData());
 }
