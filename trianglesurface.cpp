@@ -63,22 +63,24 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
         float yMax = 20.0f;
         float pointDistance = 1.0f;
         float offset = 10.0f;
+        float houseOffset = 2.0f;
+        float heightScale = 2.0f;
 
         for (float i = 0.0f; i < yMax; i++) {
             for (float j = 0.0f; j < xMax; j++) {
-                float z = f(j-offset,i-offset);
-                mVertices.push_back(Vertex{j-offset,z,i-offset,                                     1,0,0});
-                z = f((j+pointDistance)-offset,i-offset);
-                mVertices.push_back(Vertex{(j+pointDistance)-offset,z,i-offset,                     1,0,0});
-                z = f(j-offset,(i+pointDistance)-offset);
-                mVertices.push_back(Vertex{j-offset,z,(i+pointDistance)-offset,                     1,0,0});
+                float z = f(j-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,i-offset,                                     1,z,0});
+                z = f((j+pointDistance)-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,i-offset,                     1,z,0});
+                z = f(j-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,(i+pointDistance)-offset,                     1,z,0});
 
-                z = f(j-offset,(i+pointDistance)-offset);
-                mVertices.push_back(Vertex{j-offset,z,(i+pointDistance)-offset,                     1,0,0});
-                z = f((j+pointDistance)-offset,(i+pointDistance)-offset);
-                mVertices.push_back(Vertex{(j+pointDistance)-offset,z,(i+pointDistance)-offset,     1,0,0});
-                z = f((j+pointDistance)-offset,i-offset);
-                mVertices.push_back(Vertex{(j+pointDistance)-offset,z,i-offset,                     1,0,0});
+                z = f(j-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,(i+pointDistance)-offset,                     1,z,0});
+                z = f((j+pointDistance)-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,(i+pointDistance)-offset,     1,z,0});
+                z = f((j+pointDistance)-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,i-offset,                     1,z,0});
             }
 
         }
