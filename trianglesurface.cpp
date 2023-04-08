@@ -19,50 +19,76 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 {
     if (write)
     {
-        float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
-        for (auto x=xmin; x<xmax; x+=h)
-        {
-            for (auto z=zmin; z<zmax; z+=h)
-            {
-            // f(x,y) = x * sin(y)
-//            float z = x*sin(y);
-//            mVertices.push_back(Vertex{x,y,z,x,y,z});
-//            z = (x+h)*sin(y);
-//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-//            z = x*(sin(y+h));
-//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-//            z = (x+h)*sin(y);
-//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-//            z = (x+h) * (sin(y+h));
-//            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
-
-
-            float y = 2*cos(x)*sin(z);
-//            float yColor = y;
-//            if (y < 0.1f)
+        //float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
+//        for (auto x=xmin; x<xmax; x+=h)
+//        {
+//            for (auto z=zmin; z<zmax; z+=h)
 //            {
-//                yColor = 0.5f;
+//            // f(x,y) = x * sin(y)
+////            float z = x*sin(y);
+////            mVertices.push_back(Vertex{x,y,z,x,y,z});
+////            z = (x+h)*sin(y);
+////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+////            z = x*(sin(y+h));
+////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+////            z = (x+h)*sin(y);
+////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+////            z = (x+h) * (sin(y+h));
+////            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
+
+
+//            float y = 2*cos(x)*sin(z);
+////            float yColor = y;
+////            if (y < 0.1f)
+////            {
+////                yColor = 0.5f;
+////            }
+
+//            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)*sin(z);
+//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x)*(sin(z+h));
+//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
+//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)*sin(z);
+//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)* (sin(z+h));
+//            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
+
 //            }
+//        }
 
-            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x)*(sin(z+h));
-            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-            y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x+h)* (sin(z+h));
-            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
+        float xMax = 20.0f;
+        float yMax = 20.0f;
+        float pointDistance = 1.0f;
+        float offset = 10.0f;
+        float houseOffset = 2.0f;
+        float heightScale = 2.0f;
 
+        for (float i = 0.0f; i < yMax; i++) {
+            for (float j = 0.0f; j < xMax; j++) {
+                float z = f(j-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,i-offset,                                     1,z,0});
+                z = f((j+pointDistance)-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,i-offset,                     1,z,0});
+                z = f(j-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,(i+pointDistance)-offset,                     1,z,0});
+
+                z = f(j-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{j-offset,z + houseOffset,(i+pointDistance)-offset,                     1,z,0});
+                z = f((j+pointDistance)-offset,(i+pointDistance)-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,(i+pointDistance)-offset,     1,z,0});
+                z = f((j+pointDistance)-offset,i-offset) * heightScale;
+                mVertices.push_back(Vertex{(j+pointDistance)-offset,z + houseOffset,i-offset,                     1,z,0});
             }
+
         }
+
         writeFile(filnavn);
     }
 
     readFile(filnavn);
-
 }
 
 TriangleSurface::~TriangleSurface()
@@ -117,6 +143,35 @@ float TriangleSurface::GetZValue(float X, float Y)
     return (2*cos(X)*sin(Y));
 }
 
+float TriangleSurface::f(float x, float z)
+{
+    float noiseHeight = 0;
+    int octaves = 4;
+    float scale = 4;
+    float amplitude = 1;
+    float frequency = 1;
+    float persitence = 0.5f;
+    float lacunarity = 2;
+
+    PerlinNoise mPerlin = PerlinNoise();
+
+    for (int i{}; i < octaves; i++)
+    {
+        double xP = (double)x /scale;
+        double zP = (double)z /scale;
+
+        xP *= frequency;
+        zP *= frequency;
+
+        float perlinValue = mPerlin.noise(xP,1,zP) * 2 - 1;
+        noiseHeight += perlinValue * amplitude;
+
+        amplitude *= persitence;
+        frequency *= lacunarity;
+    }
+
+    return noiseHeight;
+}
 
 void TriangleSurface::init(GLint matrixUniform)
 {

@@ -28,14 +28,14 @@
 #include "player.h"
 #include "light.h"
 #include "texture.h"
-#include "landscape.h"
+//#include "landscape.h"
 
 Player* player = new Player(0.2f);
-house* House = new house(1, QVector3D(1.5f, 2.0f, 1.5f));
+house* House = new house(1, QVector3D(1.4f, 2.0f, 1.5f));
 door* Door = new door(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
 doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f, 0.0f, 0.0f));
-//TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
-Landscape* Ground = new Landscape("../3DProg_Oblig_1/textures/Heightmap.jpg");
+TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
+//Landscape* Ground = new Landscape("../3DProg_Oblig_1/textures/Heightmap.jpg");
 secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
 bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 NPC* npc;
