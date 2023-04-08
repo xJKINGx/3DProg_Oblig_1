@@ -64,24 +64,8 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
         float pointDistance = 1.0f;
         float offset = 10.0f;
 
-//        PerlinNoise mPerlin = PerlinNoise();
-//        float mScale = 4.0f;
-
-//        double jP = (double)j / mScale;
-//        double iP = (double)i / mScale;
-
-//        float perlinValue = mPerlin.noise(iP,1,jP) * 2 - 1;
-
         for (float i = 0.0f; i < yMax; i++) {
             for (float j = 0.0f; j < xMax; j++) {
-//                mVertices.push_back(Vertex{j-offset,0,i-offset,             1,0,0});
-//                mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
-//                mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
-
-//                mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         1,0,0});
-//                mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     1,0,0});
-//                mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         1,0,0});
-
                 float z = f(j-offset,i-offset);
                 mVertices.push_back(Vertex{j-offset,z,i-offset,                                     1,0,0});
                 z = f((j+pointDistance)-offset,i-offset);
@@ -98,9 +82,6 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
             }
 
         }
-//        for (float k = 0; k < sizeof(mVertices) / sizeof(Vertex); k++) {
-//            mVertices[k].m_xyz[1] = mPerlin.noise((mVertices[k].m_xyz[0]) / mScale, 1, (mVertices[k].m_xyz[2]) / mScale);
-//        }
 
         writeFile(filnavn);
     }
