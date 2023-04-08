@@ -19,50 +19,75 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 {
     if (write)
     {
-        float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
-        for (auto x=xmin; x<xmax; x+=h)
-        {
-            for (auto z=zmin; z<zmax; z+=h)
-            {
-            // f(x,y) = x * sin(y)
-//            float z = x*sin(y);
-//            mVertices.push_back(Vertex{x,y,z,x,y,z});
-//            z = (x+h)*sin(y);
-//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-//            z = x*(sin(y+h));
-//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-//            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-//            z = (x+h)*sin(y);
-//            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-//            z = (x+h) * (sin(y+h));
-//            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
-
-
-            float y = 2*cos(x)*sin(z);
-//            float yColor = y;
-//            if (y < 0.1f)
+        //float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
+//        for (auto x=xmin; x<xmax; x+=h)
+//        {
+//            for (auto z=zmin; z<zmax; z+=h)
 //            {
-//                yColor = 0.5f;
+//            // f(x,y) = x * sin(y)
+////            float z = x*sin(y);
+////            mVertices.push_back(Vertex{x,y,z,x,y,z});
+////            z = (x+h)*sin(y);
+////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+////            z = x*(sin(y+h));
+////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
+////            z = (x+h)*sin(y);
+////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
+////            z = (x+h) * (sin(y+h));
+////            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
+
+
+//            float y = 2*cos(x)*sin(z);
+////            float yColor = y;
+////            if (y < 0.1f)
+////            {
+////                yColor = 0.5f;
+////            }
+
+//            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)*sin(z);
+//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x)*(sin(z+h));
+//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
+//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)*sin(z);
+//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
+//            y = 2*cos(x+h)* (sin(z+h));
+//            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
+
 //            }
+//        }
 
-            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x)*(sin(z+h));
-            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-            y = 2*cos(x+h)*sin(z);
-            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-            y = 2*cos(x+h)* (sin(z+h));
-            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
+        float xMax = 20.0f;
+        float yMax = 20.0f;
+        float pointDistance = 1.0f;
+        float offset = 10.0f;
 
+        float x;
+        float y;
+        float z;
+
+        float r;
+        float g;
+        float b;
+
+        for (float i = 0.0f; i < yMax; i++) {
+            for (float j = 0.0f; j < xMax; j++) {
+                    mVertices.push_back(Vertex{j-offset,0,i-offset,             0,0,1});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         0,0,1});
+                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         0,0,1});
+
+                    mVertices.push_back(Vertex{j-offset,0,(i+1)-offset,         0,0,1});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,(i+1)-offset,     0,0,1});
+                    mVertices.push_back(Vertex{(j+1)-offset,0,i-offset,         0,0,1});
             }
         }
+
         writeFile(filnavn);
     }
 
     readFile(filnavn);
-
 }
 
 TriangleSurface::~TriangleSurface()
