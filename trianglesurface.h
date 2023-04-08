@@ -17,6 +17,7 @@ public:
    void draw() override;
 
    float GetZValue(float X, float Y);
+   float f(float x, float z);
 };
 
 #endif // TRIANGLESURFACE_H
