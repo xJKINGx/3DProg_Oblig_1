@@ -42,3 +42,49 @@ std::istream& operator>> (std::istream& is, Vertex& v) {
   is >> dum >> v.m_st[0] >> dum2 >> v.m_st[1] >> dum3;
   return is;
 }
+
+QVector3D Vertex::CalcBarysentricCoords(const QVector3D& p1, const QVector3D& p2, const QVector3D& p3)
+{
+    QVector3D p12 = p2 - p1;
+    QVector3D p13 = p3 - p1;
+
+    QVector3D n;
+    n = n.crossProduct(p12, p13);
+    float area = n.length();
+
+    QVector3D baryc;
+
+    // U
+    QVector3D p = p2 - this->m_xyz;
+    QVector3D q = p3 - this->m_xyz;
+
+    n = n.crossProduct(p, q);
+    baryc[0] = n.z()/area;
+
+    // V
+    p = p3 - this->m_xyz;
+    q = p1 - this->m_xyz;
+
+    n = n.crossProduct(p, q);
+    baryc[1] = n.z()/area;
+
+    // W
+    p = p1 - this->m_xyz;
+    q = p2 - this->m_xyz;
+
+    n = n.crossProduct(p, q);
+    baryc[2] = n.z()/area;
+
+    return baryc;
+}
+
+QVector3D Vertex::CalcNormal(const QVector3D& p1, const QVector3D& p2, const QVector3D& p3)
+{
+    QVector3D p12 = p2 - p1;
+    QVector3D p13 = p3 - p1;
+
+    QVector3D n;
+    n = n.crossProduct(p12, p13);
+
+    return n;
+}
