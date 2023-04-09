@@ -248,15 +248,15 @@ void RenderWindow::render()
     checkForGLerrors(); //using our expanded OpenGL debugger to check if everything is OK.
     mContext->swapBuffers(this);
 
-//    if (mRotate)
-//    {
-//        Door->Rotate(true);
-//        newCube->Rotate(true);
-//    }
-//    else
-//    {
-//        newCube->Rotate(false);
-//    }
+    if (mRotate)
+    {
+        Door->Rotate(true);
+        newCube->Rotate(true);
+    }
+    else
+    {
+        newCube->Rotate(false);
+    }
 
     if (player->bSecondScene)
     {
