@@ -47,19 +47,21 @@ private:
     Shader *mShaderProgram[4]; //holds pointer the GLSL shader program
     Texture *mTextures[4];
 
+    // A new setup function is needed for each new shader
     void SetupPlainShader(int shaderIndex);
-    GLint mMatrixUniform0{-1};              //OpenGL reference to the Uniform in the shader program
-    GLint mPmatrixUniform0{-1};             // Leksjon 3
-    GLint mVmatrixUniform0{-1};             // Leksjon 3
-
     void SetupTextureShader(int shaderIndex);
-    GLint mMatrixUniform1{-1};              //OpenGL reference to the Uniform in the shader program
-    GLint mPmatrixUniform1{-1};             // Leksjon 3
-    GLint mVmatrixUniform1{-1};             // Leksjon 3
+
+    // The matrices system has been changed to now be more robust
+    // If there are more uniforms needed the can be added here.
+    GLint mMatrixUniform{-1};
+    GLint mPmatrixUniform{-1};
+    GLint mVmatrixUniform{-1};
     GLint mTextureUniform{-1};
 
     GLuint mVAO;                        //OpenGL reference to our VAO
     GLuint mVBO;                        //OpenGL reference to our VBO
+
+    void UpdateCurrentUniforms(Shader* currentShader);
 
     QMatrix4x4 *mPmatrix{nullptr};         // Leksjon 3
     QMatrix4x4 *mVmatrix{nullptr};         // Leksjon 3

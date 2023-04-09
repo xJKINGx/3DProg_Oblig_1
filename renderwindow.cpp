@@ -181,33 +181,39 @@ void RenderWindow::init()
     mShaderProgram[1] = new Shader("../3DProg_Oblig_1/texshader.vert", "../3DProg_Oblig_1/texshader.frag");
     //mLightShader = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
 
-
-    // Get the matrixUniform location from the shader
-    // This has to match the "matrix" variable name in the vertex shader
-    // The uniform is used in the render() function to send the model matrix to the shader
+    // It's vital to setup the shaders here, otherwise the program won't run
+    // These functions are some of the vital connection points we have from our c++ code to our shaders
+    // If these functions are not run, the code won't talk with the shaders, and nothing will be rendered
     SetupPlainShader(0);
     SetupTextureShader(1);
-    mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
+
+    // Whenever we wish to change the current shader, we also need to update which uniforms we use
+    // Since this is our first time loading the shaders, we will use the plain shader
+    UpdateCurrentUniforms(mShaderProgram[0]);
+
+    mCamera.init(mPmatrixUniform, mVmatrixUniform);
 
 
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->init(mMatrixUniform0);
+        (*it)->init(mMatrixUniform);
     }
 
-    obamnaTex = new Texture((char*)("../3DProg_Oblig_1/textures/31727014.jpg"));
-    obamnaTex->LoadTexture();
+    //
+    // TEXTURES
+    //
 
+    mTextures[0] = new Texture((char*)("../3DProg_Oblig_1/textures/modoserio.jpg"));
+    mTextures[0]->LoadTexture();
 
-
-    npc = new NPC(mMatrixUniform1);
-    //mObjects.push_back(npc);
+    // The npc is created differently as it needs it's own matrixuniform
+    npc = new NPC(mShaderProgram[1]->MMU);
 
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
 
-    mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
+    mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
 
     mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
@@ -224,36 +230,45 @@ void RenderWindow::render()
     //clear the screen for each redraw
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //what shader to use
-
+    //
+    // PLAIN SHADER GETS USED HERE
+    //
 
     glUseProgram(mShaderProgram[0]->getProgram() );
+    UpdateCurrentUniforms(mShaderProgram[0]);
 
-    mCamera.update(mVmatrixUniform0, mPmatrixUniform0);
-
-    for (auto it=mObjects.begin(); it != mObjects.end(); it++)
-    {
-        (*it)->checkCollision(DoorCol);
-        (*it)->checkCollision(player); // For trophies, will be changed to player later
-    }
+    mCamera.update(mVmatrixUniform, mPmatrixUniform);
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
         (*it)->draw();
     }
 
+    //
+    // TEXTURE SHADER GETS USED HERE
+    //
+
     glUseProgram(mShaderProgram[1]->getProgram() );
+    UpdateCurrentUniforms(mShaderProgram[1]);
 
     glUniform1i(mTextureUniform, 0);
-    obamnaTex->UseTexture();
+    mTextures[0]->UseTexture();
 
-    mCamera.update(mVmatrixUniform1, mPmatrixUniform1);
+    mCamera.update(mVmatrixUniform, mPmatrixUniform);
 
     npc->draw();
+
+    //
+    // OPENGL FUNCTIONS
+    //
 
     calculateFramerate();
     checkForGLerrors(); //using our expanded OpenGL debugger to check if everything is OK.
     mContext->swapBuffers(this);
+
+    //
+    // CAMERA, ROTATION AND MISC. FUNCTIONS
+    //
 
     if (mRotate)
     {
@@ -267,13 +282,13 @@ void RenderWindow::render()
 
     if (player->bSecondScene)
     {
-        mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
+        mCamera.init(mPmatrixUniform, mVmatrixUniform);
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(QVector3D{993,1005,994}, SecondHouse->m_Position, QVector3D{0,1,0});
     }
     else
     {
-        mCamera.init(mPmatrixUniform0, mVmatrixUniform0);
+        mCamera.init(mPmatrixUniform, mVmatrixUniform);
         mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
         mCamera.lookAt(player->m_Position - QVector3D{0.0f, -5.0f, 5.0f}, player->m_Position, QVector3D{0,1,0});
     }
@@ -283,6 +298,12 @@ void RenderWindow::render()
 //    mLogger->logText("NPC Z: " + std::to_string(npc->m_Position[2]));
 
     npc->FollowPath(graph1, graph2);
+
+    for (auto it=mObjects.begin(); it != mObjects.end(); it++)
+    {
+        (*it)->checkCollision(DoorCol);
+        (*it)->checkCollision(player); // For trophies, will be changed to player later
+    }
 }
 
 //This function is called from Qt when window is exposed (shown)
@@ -412,26 +433,31 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
+//
+// SHADER SETUPS - EACH SHADER NEEDS A SETUP FUNCTION TO WORK PROPERLY
+//
+
 void RenderWindow::SetupPlainShader(int shaderIndex)
 {
-    mMatrixUniform0  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
-    mPmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
-    mVmatrixUniform0 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
-
-    std::cout << "M0: " << mMatrixUniform0 << std::endl;
-    std::cout << "P0: " << mPmatrixUniform0 << std::endl;
-    std::cout << "V0: " << mVmatrixUniform0 << std::endl;
+    mShaderProgram[shaderIndex]->MMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
+    mShaderProgram[shaderIndex]->PMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
+    mShaderProgram[shaderIndex]->VMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
 }
 
 void RenderWindow::SetupTextureShader(int shaderIndex)
 {
-    mMatrixUniform1  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
-    mPmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
-    mVmatrixUniform1 = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
     mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "theTexture");
+    mShaderProgram[shaderIndex]->MMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
+    mShaderProgram[shaderIndex]->PMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
+    mShaderProgram[shaderIndex]->VMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+}
 
-    std::cout << "M1: " << mMatrixUniform1 << std::endl;
-    std::cout << "P1: " << mPmatrixUniform1 << std::endl;
-    std::cout << "V1: " << mVmatrixUniform1 << std::endl;
-    std::cout << "T: " << mTextureUniform<< std::endl;
+// This function might need tweaking in the future, usually though all the shaders have these uniforms
+// and if they don't the code that interacts with those shaders won't be asking for these uniforms anyway.
+// I think it's fine for it to stay like this, but we shall see
+void RenderWindow::UpdateCurrentUniforms(Shader* currentShader)
+{
+    mMatrixUniform = currentShader->MMU;
+    mPmatrixUniform = currentShader->PMU;
+    mVmatrixUniform = currentShader->VMU;
 }

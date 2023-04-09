@@ -22,6 +22,13 @@ public:
     ///Returns the program number for this shader
     GLuint getProgram() const;
 
+    // Each shader gets its own MatrixUniforms (MUs), this way we can avoid having a million different
+    // MUs in renderwindow.h.
+    // If we need new and unique uniforms, we'll add them to renderwindow.h
+    GLint MMU{-1}; // mMatrixUniform
+    GLint PMU{-1}; // pMatrixUniform
+    GLint VMU{-1}; // vMatrixUniform
+
 private:
     ///The int OpenGL gives as a reference to this shader
     GLuint mProgram;
