@@ -6,7 +6,6 @@ debug/curve.o
 debug/door.o
 debug/doorcollider.o
 debug/house.o
-debug/landscape.o
 debug/light.o
 debug/logger.o
 debug/mainwindow.o
