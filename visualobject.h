@@ -33,6 +33,20 @@ public:
     std::vector<Vertex> mVertices;
     std::vector<GLuint> mIndices;
 
+    QVector3D findVectorNormal(/*std::vector<Vertex> myVectorArray*/) {
+        for (int i = 0; i < mVertices.size() - 2; i+=3) {
+            QVector3D p1 = mVertices[i].m_xyz;
+            QVector3D p2 = mVertices[i+1].m_xyz;
+            QVector3D p3 = mVertices[i+2].m_xyz;
+
+            QVector3D p12 = p2 - p1;
+            QVector3D p13 = p3 - p1;
+            QVector3D n = QVector3D::crossProduct(p12, p13).normalized();
+
+            return n;
+        }
+    }
+
 protected:
 
     GLuint mVAO{0};
