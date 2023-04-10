@@ -16,7 +16,7 @@ public:
    float m_normal[3];    // normal in 3D or rgb colors
    float m_st[2];        	// texture coordinates if used
 
-   QVector3D CalcBarysentricCoords(const QVector3D& p1, const QVector3D& p2, const QVector3D& p3);
+
    QVector3D CalcNormal(const QVector3D& p1, const QVector3D& p2, const QVector3D& p3);
 public:
    Vertex();

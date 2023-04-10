@@ -173,6 +173,42 @@ float TriangleSurface::f(float x, float z)
     return noiseHeight;
 }
 
+QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& p1, const QVector2D& p2, const QVector2D& p3, QVector2D& playerPos)
+{
+    QVector2D p12 = p2 - p1;
+    QVector2D p13 = p3 - p1;
+
+    QVector3D n;
+    n = n.crossProduct(QVector3D(p12, 0.0), QVector3D(p13, 0.0));
+    float area = n.length();
+
+    QVector3D baryc;
+
+    // U
+    QVector2D p = p2 - playerPos;
+    QVector2D q = p3 - playerPos;
+
+    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
+    baryc[0] = n.z()/area;
+
+    // V
+    p = p3 - playerPos;
+    q = p1 - playerPos;
+
+    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
+    baryc[1] = n.z()/area;
+
+    // W
+    p = p1 - playerPos;
+    q = p2 - playerPos;
+
+    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
+    baryc[2] = n.z()/area;
+
+    return baryc;
+}
+
+
 void TriangleSurface::init(GLint matrixUniform)
 {
     mMatrixUniform = matrixUniform;

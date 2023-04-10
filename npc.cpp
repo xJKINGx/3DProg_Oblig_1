@@ -116,6 +116,15 @@ NPC::NPC(GLint matrixUniform) : VisualObject()
     mVertices.push_back(v23);
     mVertices.push_back(v24);
 
+    QVector3D bababooey = {2, 2, 2};
+    bababooey.length();
+
+    for (int i = 0; i < mVertices.size() - 2; i++){
+        mVertices[i];
+        mVertices[i + 1];
+        mVertices[i + 2];
+    }
+
     mMatrix.setToIdentity();
 
     init(indices, sizeof(mVertices)/sizeof(mVertices[0]), sizeof(indices)/sizeof(indices[0]));
@@ -400,15 +409,15 @@ NPC::~NPC()
 
 void NPC::draw()
 {
-//    glBindVertexArray( mVAO );
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
-//    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//    glBindVertexArray(0);
-
-
-
     glBindVertexArray( mVAO );
-    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
-    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO);
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+
+
+//    glBindVertexArray( mVAO );
+//    glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, mMatrix.constData());
+//    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
 }
