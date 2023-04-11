@@ -234,7 +234,7 @@ void RenderWindow::render()
     // PLAIN SHADER GETS USED HERE
     //
 
-//    glUseProgram(mShaderProgram[0]->getProgram() );
+    glUseProgram(mShaderProgram[0]->getProgram() );
     UpdateCurrentUniforms(mShaderProgram[0]);
 
     mCamera.update(mVmatrixUniform, mPmatrixUniform);
