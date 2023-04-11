@@ -14,7 +14,7 @@ public:
    void readFile(std::string filnavn);
    void writeFile(std::string filnavn);
 
-   QVector3D CalcBarysentricCoords(const QVector2D& p1, const QVector2D& p2, const QVector2D& p3, QVector2D& playerPos);
+   QVector3D CalcBarysentricCoords(const QVector2D& playerPos);
    void init(GLint matrixUniform) override;
    void draw() override;
 
