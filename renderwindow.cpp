@@ -200,6 +200,11 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform);
     }
 
+    QVector3D output = Ground->CalcBarysentricCoords(QVector2D(player->m_Position[0], player->m_Position[1]));
+    std::cout << "U: " << output.x() << std::endl;
+    std::cout << "V: " << output.y() << std::endl;
+    std::cout << "W: " << output.z() << std::endl;
+
     //
     // TEXTURES
     //
