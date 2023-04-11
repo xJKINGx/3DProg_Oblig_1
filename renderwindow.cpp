@@ -36,7 +36,7 @@ doorcollider* DoorCol = new doorcollider(1, House->m_Position + QVector3D(-1.0f,
 TriangleSurface* Ground = new TriangleSurface("oblig2Ground.txt", true);
 secondscenehouse* SecondHouse = new secondscenehouse(1, QVector3D{1000.f, 1000.f, 1000.f});
 bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
-NPC* npc;
+NPC* npc = new NPC(0.5f, 0.0f);
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
 Light* light = new Light();
@@ -110,7 +110,7 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         mObjects.push_back(Bed);
         mObjects.push_back(graph1);
         mObjects.push_back(graph2);
-        //mObjects.push_back(npc);
+        mObjects.push_back(npc);
         mObjects.push_back(light);
 }
 
@@ -200,6 +200,11 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform);
     }
 
+    QVector3D output = Ground->CalcBarysentricCoords(QVector2D(player->m_Position[0], player->m_Position[1]));
+    std::cout << "U: " << output.x() << std::endl;
+    std::cout << "V: " << output.y() << std::endl;
+    std::cout << "W: " << output.z() << std::endl;
+
     //
     // TEXTURES
     //
@@ -208,7 +213,7 @@ void RenderWindow::init()
     mTextures[0]->LoadTexture();
 
     // The npc is created differently as it needs it's own matrixuniform
-    npc = new NPC(mShaderProgram[1]->MMU);
+    //npc = new NPC(mShaderProgram[1]->MMU);
 
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
@@ -248,15 +253,15 @@ void RenderWindow::render()
     // TEXTURE SHADER GETS USED HERE
     //
 
-    glUseProgram(mShaderProgram[1]->getProgram() );
-    UpdateCurrentUniforms(mShaderProgram[1]);
+//    glUseProgram(mShaderProgram[1]->getProgram() );
+//    UpdateCurrentUniforms(mShaderProgram[1]);
 
-    glUniform1i(mTextureUniform, 0);
-    mTextures[0]->UseTexture();
+//    glUniform1i(mTextureUniform, 0);
+//    mTextures[0]->UseTexture();
 
-    mCamera.update(mVmatrixUniform, mPmatrixUniform);
+//    mCamera.update(mVmatrixUniform, mPmatrixUniform);
 
-    npc->draw();
+//    npc->draw();
 
     //
     // OPENGL FUNCTIONS

@@ -188,19 +188,13 @@ QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& playerPos)
         p2 = QVector2D(mVertices[i + 1].m_xyz[0], mVertices[i + 1].m_xyz[1]);
         p3 = QVector2D(mVertices[i + 2].m_xyz[0], mVertices[i + 2].m_xyz[1]);
 
-        QVector2D p21 = p2 - p1;
-        QVector2D p31 = p3 - p1;
-
-        QVector3D triangle = QVector3D::crossProduct(QVector3D(p21, 0.0), QVector3D(p31, 0.0));
-        float triangleNormal = triangle.length();
-
         // Getting the vectors from the points to the player's position
-        QVector2D p11 = p1 - playerPos;
-        QVector2D p12 = p2 - playerPos;
-        QVector2D p13 = p3 - playerPos;
+        QVector2D p11 = playerPos - p1;
+        QVector2D p12 = playerPos - p2;
+        QVector2D p13 = playerPos - p3;
 
         // Calculating area of the triangle using our 3 points
-        //float area = QVector3D::crossProduct(QVector3D(p2 - p1, 0.0), QVector3D(p3 - p1, 0.0)).length();
+        float area = QVector3D::crossProduct(QVector3D(p2 - p1, 0.0), QVector3D(p3 - p1, 0.0)).length();
 
         // Getting the normals from the vertices
         float A = QVector3D::crossProduct(QVector3D(p11, 0.0), QVector3D(p12, 0.0)).z();
@@ -208,9 +202,9 @@ QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& playerPos)
         float C = QVector3D::crossProduct(QVector3D(p13, 0.0), QVector3D(p11, 0.0)).z();
 
         // Finding the coordinates by dividing the length of the vector by the triangles total area
-        float u = A / triangleNormal;
-        float v = B / triangleNormal;
-        float w = C / triangleNormal;
+        float u = A / area;
+        float v = B / area;
+        float w = C / area;
 
         // Set the output variable to the new values we found
         baryc = QVector3D(u, v, w);
