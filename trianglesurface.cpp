@@ -173,37 +173,53 @@ float TriangleSurface::f(float x, float z)
     return noiseHeight;
 }
 
-QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& p1, const QVector2D& p2, const QVector2D& p3, QVector2D& playerPos)
+QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& playerPos)
 {
-    QVector2D p12 = p2 - p1;
-    QVector2D p13 = p3 - p1;
 
-    QVector3D n;
-    n = n.crossProduct(QVector3D(p12, 0.0), QVector3D(p13, 0.0));
-    float area = n.length();
+    QVector3D baryc{-1, -1, -1};
+    int i = 0;
 
-    QVector3D baryc;
+    QVector2D p1, p2, p3;
 
-    // U
-    QVector2D p = p2 - playerPos;
-    QVector2D q = p3 - playerPos;
+    while (baryc[0] < 0 || baryc[1] < 0 || baryc[2] < 0)
+    {
+        // Finding the 3 points to check
+        p1 = QVector2D(mVertices[i].m_xyz[0], mVertices[i].m_xyz[1]);
+        p2 = QVector2D(mVertices[i + 1].m_xyz[0], mVertices[i + 1].m_xyz[1]);
+        p3 = QVector2D(mVertices[i + 2].m_xyz[0], mVertices[i + 2].m_xyz[1]);
 
-    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
-    baryc[0] = n.z()/area;
+        // Getting the vectors from the points to the player's position
+        QVector2D p11 = playerPos - p1;
+        QVector2D p12 = playerPos - p2;
+        QVector2D p13 = playerPos - p3;
 
-    // V
-    p = p3 - playerPos;
-    q = p1 - playerPos;
+        // Calculating area of the triangle using our 3 points
+        float area = QVector3D::crossProduct(QVector3D(p2 - p1, 0.0), QVector3D(p3 - p1, 0.0)).length();
 
-    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
-    baryc[1] = n.z()/area;
+        // Getting the normals from the vertices
+        float A = QVector3D::crossProduct(QVector3D(p11, 0.0), QVector3D(p12, 0.0)).z();
+        float B = QVector3D::crossProduct(QVector3D(p12, 0.0), QVector3D(p13, 0.0)).z();
+        float C = QVector3D::crossProduct(QVector3D(p13, 0.0), QVector3D(p11, 0.0)).z();
 
-    // W
-    p = p1 - playerPos;
-    q = p2 - playerPos;
+        // Finding the coordinates by dividing the length of the vector by the triangles total area
+        float u = A / area;
+        float v = B / area;
+        float w = C / area;
 
-    n = n.crossProduct(QVector3D(p, 0.0), QVector3D(q, 0.0));
-    baryc[2] = n.z()/area;
+        // Set the output variable to the new values we found
+        baryc = QVector3D(u, v, w);
+
+        // U, V, and W must all be < 1 or else the player is outside the triangle and we need to try again
+        // We set each of the values to -1 so we can continue the while loop
+        if (baryc[0] > 1 || baryc[1] > 1 || baryc[2] > 1)
+        {
+            baryc = QVector3D{-1, -1, -1};
+        }
+
+        // i += 3 because we need to start at each new triangle
+        // since mVertices is always divisible by 3, each 3rd vertex is the start of a new triangle
+        i += 3;
+    }
 
     return baryc;
 }
