@@ -66,24 +66,9 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
     mRenderTimer = new QTimer(this);
 
 
-
-    //mObjects.push_back(new XYZ());
-    //mObjects.push_back(new TriangleSurface("vertices.txt", false));
-    //mObjects.push_back(newCube);
-
-    // Oblig 2 - Oppgave 4.4.4
-    //mObjects.push_back(new Curve("graph.txt", true));
-    //mObjects.push_back(new point("points.txt", true));
-
-    // Oblig 2 - Oppgave 4.6.10
-    //mObjects.push_back(new Curve("4610CurvePoints.txt", true));
-    //mObjects.push_back(new point("4610points.txt", true));
-
     mObjects.push_back(player);
 
-    //    Curve* GroundGraph = new Curve("graph.txt", true);
         mObjects.push_back(Ground);
-        // mObjects.push_back(new NPC());
 
         // Y-verdiene er unødvendige siden de blir overskrevet av bakken uansett
         // 1
@@ -103,8 +88,6 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         mObjects.push_back(House);
         mObjects.push_back(Door);
         mObjects.push_back(DoorCol);
-
-    //    mObjects.push_back(new doorcollider(1));
 
         mObjects.push_back(SecondHouse);
         mObjects.push_back(Bed);

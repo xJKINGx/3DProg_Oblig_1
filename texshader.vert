@@ -11,7 +11,6 @@ uniform mat4 pMatrix;                   // Leksjon 3
 uniform mat4 vMatrix;                   // Leksjon 3
 uniform mat4 matrix;                    //the matrix for the model
 
-
 void main() {
   gl_Position = pMatrix * vMatrix * matrix * positionIn;      //calculate the position of the model
   texCoord = vertexUV;
