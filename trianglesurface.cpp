@@ -3,15 +3,6 @@
 
 TriangleSurface::TriangleSurface() : VisualObject()
 {
-//   //         x   y   z   r g b
-//   Vertex v0{0.0,0.0,0.0, 1,0,0};    mVertices.push_back(v0);
-//   Vertex v1(0.5,0.0,0.0, 0,1,0);    mVertices.push_back(v1);
-//   Vertex v2{0.5,0.5,0.0, 0,0,1};    mVertices.push_back(v2);
-//   Vertex v3{0.0,0.0,0.0, 0,0,1};    mVertices.push_back(v3);
-//   Vertex v4{0.5,0.5,0.0, 0,1,0};    mVertices.push_back(v4);
-//   Vertex v5{0.0,0.5,0.0, 1,0,0};    mVertices.push_back(v5);
-
-//   mMatrix.setToIdentity();
 
 }
 
@@ -19,46 +10,6 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 {
     if (write)
     {
-        //float xmin=-8.0f, xmax=8.0f, zmin=-8.0f, zmax=8.0f, h=0.25f;
-//        for (auto x=xmin; x<xmax; x+=h)
-//        {
-//            for (auto z=zmin; z<zmax; z+=h)
-//            {
-//            // f(x,y) = x * sin(y)
-////            float z = x*sin(y);
-////            mVertices.push_back(Vertex{x,y,z,x,y,z});
-////            z = (x+h)*sin(y);
-////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-////            z = x*(sin(y+h));
-////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-////            mVertices.push_back(Vertex{x,y+h,z,x,y,z});
-////            z = (x+h)*sin(y);
-////            mVertices.push_back(Vertex{x+h,y,z,x,y,z});
-////            z = (x+h) * (sin(y+h));
-////            mVertices.push_back(Vertex{x+h,y+h,z,x,y,z});
-
-
-//            float y = 2*cos(x)*sin(z);
-////            float yColor = y;
-////            if (y < 0.1f)
-////            {
-////                yColor = 0.5f;
-////            }
-
-//            mVertices.push_back(Vertex{x,y,z, 0.0f,0.0f,y});
-//            y = 2*cos(x+h)*sin(z);
-//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-//            y = 2*cos(x)*(sin(z+h));
-//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-//            mVertices.push_back(Vertex{x,y,z+h, 0.0f,0.0f,y});
-//            y = 2*cos(x+h)*sin(z);
-//            mVertices.push_back(Vertex{x+h,y,z, 0.0f,0.0f,y});
-//            y = 2*cos(x+h)* (sin(z+h));
-//            mVertices.push_back(Vertex{x+h,y,z+h, 0.0f,0.0f,y});
-
-//            }
-//        }
-
         float xMax = 20.0f;
         float yMax = 20.0f;
         float pointDistance = 1.0f;
@@ -136,12 +87,12 @@ void TriangleSurface::writeFile(std::string filnavn)
     }
 }
 
-float TriangleSurface::GetZValue(float X, float Y)
-{
-    // Z er høyde, så vi kalkulerer høyden basert på X og Y verdien gitt, også returnerer vi Z
-    // Da får vi tilgang til høyden på hvilket som helst punkt.
-    return (2*cos(X)*sin(Y));
-}
+//float TriangleSurface::GetZValue(float X, float Y)
+//{
+//    // Z er høyde, så vi kalkulerer høyden basert på X og Y verdien gitt, også returnerer vi Z
+//    // Da får vi tilgang til høyden på hvilket som helst punkt.
+//    return (2*cos(X)*sin(Y));
+//}
 
 float TriangleSurface::f(float x, float z)
 {
