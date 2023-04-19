@@ -90,7 +90,8 @@ RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
         mObjects.push_back(DoorCol);
 
         mObjects.push_back(SecondHouse);
-        mObjects.push_back(Bed);
+        mObjects.push_back(npc);
+        //mObjects.push_back(Bed);
         mObjects.push_back(graph1);
         mObjects.push_back(graph2);
         mObjects.push_back(npc);
@@ -183,10 +184,7 @@ void RenderWindow::init()
         (*it)->init(mMatrixUniform);
     }
 
-    QVector3D output = Ground->CalcBarysentricCoords(QVector2D(player->m_Position[0], player->m_Position[1]));
-    std::cout << "U: " << output.x() << std::endl;
-    std::cout << "V: " << output.y() << std::endl;
-    std::cout << "W: " << output.z() << std::endl;
+    Ground->HeightFromBaryc(QVector2D(player->m_Position[0], player->m_Position[2]));
 
     //
     // TEXTURES
@@ -237,7 +235,7 @@ void RenderWindow::render()
     //
 
 //    glUseProgram(mShaderProgram[1]->getProgram() );
-//    UpdateCurrentUniforms(mShaderProgram[1]);
+//    UpdateCurrentUniforms(mShader Program[1]);
 
 //    glUniform1i(mTextureUniform, 0);
 //    mTextures[0]->UseTexture();
@@ -414,9 +412,15 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Escape)
     {
         mMainWindow->close();       //Shuts down the whole program
-    } else
+    }
+    else
     {
         player->Move(event);
+        // No it's not cursed, what are you on about?
+        player->setPosition(QVector3D(player->m_Position[0],
+                            Ground->HeightFromBaryc(QVector2D(player->m_Position[0], player->m_Position[2])),
+                            player->m_Position[2]));
+
         newCube->Move(0.0f,0.0f,0.0f, event);
     }
 }

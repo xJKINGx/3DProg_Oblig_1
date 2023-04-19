@@ -173,55 +173,54 @@ float TriangleSurface::f(float x, float z)
     return noiseHeight;
 }
 
-QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& playerPos)
+float TriangleSurface::HeightFromBaryc(const QVector2D& playerPos)
 {
-
+    QVector2D v0, v1, v2;
     QVector3D baryc{-1, -1, -1};
-    int i = 0;
 
-    QVector2D p1, p2, p3;
-
-    while (baryc[0] < 0 || baryc[1] < 0 || baryc[2] < 0)
+    for (int i = 0; i < mVertices.size() - 2; i += 3)
     {
-        // Finding the 3 points to check
-        p1 = QVector2D(mVertices[i].m_xyz[0], mVertices[i].m_xyz[1]);
-        p2 = QVector2D(mVertices[i + 1].m_xyz[0], mVertices[i + 1].m_xyz[1]);
-        p3 = QVector2D(mVertices[i + 2].m_xyz[0], mVertices[i + 2].m_xyz[1]);
+        v0 = {mVertices[i].m_xyz[0], mVertices[i].m_xyz[2]};
+        v1 = {mVertices[i + 1].m_xyz[0], mVertices[i + 1].m_xyz[2]};
+        v2 = {mVertices[i + 2].m_xyz[0], mVertices[i + 2].m_xyz[2]};
 
-        // Getting the vectors from the points to the player's position
-        QVector2D p11 = playerPos - p1;
-        QVector2D p12 = playerPos - p2;
-        QVector2D p13 = playerPos - p3;
+        baryc = CalcBarysentricCoords(v0, v1, v2, playerPos);
 
-        // Calculating area of the triangle using our 3 points
-        float area = QVector3D::crossProduct(QVector3D(p2 - p1, 0.0), QVector3D(p3 - p1, 0.0)).length();
-
-        // Getting the normals from the vertices
-        float A = QVector3D::crossProduct(QVector3D(p11, 0.0), QVector3D(p12, 0.0)).z();
-        float B = QVector3D::crossProduct(QVector3D(p12, 0.0), QVector3D(p13, 0.0)).z();
-        float C = QVector3D::crossProduct(QVector3D(p13, 0.0), QVector3D(p11, 0.0)).z();
-
-        // Finding the coordinates by dividing the length of the vector by the triangles total area
-        float u = A / area;
-        float v = B / area;
-        float w = C / area;
-
-        // Set the output variable to the new values we found
-        baryc = QVector3D(u, v, w);
-
-        // U, V, and W must all be < 1 or else the player is outside the triangle and we need to try again
-        // We set each of the values to -1 so we can continue the while loop
-        if (baryc[0] > 1 || baryc[1] > 1 || baryc[2] > 1)
+        if (baryc.x() >= 0 && baryc.y() >= 0 && baryc.z() >= 0)
         {
-            baryc = QVector3D{-1, -1, -1};
+            std::cout << "Found at triangle number: " + std::to_string(i / 3) << std::endl;
+            break;
         }
-
-        // i += 3 because we need to start at each new triangle
-        // since mVertices is always divisible by 3, each 3rd vertex is the start of a new triangle
-        i += 3;
     }
 
-    return baryc;
+    float height = v0.y() * baryc.x() + v1.y() * baryc.y() + v2.y() * baryc.z();
+    std::cout << "Players apparent height: " << std::to_string(height) << std::endl;
+    return height;
+}
+
+QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& v0, const QVector2D& v1, const QVector2D& v2, const QVector2D& playerPos)
+{
+
+    QVector2D v10 = v1 - v0;
+    QVector2D v21 = v2 - v1;
+
+    float area = QVector3D::crossProduct(QVector3D(v10, 0.f), QVector3D(v21, 0.0f)).z();
+
+    QVector2D v0p = v0 - playerPos;
+    QVector2D v1p = v1 - playerPos;
+    QVector2D v2p = v2 - playerPos;
+
+    float u = QVector3D::crossProduct(QVector3D(v0p, 0.0f), QVector3D(v1p, 0.0f)).z() / area;
+    float v = QVector3D::crossProduct(QVector3D(v1p, 0.0f), QVector3D(v2p, 0.0f)).z() / area;
+    float w = QVector3D::crossProduct(QVector3D(v2p, 0.0f), QVector3D(v0p, 0.0f)).z() / area;
+
+    QVector3D tempBaryc = {u, v, w};
+
+    std::cout << "U: " << tempBaryc.x() << std::endl;
+    std::cout << "V: " << tempBaryc.y() << std::endl;
+    std::cout << "W: " << tempBaryc.z() << std::endl;
+
+    return tempBaryc;
 }
 
 

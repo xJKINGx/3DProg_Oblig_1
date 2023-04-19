@@ -15,6 +15,4 @@ void positionComponent::setPosition(QVector3D targetPos)
     m_Position[0] = mMatrix.column(3).x();
     m_Position[1] = mMatrix.column(3).y();
     m_Position[2] = mMatrix.column(3).z();
-
-
 }
