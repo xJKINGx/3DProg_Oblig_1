@@ -126,16 +126,16 @@ float TriangleSurface::f(float x, float z)
 
 float TriangleSurface::HeightFromBaryc(const QVector2D& playerPos)
 {
-    QVector2D v0, v1, v2;
+    QVector3D v0, v1, v2;
     QVector3D baryc{-1, -1, -1};
 
     for (int i = 0; i < mVertices.size() - 2; i += 3)
     {
-        v0 = {mVertices[i].m_xyz[0], mVertices[i].m_xyz[2]};
-        v1 = {mVertices[i + 1].m_xyz[0], mVertices[i + 1].m_xyz[2]};
-        v2 = {mVertices[i + 2].m_xyz[0], mVertices[i + 2].m_xyz[2]};
+        v0 = {mVertices[i].m_xyz};
+        v1 = {mVertices[i + 1].m_xyz};
+        v2 = {mVertices[i + 2].m_xyz};
 
-        baryc = CalcBarysentricCoords(v0, v1, v2, playerPos);
+        baryc = CalcBarysentricCoords(QVector2D(v0[0], v0[2]), QVector2D(v1[0], v1[2]), QVector2D(v2[0], v2[2]), playerPos);
 
         if (baryc.x() >= 0 && baryc.y() >= 0 && baryc.z() >= 0)
         {
@@ -145,6 +145,9 @@ float TriangleSurface::HeightFromBaryc(const QVector2D& playerPos)
     }
 
     float height = v0.y() * baryc.x() + v1.y() * baryc.y() + v2.y() * baryc.z();
+    std::cout << "v0: " << v0.y() << std::endl;
+    std::cout << "v1: " << v1.y() << std::endl;
+    std::cout << "v2: " << v2.y() << std::endl;
     std::cout << "Players apparent height: " << std::to_string(height) << std::endl;
     return height;
 }
