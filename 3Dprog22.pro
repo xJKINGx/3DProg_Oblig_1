@@ -67,6 +67,8 @@ FORMS += \
 DISTFILES += \
     lightshader.frag \
     lightshader.vert \
+    litobjectshader.frag \
+    litobjectshader.vert \
     plainshader.frag \
     plainshader.vert \
     texshader.frag \

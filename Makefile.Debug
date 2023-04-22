@@ -110,6 +110,8 @@ OBJECTS       = debug/main.o \
 
 DIST          = lightshader.frag \
 		lightshader.vert \
+		litobjectshader.frag \
+		litobjectshader.vert \
 		plainshader.frag \
 		plainshader.vert \
 		texshader.frag \
@@ -3209,7 +3211,8 @@ debug/texture.o: texture.cpp texture.h \
 		C:/Qt/6.4.2/mingw_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/6.4.2/mingw_64/include/QtGui/qopenglcontext_platform.h \
 		C:/Qt/6.4.2/mingw_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/6.4.2/mingw_64/include/QtGui/qwindowdefs_win.h
+		C:/Qt/6.4.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+		logger.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\texture.o texture.cpp
 
 debug/trianglesurface.o: trianglesurface.cpp trianglesurface.h \

@@ -39,7 +39,7 @@ bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 NPC* npc = new NPC(0.5f, 0.0f);
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
-Light* light = new Light();
+Light* light = new Light(1.0f, 1.0f, 1.0f, 0.8f,2.0f, -1.0f, -2.0f, 1.0f);
 Texture* obamnaTex;
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
@@ -163,13 +163,14 @@ void RenderWindow::init()
     // (out of the build-folder) and then up into the project folder.
     mShaderProgram[0] = new Shader("../3DProg_Oblig_1/plainshader.vert", "../3DProg_Oblig_1/plainshader.frag");
     mShaderProgram[1] = new Shader("../3DProg_Oblig_1/texshader.vert", "../3DProg_Oblig_1/texshader.frag");
-    //mLightShader = new Shader("../3DProg_Oblig_1/lightshader.vert", "../3DProg_Oblig_1/lightshader.frag");
+    mShaderProgram[2] = new Shader("../3DProg_Oblig_1/litobjectshader.vert", "../3DProg_Oblig_1/litobjectshader.frag");
 
     // It's vital to setup the shaders here, otherwise the program won't run
     // These functions are some of the vital connection points we have from our c++ code to our shaders
     // If these functions are not run, the code won't talk with the shaders, and nothing will be rendered
     SetupPlainShader(0);
     SetupTextureShader(1);
+    SetupLightShader(2);
 
     // Whenever we wish to change the current shader, we also need to update which uniforms we use
     // Since this is our first time loading the shaders, we will use the plain shader
@@ -181,7 +182,10 @@ void RenderWindow::init()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->init(mMatrixUniform);
+        if ((*it) != light)
+        {
+            (*it)->init(mMatrixUniform);
+        }
     }
 
     Ground->HeightFromBaryc(QVector2D(player->m_Position[0], player->m_Position[2]));
@@ -196,8 +200,18 @@ void RenderWindow::init()
     // The npc is created differently as it needs it's own matrixuniform
     //npc = new NPC(mShaderProgram[1]->MMU);
 
+    //
+    // LIGHT OBJECTS
+    //
+
+    UpdateCurrentUniforms(mShaderProgram[2]);
+    light->init(mMatrixUniform);
+    light->setPosition(QVector3D(-4.0f, 4.5f, -3.0f));
+
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
+
+    UpdateCurrentUniforms(mShaderProgram[0]);
 
     mCamera.init(mPmatrixUniform, mVmatrixUniform);
     mCamera.perspective(60, 4.0/3.0, 0.1, 1000.0);
@@ -227,7 +241,10 @@ void RenderWindow::render()
 
     for (auto it=mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->draw();
+        if ((*it) != light)
+        {
+            (*it)->draw();
+        }
     }
 
     //
@@ -243,6 +260,20 @@ void RenderWindow::render()
 //    mCamera.update(mVmatrixUniform, mPmatrixUniform);
 
 //    npc->draw();
+
+    //
+    // LIGHT SHADER GETS USED HERE
+    //
+
+    glUseProgram(mShaderProgram[2]->getProgram());
+    UpdateCurrentUniforms(mShaderProgram[2]);
+
+    mCamera.update(mVmatrixUniform, mPmatrixUniform);
+
+    light->draw();
+    //dirLight.useLight(uniformAmbientIntensity, uniformAmbientColor,uniformDiffuseIntensity,uniformDirection);
+
+    light->UseLight(mAmbientIntensityUniform, mAmbientColorUniform, mDiffuseIntensityUniform, mDirectionUniform);
 
     //
     // OPENGL FUNCTIONS
@@ -434,11 +465,45 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     mShaderProgram[shaderIndex]->MMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
     mShaderProgram[shaderIndex]->PMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
     mShaderProgram[shaderIndex]->VMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+
+    mAmbientColorUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.color");
+    mAmbientIntensityUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.ambientIntensity");
+    mDiffuseIntensityUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.diffuseIntensity");
+    mDirectionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.direction");
+
+    std::cout << "MMU: " << mShaderProgram[shaderIndex]->MMU << std::endl;
+    std::cout << "PMU: " << mShaderProgram[shaderIndex]->PMU << std::endl;
+    std::cout << "VMU: " << mShaderProgram[shaderIndex]->VMU << std::endl;
+
+    std::cout << "mAmbientColorUniform: " << mAmbientColorUniform << std::endl;
+    std::cout << "mAmbientIntensityUniform: " << mAmbientIntensityUniform << std::endl;
+    std::cout << "mDiffuseIntensityUniform: " << mDiffuseIntensityUniform << std::endl;
+    std::cout << "mDirectionUniform: " << mDirectionUniform << std::endl;
+    /*
+    GLint mAmbientColoruniform{-1};
+    GLint mAmbientIntensityuniform{-1};
+    GLint mDiffuseIntensityuniform{-1};
+    GLint mDirectionUniform{-1};
+
+struct DirectionalLight
+{
+    vec3 color;
+    float ambientIntensity;
+    vec3 direction;
+    float diffuseIntensity;
+};*/
 }
 
 void RenderWindow::SetupTextureShader(int shaderIndex)
 {
     mTextureUniform  = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "theTexture");
+    mShaderProgram[shaderIndex]->MMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
+    mShaderProgram[shaderIndex]->PMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
+    mShaderProgram[shaderIndex]->VMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
+}
+
+void RenderWindow::SetupLightShader(int shaderIndex)
+{
     mShaderProgram[shaderIndex]->MMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "matrix" );
     mShaderProgram[shaderIndex]->PMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "pMatrix" );
     mShaderProgram[shaderIndex]->VMU = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "vMatrix" );
