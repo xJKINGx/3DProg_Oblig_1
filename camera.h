@@ -21,6 +21,8 @@ public:
    void update(GLint vUniform, GLint pUniform);
    void translate(float dx, float dy, float dz);
 
+   void GetCameraPos(GLint camPositionUniformLocation, QVector3D playerPosWithOffset);
+
    QMatrix4x4 mPmatrix{};         // denne,
    QMatrix4x4 mVmatrix{};         // og denne, skal legges inn i kameraklasse
 

@@ -50,6 +50,7 @@ private:
     // A new setup function is needed for each new shader
     void SetupPlainShader(int shaderIndex);
     void SetupTextureShader(int shaderIndex);
+    void SetupLightShader(int shaderIndex);
 
     // The matrices system has been changed to now be more robust
     // If there are more uniforms needed the can be added here.
@@ -57,6 +58,12 @@ private:
     GLint mPmatrixUniform{-1};
     GLint mVmatrixUniform{-1};
     GLint mTextureUniform{-1};
+    GLint mAmbientColorUniform{-1};
+    GLint mAmbientIntensityUniform{-1};
+    GLint mDiffuseIntensityUniform{-1};
+    GLint mCameraPositionUniform{-1};
+    GLint mLightPositionUniform{-1};
+
 
     GLuint mVAO;                        //OpenGL reference to our VAO
     GLuint mVBO;                        //OpenGL reference to our VBO

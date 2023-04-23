@@ -9,9 +9,14 @@ public:
     Light();
     // Ambient lighting
     Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity);
-    // Diffuse lighting
-    Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity, GLfloat xDir, GLfloat yDir, GLfloat zDir, GLfloat dIntensity);
+    // Ambient & Diffuse lighting
+    Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity, GLfloat dIntensity);
 
+    // Use only ambient light
+    void UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation);
+    // Use both ambient and diffuse light
+    void UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation, GLfloat DiffuseIntensityLocation,
+                  GLint LightPositionLocation);
 
 
     QVector3D lightPos;
@@ -20,6 +25,8 @@ public:
 
     void init(GLint matrixUniform) override;
     void draw() override;
+
+    void CreateMesh(float scale, float r, float g, float b);
 
     ~Light();
 

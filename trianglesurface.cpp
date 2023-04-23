@@ -38,8 +38,27 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 
         writeFile(filnavn);
     }
+    else
+    {
+        readFile(filnavn);
+    }
+    std::cout << "Bababooey:" << mVertices.size() << std::endl;
 
-    readFile(filnavn);
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+        if (i % 6 != 0 && i != 0)
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        }
+        else
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        }
+    }
 }
 
 TriangleSurface::~TriangleSurface()
@@ -75,7 +94,6 @@ void TriangleSurface::writeFile(std::string filnavn)
     if (ut.is_open())
     {
         auto n = mVertices.size();
-
         Vertex vertex;
         ut << n << std::endl;
         for (auto it=mVertices.begin(); it != mVertices.end(); it++)
@@ -139,16 +157,16 @@ float TriangleSurface::HeightFromBaryc(const QVector2D& playerPos)
 
         if (baryc.x() >= 0 && baryc.y() >= 0 && baryc.z() >= 0)
         {
-            std::cout << "Found at triangle number: " + std::to_string(i / 3) << std::endl;
+            //std::cout << "Found at triangle number: " + std::to_string(i / 3) << std::endl;
             break;
         }
     }
 
     float height = v0.y() * baryc.x() + v1.y() * baryc.y() + v2.y() * baryc.z();
-    std::cout << "v0: " << v0.y() << std::endl;
-    std::cout << "v1: " << v1.y() << std::endl;
-    std::cout << "v2: " << v2.y() << std::endl;
-    std::cout << "Players apparent height: " << std::to_string(height) << std::endl;
+//    std::cout << "v0: " << v0.y() << std::endl;
+//    std::cout << "v1: " << v1.y() << std::endl;
+//    std::cout << "v2: " << v2.y() << std::endl;
+//    std::cout << "Players apparent height: " << std::to_string(height) << std::endl;
     return height;
 }
 
@@ -170,9 +188,9 @@ QVector3D TriangleSurface::CalcBarysentricCoords(const QVector2D& v0, const QVec
 
     QVector3D tempBaryc = {u, v, w};
 
-    std::cout << "U: " << tempBaryc.x() << std::endl;
-    std::cout << "V: " << tempBaryc.y() << std::endl;
-    std::cout << "W: " << tempBaryc.z() << std::endl;
+//    std::cout << "U: " << tempBaryc.x() << std::endl;
+//    std::cout << "V: " << tempBaryc.y() << std::endl;
+//    std::cout << "W: " << tempBaryc.z() << std::endl;
 
     return tempBaryc;
 }
@@ -205,6 +223,9 @@ void TriangleSurface::init(GLint matrixUniform)
     // 3rd attribute buffer : uvs
     glVertexAttribPointer(2, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(2);
+
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(8 * sizeof(GLfloat)) );
+    glEnableVertexAttribArray(3);
 
     glBindVertexArray(0);
 

@@ -265,6 +265,22 @@ house::house(float scale, QVector3D start) {
     }
 
     mMatrix.setToIdentity();
+
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+        if (i % 6 != 0 && i != 0)
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        }
+        else
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        }
+    }
 }
 
 house::~house() {    }
@@ -292,6 +308,9 @@ void house::init(GLint matrixUniform) {
    // 2nd attribute buffer : colors
    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof( Vertex ),  (GLvoid*)(3 * sizeof(GLfloat)) );
    glEnableVertexAttribArray(1);
+
+   glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(8 * sizeof(GLfloat)) );
+   glEnableVertexAttribArray(3);
 
    glBindVertexArray(0);
 }

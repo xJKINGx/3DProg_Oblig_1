@@ -9,39 +9,39 @@ Player::Player(float scale)
 {
     PlayerScale = scale;
     // NORTH SIDE
-    Vertex v1{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
-    Vertex v2{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
-    Vertex v3{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower left
+    Vertex v1{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower left
+    Vertex v2{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
+    Vertex v3{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
 
-    Vertex v4{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper Right
-    Vertex v5{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
+    Vertex v4{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
+    Vertex v5{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper Right
     Vertex v6{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
 
     // EAST SIDE
     Vertex v7{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 0, 0}; // Lower left
-    Vertex v8{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 0, 0}; // Upper left
-    Vertex v9{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 0, 0}; // Lower right
+    Vertex v8{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 0, 0}; // Lower right
+    Vertex v9{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 0, 0}; // Upper left
 
-    Vertex v10{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 0, 0}; // Upper right
-    Vertex v11{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 0, 0}; // Lower right
+    Vertex v10{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 0, 0}; // Lower right
+    Vertex v11{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 0, 0}; // Upper right
     Vertex v12{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 0, 0}; // Upper left
 
     // SOUTH SIDE
-    Vertex v13{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower right
-    Vertex v14{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 0, 1, 0}; // Upper left
-    Vertex v15{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower left
+    Vertex v13{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower left
+    Vertex v14{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower right
+    Vertex v15{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 0, 1, 0}; // Upper left
 
-    Vertex v16{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 0, 1, 0}; // Upper Right
-    Vertex v17{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower right
+    Vertex v16{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 0}; // Lower right
+    Vertex v17{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 0, 1, 0}; // Upper Right
     Vertex v18{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 0, 1, 0}; // Upper left
 
     // WEST SIDE
     Vertex v19{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 0, 0, 1}; // Lower left
-    Vertex v20{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 0, 0, 1}; // Upper left
-    Vertex v21{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 0, 1}; // Lower right
+    Vertex v20{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 0, 1}; // Lower right
+    Vertex v21{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 0, 0, 1}; // Upper left
 
-    Vertex v22{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 0, 0, 1}; // Upper right
-    Vertex v23{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 0, 1}; // Lower right
+    Vertex v22{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 0, 1}; // Lower right
+    Vertex v23{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 0, 0, 1}; // Upper right
     Vertex v24{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 0, 0, 1}; // Upper left
 
     // TOP SIDE
@@ -62,51 +62,55 @@ Player::Player(float scale)
     Vertex v35{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 0, 1, 1}; // Lower west
     Vertex v36{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 0, 1, 1}; // Lower north
 
-    PlayerPoints.push_back(v1);
-    PlayerPoints.push_back(v2);
-    PlayerPoints.push_back(v3);
-    PlayerPoints.push_back(v4);
-    PlayerPoints.push_back(v5);
-    PlayerPoints.push_back(v6);
-    PlayerPoints.push_back(v7);
-    PlayerPoints.push_back(v8);
-    PlayerPoints.push_back(v9);
-    PlayerPoints.push_back(v10);
-    PlayerPoints.push_back(v11);
-    PlayerPoints.push_back(v12);
+    mVertices.push_back(v1);
+    mVertices.push_back(v2);
+    mVertices.push_back(v3);
+    mVertices.push_back(v4);
+    mVertices.push_back(v5);
+    mVertices.push_back(v6);
+    mVertices.push_back(v7);
+    mVertices.push_back(v8);
+    mVertices.push_back(v9);
+    mVertices.push_back(v10);
+    mVertices.push_back(v11);
+    mVertices.push_back(v12);
 
-    PlayerPoints.push_back(v13);
-    PlayerPoints.push_back(v14);
-    PlayerPoints.push_back(v15);
-    PlayerPoints.push_back(v16);
-    PlayerPoints.push_back(v17);
-    PlayerPoints.push_back(v18);
-    PlayerPoints.push_back(v19);
-    PlayerPoints.push_back(v20);
-    PlayerPoints.push_back(v21);
-    PlayerPoints.push_back(v22);
-    PlayerPoints.push_back(v23);
-    PlayerPoints.push_back(v24);
+    mVertices.push_back(v13);
+    mVertices.push_back(v14);
+    mVertices.push_back(v15);
+    mVertices.push_back(v16);
+    mVertices.push_back(v17);
+    mVertices.push_back(v18);
+    mVertices.push_back(v19);
+    mVertices.push_back(v20);
+    mVertices.push_back(v21);
+    mVertices.push_back(v22);
+    mVertices.push_back(v23);
+    mVertices.push_back(v24);
 
-    PlayerPoints.push_back(v25);
-    PlayerPoints.push_back(v26);
-    PlayerPoints.push_back(v27);
-    PlayerPoints.push_back(v28);
-    PlayerPoints.push_back(v29);
-    PlayerPoints.push_back(v30);
-    PlayerPoints.push_back(v31);
-    PlayerPoints.push_back(v32);
-    PlayerPoints.push_back(v33);
-    PlayerPoints.push_back(v34);
-    PlayerPoints.push_back(v35);
-    PlayerPoints.push_back(v36);
-
-    for (int i = 0; i < PlayerPoints.size(); i++)
-    {
-        mVertices.push_back(PlayerPoints[i]);
-    }
+    mVertices.push_back(v25);
+    mVertices.push_back(v26);
+    mVertices.push_back(v27);
+    mVertices.push_back(v28);
+    mVertices.push_back(v29);
+    mVertices.push_back(v30);
+    mVertices.push_back(v31);
+    mVertices.push_back(v32);
+    mVertices.push_back(v33);
+    mVertices.push_back(v34);
+    mVertices.push_back(v35);
+    mVertices.push_back(v36);
 
     mMatrix.setToIdentity();
+
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+        QVector3D norm = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        mVertices[i].m_normal = norm;
+        mVertices[i + 1].m_normal = norm;
+        mVertices[i + 2].m_normal = norm;
+    }
+
 }
 
 void Player::Move(QKeyEvent* event)
@@ -196,6 +200,9 @@ void Player:: init(GLint matrixUniform)
     // 3rd attribute buffer : uvs
     glVertexAttribPointer(2, 2,  GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)( 6 * sizeof(GLfloat)) );
     glEnableVertexAttribArray(2);
+
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(8 * sizeof(GLfloat)) );
+    glEnableVertexAttribArray(3);
 
     glBindVertexArray(0);
 }

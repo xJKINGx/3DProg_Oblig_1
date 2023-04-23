@@ -411,6 +411,19 @@ trophy::trophy(float scale, QVector3D start) {
     }
 
     mMatrix.setToIdentity();
+
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+
+        mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+
+        mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+
+    }
 }
 
 trophy::~trophy() {    }
@@ -438,6 +451,9 @@ void trophy::init(GLint matrixUniform) {
    // 2nd attribute buffer : colors
    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,  sizeof( Vertex ),  (GLvoid*)(3 * sizeof(GLfloat)) );
    glEnableVertexAttribArray(1);
+
+   glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,  sizeof(Vertex),  (GLvoid*)(8 * sizeof(GLfloat)) );
+   glEnableVertexAttribArray(3);
 
    glBindVertexArray(0);
 }
