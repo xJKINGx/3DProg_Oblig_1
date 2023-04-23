@@ -33,3 +33,8 @@ void Camera::update(GLint vUniform, GLint pUniform)
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, mPmatrix.constData());
     glUniformMatrix4fv(vUniform, 1, GL_FALSE, mVmatrix.constData());
 }
+
+void Camera::GetCameraPos(GLint camPositionUniformLocation, QVector3D playerPosWithOffset)
+{
+    glUniform3f(camPositionUniformLocation, playerPosWithOffset[0], playerPosWithOffset[1], playerPosWithOffset[2]);
+}

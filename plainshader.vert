@@ -7,6 +7,7 @@ layout(location = 3) in vec3 normalIn;
 
 out vec4 color;                           //color sent to rest of pipeline
 out vec3 normal;
+out vec3 fragPos;
 
 uniform mat4 pMatrix;                   // Leksjon 3
 uniform mat4 vMatrix;                   // Leksjon 3
@@ -17,4 +18,5 @@ void main() {
     color = colorIn;                       //passing on the vertex color
     gl_Position = pMatrix * vMatrix * matrix * positionIn;      //calculate the position of the model
     normal = mat3(transpose(inverse(matrix))) * normalIn;
+    fragPos = vec3(matrix * positionIn);
 }

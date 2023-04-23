@@ -279,6 +279,7 @@ void RenderWindow::render()
 
     glUseProgram(mShaderProgram[0]->getProgram());
     UpdateCurrentUniforms(mShaderProgram[0]);
+    mCamera.GetCameraPos(mCameraPositionUniform, player->m_Position - QVector3D{0.0f, -5.0f, 5.0f});
     light->UseLight(mAmbientIntensityUniform, mAmbientColorUniform, mDiffuseIntensityUniform, mDirectionUniform);
 
     //
@@ -476,6 +477,7 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     mAmbientIntensityUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.ambientIntensity");
     mDiffuseIntensityUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.diffuseIntensity");
     mDirectionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.direction");
+    mCameraPositionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "viewPos");
 
     std::cout << "MMU: " << mShaderProgram[shaderIndex]->MMU << std::endl;
     std::cout << "PMU: " << mShaderProgram[shaderIndex]->PMU << std::endl;
@@ -485,6 +487,7 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     std::cout << "mAmbientIntensityUniform: " << mAmbientIntensityUniform << std::endl;
     std::cout << "mDiffuseIntensityUniform: " << mDiffuseIntensityUniform << std::endl;
     std::cout << "mDirectionUniform: " << mDirectionUniform << std::endl;
+    std::cout << "mCameraPositionUniform: " << mCameraPositionUniform << std::endl;
     /*
     GLint mAmbientColoruniform{-1};
     GLint mAmbientIntensityuniform{-1};
