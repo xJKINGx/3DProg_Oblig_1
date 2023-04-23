@@ -108,6 +108,8 @@ Player::Player(float scale)
 
     mMatrix.setToIdentity();
 
+
+
 }
 
 void Player::Move(QKeyEvent* event)
