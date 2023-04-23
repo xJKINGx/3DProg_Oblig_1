@@ -63,6 +63,7 @@ private:
     GLint mDiffuseIntensityUniform{-1};
     GLint mDirectionUniform{-1};
     GLint mCameraPositionUniform{-1};
+    GLint mLightPositionUniform{-1};
 
 
     GLuint mVAO;                        //OpenGL reference to our VAO

@@ -16,7 +16,7 @@ public:
     void UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation);
     // Use both ambient and diffuse light
     void UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation, GLfloat DiffuseIntensityLocation,
-                  GLfloat DirectionLocation);
+                  GLfloat DirectionLocation, GLint LightPositionLocation);
 
 
     QVector3D lightPos;

@@ -34,14 +34,9 @@ public:
     std::vector<GLuint> mIndices;
 
     QVector3D findVectorNormal(Vertex p1, Vertex p2, Vertex p3) {
-        //mVertices[i].m_normal[0] = abs(mVertices[i].m_normal[0]);
         QVector3D p12 = p2.m_xyz - p1.m_xyz;
         QVector3D p13 = p3.m_xyz - p1.m_xyz;
         QVector3D n = QVector3D::crossProduct(p12, p13).normalized();
-
-//        n[0] = abs(n[0]);
-//        n[1] = abs(n[1]);
-//        n[2] = abs(n[2]);
 
         return n;
     }

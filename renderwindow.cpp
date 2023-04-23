@@ -41,7 +41,7 @@ Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
 //                        r     g     b  intensity   xDir  yDir   zDir,  dIntensity)
 //Light* light = new Light(1.0f, 1.0f, 1.0f, 0.1f,    0.0f, -1.0f, 0.0f, 0.7f);
-Light* light = new Light(1.0f, 1.0f, 1.0f, 0.3f, 2.0f, -1.0f, -2.0f, 1.0f);
+Light* light = new Light(1.0f, 1.0f, 1.0f, 0.1f, 0.0f, 0.0f, 0.0f, 0.8f);
 Texture* obamnaTex;
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
@@ -209,6 +209,7 @@ void RenderWindow::init()
     UpdateCurrentUniforms(mShaderProgram[2]);
     light->init(mMatrixUniform);
     light->setPosition(QVector3D(-4.0f, 4.5f, -3.0f));
+    light->lightPos = QVector3D(-4.0f, 4.5f, -3.0f);
 
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
     glPointSize(bababooey);
@@ -281,7 +282,7 @@ void RenderWindow::render()
     glUseProgram(mShaderProgram[0]->getProgram());
     UpdateCurrentUniforms(mShaderProgram[0]);
     mCamera.GetCameraPos(mCameraPositionUniform, player->m_Position - QVector3D{0.0f, -5.0f, 5.0f});
-    light->UseLight(mAmbientIntensityUniform, mAmbientColorUniform, mDiffuseIntensityUniform, mDirectionUniform);
+    light->UseLight(mAmbientIntensityUniform, mAmbientColorUniform, mDiffuseIntensityUniform, mDirectionUniform, mLightPositionUniform);
 
     //
     // OPENGL FUNCTIONS
@@ -479,6 +480,7 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     mDiffuseIntensityUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.diffuseIntensity");
     mDirectionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "directionalLight.direction");
     mCameraPositionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "viewPos");
+    mLightPositionUniform = glGetUniformLocation( mShaderProgram[shaderIndex]->getProgram(), "lightPos");
 
     std::cout << "MMU: " << mShaderProgram[shaderIndex]->MMU << std::endl;
     std::cout << "PMU: " << mShaderProgram[shaderIndex]->PMU << std::endl;
@@ -489,6 +491,7 @@ void RenderWindow::SetupPlainShader(int shaderIndex)
     std::cout << "mDiffuseIntensityUniform: " << mDiffuseIntensityUniform << std::endl;
     std::cout << "mDirectionUniform: " << mDirectionUniform << std::endl;
     std::cout << "mCameraPositionUniform: " << mCameraPositionUniform << std::endl;
+    std::cout << "mLightPositionUniform: " << mLightPositionUniform << std::endl;
     /*
     GLint mAmbientColoruniform{-1};
     GLint mAmbientIntensityuniform{-1};
