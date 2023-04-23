@@ -61,7 +61,6 @@ private:
     GLint mAmbientColorUniform{-1};
     GLint mAmbientIntensityUniform{-1};
     GLint mDiffuseIntensityUniform{-1};
-    GLint mDirectionUniform{-1};
     GLint mCameraPositionUniform{-1};
     GLint mLightPositionUniform{-1};
 

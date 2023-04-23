@@ -11,7 +11,6 @@ struct DirectionalLight
 {
     vec3 color;
     float ambientIntensity;
-    vec3 direction;
     float diffuseIntensity;
 };
 

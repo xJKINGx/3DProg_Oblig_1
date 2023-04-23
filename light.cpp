@@ -4,7 +4,7 @@
 // Default values for both ambient and diffuse lighting
 Light::Light()
 {
-    CreateMesh(0.1f);
+    CreateMesh(0.1f, 1.0f, 1.0f, 1.0f);
     color = QVector3D(1.0f, 1.0f, 1.0f);
     direction = QVector3D(0.0f, -1.0f, 0.0f); // pointing downwards
 
@@ -15,19 +15,18 @@ Light::Light()
 // Used for ambient lighting only
 Light::Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity)
 {
-    CreateMesh(0.1f);
+    CreateMesh(0.1f, r, g, b);
     color = QVector3D(r, g, b);
     ambientIntensity = intensity;
 }
 
 // Used for ambient and diffuse lighting
-Light::Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity, GLfloat xDir, GLfloat yDir, GLfloat zDir, GLfloat dIntensity)
+Light::Light(GLfloat r, GLfloat g, GLfloat b, GLfloat intensity, GLfloat dIntensity)
 {
-    CreateMesh(0.1f);
+    CreateMesh(0.1f, r, g, b);
 
     color = QVector3D(r, g, b);
     ambientIntensity = intensity;
-    direction = QVector3D(xDir, yDir, zDir);
     diffuseIntensity = dIntensity;
 }
 
@@ -38,72 +37,70 @@ void Light::UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation)
 }
 
 void Light::UseLight(GLuint LightIntensityLocation, GLfloat LightColorLocation, GLfloat DiffuseIntensityLocation,
-                     GLfloat DirectionLocation, GLint LightPositionLocation)
+                     GLint LightPositionLocation)
 {
     glUniform3f(LightColorLocation, color[0], color[1], color[2]);
     glUniform1f(LightIntensityLocation, ambientIntensity);
-
-    glUniform3f(DirectionLocation, direction[0], direction[1], direction[2]);
     glUniform1f(DiffuseIntensityLocation, diffuseIntensity);
 
     glUniform3f(LightPositionLocation, lightPos[0], lightPos[1], lightPos[2]);
 }
 
-void Light::CreateMesh(float scale)
+void Light::CreateMesh(float scale, float r, float g, float b)
 {
     // NORTH SIDE
-    Vertex v1{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
-    Vertex v2{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
-    Vertex v3{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower left
+    Vertex v1{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower right
+    Vertex v2{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
+    Vertex v3{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower left
 
-    Vertex v4{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper Right
-    Vertex v5{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower right
-    Vertex v6{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
+    Vertex v4{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper Right
+    Vertex v5{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower right
+    Vertex v6{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
 
     // EAST SIDE
-    Vertex v7{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower left
-    Vertex v8{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
-    Vertex v9{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
+    Vertex v7{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower left
+    Vertex v8{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
+    Vertex v9{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
 
-    Vertex v10{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper right
-    Vertex v11{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
-    Vertex v12{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
+    Vertex v10{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper right
+    Vertex v11{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
+    Vertex v12{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
 
     // SOUTH SIDE
-    Vertex v13{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
-    Vertex v14{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper left
-    Vertex v15{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower left
+    Vertex v13{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
+    Vertex v14{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper left
+    Vertex v15{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower left
 
-    Vertex v16{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper Right
-    Vertex v17{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
-    Vertex v18{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper left
+    Vertex v16{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper Right
+    Vertex v17{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
+    Vertex v18{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper left
 
     // WEST SIDE
-    Vertex v19{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower left
-    Vertex v20{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
-    Vertex v21{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
+    Vertex v19{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower left
+    Vertex v20{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
+    Vertex v21{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
 
-    Vertex v22{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper right
-    Vertex v23{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower right
-    Vertex v24{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper left
+    Vertex v22{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper right
+    Vertex v23{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower right
+    Vertex v24{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper left
 
     // TOP SIDE
-    Vertex v25{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper north
-    Vertex v26{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper east
-    Vertex v27{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper south
+    Vertex v25{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper north
+    Vertex v26{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper east
+    Vertex v27{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper south
 
-    Vertex v28{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper south
-    Vertex v29{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, 1, 1, 1}; // Upper west
-    Vertex v30{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, 1, 1, 1}; // Upper north
+    Vertex v28{m_Position[0] + scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper south
+    Vertex v29{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] + scale, r, g, b}; // Upper west
+    Vertex v30{m_Position[0] - scale, m_Position[1] + scale, m_Position[2] - scale, r, g, b}; // Upper north
 
     // BOTTOM SIDE
-    Vertex v31{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower north
-    Vertex v32{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower east
-    Vertex v33{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower south
+    Vertex v31{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower north
+    Vertex v32{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower east
+    Vertex v33{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower south
 
-    Vertex v34{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower south
-    Vertex v35{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, 1, 1, 1}; // Lower west
-    Vertex v36{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, 1, 1, 1}; // Lower north
+    Vertex v34{m_Position[0] + scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower south
+    Vertex v35{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] + scale, r, g, b}; // Lower west
+    Vertex v36{m_Position[0] - scale, m_Position[1] - scale, m_Position[2] - scale, r, g, b}; // Lower north
 
     mVertices.push_back(v1);
     mVertices.push_back(v2);
