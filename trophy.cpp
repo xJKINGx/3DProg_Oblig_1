@@ -411,6 +411,19 @@ trophy::trophy(float scale, QVector3D start) {
     }
 
     mMatrix.setToIdentity();
+
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+
+        mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+
+        mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+
+    }
 }
 
 trophy::~trophy() {    }

@@ -7,11 +7,6 @@ in vec3 fragPos;
 
 uniform vec3 lightPos;
 
-uniform float ambientStrength = 0.3f;
-uniform vec4 ambientColor = vec4(1, 1, 1, 0);
-
-uniform float lightStrength = 0.7;
-
 struct DirectionalLight
 {
     vec3 color;

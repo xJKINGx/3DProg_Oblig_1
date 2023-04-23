@@ -458,7 +458,7 @@ void RenderWindow::keyPressEvent(QKeyEvent *event)
         player->Move(event);
         // No it's not cursed, what are you on about?
         player->setPosition(QVector3D(player->m_Position[0],
-                            Ground->HeightFromBaryc(QVector2D(player->m_Position[0], player->m_Position[2])),
+                            Ground->HeightFromBaryc(QVector2D(player->m_Position[0], player->m_Position[2])) + player->PlayerScale,
                             player->m_Position[2]));
 
         newCube->Move(0.0f,0.0f,0.0f, event);

@@ -265,6 +265,22 @@ house::house(float scale, QVector3D start) {
     }
 
     mMatrix.setToIdentity();
+
+    for(int i = 0; i <= mVertices.size() - 2; i += 3)
+    {
+        if (i % 6 != 0 && i != 0)
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 2], mVertices[i + 1]);
+        }
+        else
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        }
+    }
 }
 
 house::~house() {    }
