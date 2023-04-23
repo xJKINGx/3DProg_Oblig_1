@@ -46,19 +46,28 @@ TriangleSurface::TriangleSurface(std::string filnavn, bool write)
 
     for(int i = 0; i <= mVertices.size() - 2; i += 3)
     {
-        mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
-        mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
-        mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        if (i % 6 != 0 && i != 0)
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]) * (-1);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]) * (-1);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]) * (-1);
+        }
+        else
+        {
+            mVertices[i].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 1].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+            mVertices[i + 2].m_normal = VisualObject::findVectorNormal(mVertices[i], mVertices[i + 1], mVertices[i + 2]);
+        }
 
 
-//        std::cout << "Vertex " << i + 1 << "'s normal: " << mVertices[i].m_normal[0] << ", " <<
-//                  mVertices[i].m_normal[1] << ", " << mVertices[i].m_normal[2] << std::endl;
+        std::cout << "Vertex " << i + 1 << "'s normal: " << mVertices[i].m_normal[0] << ", " <<
+                  mVertices[i].m_normal[1] << ", " << mVertices[i].m_normal[2] << std::endl;
 
-//        std::cout << "Vertex " << i + 2 << "'s normal: " << mVertices[i + 1].m_normal[0] << ", " <<
-//                  mVertices[i + 1].m_normal[1] << ", " << mVertices[i + 1].m_normal[2] << std::endl;
+        std::cout << "Vertex " << i + 2 << "'s normal: " << mVertices[i + 1].m_normal[0] << ", " <<
+                  mVertices[i + 1].m_normal[1] << ", " << mVertices[i + 1].m_normal[2] << std::endl;
 
-//        std::cout << "Vertex " << i + 3 << "'s normal: " << mVertices[i + 2].m_normal[0] << ", " <<
-//                  mVertices[i + 2].m_normal[1] << ", " << mVertices[i + 2].m_normal[2] << std::endl;
+        std::cout << "Vertex " << i + 3 << "'s normal: " << mVertices[i + 2].m_normal[0] << ", " <<
+                  mVertices[i + 2].m_normal[1] << ", " << mVertices[i + 2].m_normal[2] << std::endl;
     }
 }
 

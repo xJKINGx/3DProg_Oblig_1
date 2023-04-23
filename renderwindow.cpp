@@ -39,7 +39,8 @@ bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 NPC* npc = new NPC(0.5f, 0.0f);
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
-Light* light = new Light(1.0f, 1.0f, 1.0f, 0.8f,2.0f, -1.0f, -2.0f, 4.0f);
+//                        r     g     b  intensity   xDir  yDir   zDir,  dIntensity)
+Light* light = new Light(1.0f, 1.0f, 1.0f, 0.0f,    0.0f, -1.0f, -0.0f, 1.0f);
 Texture* obamnaTex;
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)

@@ -21,8 +21,8 @@ uniform DirectionalLight directionalLight;
 
 void main() {
     // Ambient
-    vec4 ambient = ambientColor * ambientStrength;
-    //vec4 ambient = vec4(directionalLight.color,1.0f) * directionalLight.ambientIntensity;
+    //vec4 ambient = ambientColor * ambientStrength;
+    vec4 ambient = vec4(directionalLight.color,1.0f) * directionalLight.ambientIntensity;
 
     // Diffuse
 //    vec3 normalCorrected = normalize(normal);
