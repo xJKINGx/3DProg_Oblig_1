@@ -39,7 +39,7 @@ bed* Bed = new bed(1, QVector3D{1000.f, 1000.f, 1000.f});
 NPC* npc = new NPC(0.5f, 0.0f);
 Curve* graph1 = new Curve("graph.txt", true);
 Curve* graph2 = new Curve("4610CurvePoints.txt", true);
-Light* light = new Light(1.0f, 1.0f, 1.0f, 0.8f,2.0f, -1.0f, -2.0f, 1.0f);
+Light* light = new Light(1.0f, 1.0f, 1.0f, 0.8f,2.0f, -1.0f, -2.0f, 4.0f);
 Texture* obamnaTex;
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
@@ -271,8 +271,13 @@ void RenderWindow::render()
     mCamera.update(mVmatrixUniform, mPmatrixUniform);
 
     light->draw();
-    //dirLight.useLight(uniformAmbientIntensity, uniformAmbientColor,uniformDiffuseIntensity,uniformDirection);
 
+    //
+    // RENDER LIGHTING
+    //
+
+    glUseProgram(mShaderProgram[0]->getProgram());
+    UpdateCurrentUniforms(mShaderProgram[0]);
     light->UseLight(mAmbientIntensityUniform, mAmbientColorUniform, mDiffuseIntensityUniform, mDirectionUniform);
 
     //
